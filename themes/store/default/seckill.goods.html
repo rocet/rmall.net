@@ -1,0 +1,177 @@
+{include file=header.html}
+<script type="text/javascript">
+var time_array;
+var start_leave_time = '{$start_leave_time|escape}';
+var leave_time = "{$leave_time|escape}";
+var time_str = start_leave_time != '0:0:0' ? start_leave_time : leave_time;
+
+if(time_str.indexOf(':') != -1){
+   time_array = time_str.split(':');
+}
+else{
+   time_array = false
+   $('#leveTime').text(time_str);
+}
+var hTrue=true;
+var mTrue=true;
+var sTrue=true;
+$(function(){
+    leve_time_count();
+});
+function leve_time_count(){
+    if(!time_array){
+	   clearTimeout(t);
+	   return;
+	}
+	time_array[2]--;
+	if(time_array[2] <= 0){
+	    time_array[1]--;
+		time_array[2] = 60;
+		mTrue = true;
+	}
+	if(time_array[0] < 10 && hTrue){
+	    hTrue = false;
+	    time_array[0] = '0'+time_array[0];
+	}
+	if(time_array[1] <= 0 && time_array[0] > 0 ){
+		time_array[0]--;
+		time_array[2] =60;
+		time_array[1] = 59;
+		hTrue = true;
+	}
+	if(time_array[0] <= 0 && parseInt(time_array[1]) < 0 && time_array[2] == 60){
+	   //判断是否为秒杀开始
+	   if(start_leave_time != '0:0:0'){
+	       get_seckill_data();
+		   time_array = '{$period}'.split(':');
+		   time_array[0] = time_array[0] < 10 ? '0' + time_array[0] : time_array[0];
+		   time_array[1] = time_array[1] < 10 ? '0' + time_array[1] : time_array[1];
+		   time_array[2] = time_array[2] < 10 ? '0' + time_array[2] : time_array[2];
+		   $('#seckill_name').html('{$lang.seckill_leave_time}:<b id="leveTime">'+time_array[0] + ':'+ time_array[1] + ':' +time_array[2]+'</b>');
+		   
+		   leve_time_count();
+	   }
+	   else{
+	   //秒杀结束处理
+	    $('#leveTime').text('{$lang.seckill_ending}');
+	    ajax_update()
+		clearTimeout(t);
+		return;
+	  }
+	}
+	if(time_array[1] < 10 && mTrue){
+	    mTrue = false;
+	    time_array[1] = '0'+time_array[1];
+	}
+	if(time_array[2] < 10){
+	    sTrue = false;
+	    time_array[2] = '0'+time_array[2];
+	}
+	$('#leveTime').text(time_array[0]+':'+time_array[1]+':'+time_array[2]);
+	var t = setTimeout("leve_time_count()",1000);
+}
+
+function ajax_update(){
+   var goods_id;
+   var sec_id;
+   var cmdObj = $('.seckill_border').eq(0);
+   for(var i=0; i<$('.seckill_goods_id').length; i++){
+       if(goods_id != undefined){
+	       goods_id += ","+$('.seckill_goods_id').eq(i).val();
+		   sec_id += ","+$('.seckill_id').eq(i).val();
+	   }
+       else{
+	       goods_id = $('.seckill_goods_id').eq(i).val();
+		   sec_id = $('.seckill_id').eq(i).val();
+	   }
+   }
+   if(goods_id == 'undefined' || sec_id == 'undefined'){
+       return;
+   }
+   $.ajax({
+      type: "GET",
+	  url: "index.php?module=seckill&act=ajax_goods_update&ids="+goods_id+"&secid="+sec_id,
+	  dataType: "text",
+	  success: function(msg){
+	      if($.trim(msg) == 'true'){
+		      $('.seckill_goods_list').eq(0).find('li').remove();
+		 }
+		// alert(msg);
+	  }
+   });
+}
+
+
+function get_seckill_data(){
+   
+   var htmlStr = "";
+   $.ajax({
+       type: 'GET',
+	   url: 'index.php?app=buyer_seckill&act=get_seckill_data',
+	   dataType: 'json',
+	   success: function(data){
+	       $.each(data,function(ids,item){
+		       htmlStr += '<li><img src="{$site_url}/'+item.default_image+'"><div><input type="hidden" value="'+item.goods_id+'" class="seckill_goods_id" /><input type="hidden" value="'+item.sec_id+'" class="seckill_id" /><p>{$lang.seckill_subject}:<span>'+item.subject_name+'</span></p><p>{$lang.goods_name}:<span>'+item.goods_name+'</span></p><p>{$lang.formaly_price}:<span class="delprice">'+item.price+'</span></p><p>{$lang.seckill_price}:<span class="seckill_price">'+item.price+'</span></p><b><a href="index.php?app=buyer_seckill&act=seckill_goods&id='+item.goods_id+'&sid='+item.sec_id+'">{$lang.seckill_now}</a></b></div></li>';
+		   })
+		   $('.seckill_goods_list > ul').eq(0).html(htmlStr);
+	   }
+   });
+}
+</script>
+<div id="seckill"> <span id="seckill_title"></span><span id="seckill_name">{$time_alert_title}:<b id="leveTime">{$leave_time|escape}</b></span><span id="seckill_more"><a href="index.php?app=buyer_seckill&act=seckill_search">{$lang.details}</a></span>
+  <div class="clear"></div>
+  <div class="seckill_goods_list" >
+    <ul>
+      <!--{foreach from=$seckill_lists item=lists}-->
+      <li><img src="{$site_url}/{$lists.default_image|escape}">
+        <div>
+          <input type="hidden" value="{$goods.goods_id}" class="seckill_goods_id" />
+          <input type="hidden" value="{$goods.sec_id}" class="seckill_id" />
+          <p class="seckill_name_hidden">{$lang.seckill_subject}:<span title="{$lists.subject_name}">{$lists.subject_name|truncate:10:...}</span></p>
+          <p class="seckill_name_hidden">{$lang.goods_name}:<span title="{$lists.goods_name|escape}">{$lists.goods_name|truncate:10:...}</span></p>
+          <p>{$lang.formaly_price}:<span class="delprice">{$lists.price|price}</span></p>
+          <p>{$lang.seckill_price}:<span class="seckill_price">{$lists.sec_price.0.spec_price|price}</span></p>
+          <b><a href="index.php?app=buyer_seckill&act=seckill_goods&id={$lists.goods_id}&sid={$lists.sec_id}">{$lang.seckill_now}</a></b></div>
+      </li>
+      <!--{foreachelse}-->
+      <!--{/foreach}-->
+    </ul>
+  </div>
+  <div class="seckill_next"><span class="seckill_next_title">{$lang.seckill_next_title}</span><span class="title_back"></span><span class="title_right_arrow"></span><span class="seckill_goods_more"><a href="index.php?app=buyer_seckill&act=seckill_next_search">{$lang.details}</a></span>
+    <div class="clear"></div>
+    <div class="seckill_next_list">
+      <ul>
+        <!--{foreach from=$next_seckill_info item=lists}-->
+        <li><img src="{$site_url}/{$lists.default_image|escape}">
+          <div>
+            <p class="seckill_name_hidden">{$lang.goods_name}:<span title="{$lists.goods_name|escape}">{$lists.goods_name|truncate:10:...}</span></p>
+            <p>{$lang.seckill_price}:<span class="seckill_price">{$lists.sec_price.0.spec_price|price}</span></p>
+            <p class="seckill_name_hidden">{$lang.seckill_subject}:<span title="{$lists.subject_name}">{$lists.subject_name|truncate:10:...}</span></p>
+          </div>
+        </li>
+        <!--{foreachelse}-->
+        <!--{/foreach}-->
+      </ul>
+    </div>
+  </div>
+  <div class="seckill_next"><span class="seckill_next_title">{$lang.seckill_prev_title}</span><span class="title_back"></span><span class="title_right_arrow"></span><span class="seckill_goods_more"><a href="index.php?app=buyer_seckill&act=seckill_prev_search">{$lang.details}</a></span>
+    <div class="clear"></div>
+    <div class="seckill_next_list">
+      <ul>
+        <!--{foreach from=$prev_seckill_info item=lists}-->
+        <li><img src="{$site_url}/{$lists.default_image|escape}">
+          <div>
+            <p class="seckill_name_hidden">{$lang.goods_name}:<span title="{$lists.goods_name}">{$lists.goods_name|truncate:10:...}</span></p>
+            <p>{$lang.seckill_price}:<span class="seckill_price"> {$lists.sec_price.0.spec_price|price}</span></p>
+            <p class="seckill_name_hidden">{$lang.store_name}:<span title="{$lists.store_name}">{$lists.store_name|truncate:10:...}</span></p>
+            <p>{$lang.seckill_time}:<span>{$lists.start_time|date}</span></p>
+            <p class="seckill_name_hidden">{$lang.seckill_subject}:<span title="{$lists.subject_name}">{$lists.subject_name|truncate:10:...}</span></p>
+            <p style="text-align:center;"><span><a href="index.php?app=goods&id={$lists.goods_id}">{$lang.seckill_goods_detail}</a></span></p>
+          </div>
+        </li>
+        <!--{/foreach}-->
+      </ul>
+    </div>
+  </div>
+</div>
+{include file=footer.html}

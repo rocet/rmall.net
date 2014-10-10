@@ -1,0 +1,114 @@
+{include file=member.header.html}
+<style>
+.member_no_records {border-top: 0px !important;}
+.table td{ padding-left: 5px; }
+.money_b{color:#ff4f01 !important;}
+.groupbuy_deposit{color:#FF4F01 !important; font-weight:normal;}
+</style>
+<div class="content">
+  <div class="totline"></div>
+  <div class="botline"></div>
+  {include file=member.menu.html}
+  <div id="right">
+    <ul class="tab">
+      <li class="active">{$lang.goods_list}</li>
+      <li class="normal"><a href="{url app=seckill&act=add}">{$lang.seckill_add}</a></li>
+    </ul>
+    <div class="wrap">
+      <div class="eject_btn_two eject_pos1" title="{$lang.add}"><b class="ico2" onclick="go('index.php?app=seckill&amp;act=add');">{$lang.add_seckill}</b></div>
+      <div class="public_select table">
+        <table>
+          <tr class="line_bold">
+                                    <th class="width1"><input type="checkbox" id="all" class="checkall"/></th>
+                        <th class="align1" colspan="2">
+                            <span class="all"><label for="all">{$lang.checkall}</label></span>
+
+                            <a href="#" class="delete" ectype="batchbutton" uri="index.php?app=seckill&act=drop" name="id" presubmit="confirm('{$lang.drop_confirm}')">{$lang.drop}</a>
+                        </th>
+            <th colspan="7"> <div class="select_div">
+                <form method="get">
+                  <!--{if $filtered}-->
+                  <a class="detlink_with_no_bg" style="float:right" href="{url app=seckill}">{$lang.cancel_query}</a>
+                  <!--{/if}-->
+                  <div style="float:right">
+                    <input type="text" class="text_normal" name="goods_name" value="{$smarty.get.goods_name|escape}"/>
+                    <select name="state">
+                      
+                      
+                            {html_options options=$state selected=$smarty.get.state}
+                       <option <!--{if $smarty.get.state eq 'nosel' || $smarty.get.state eq ''}--> selected="selected" <!--{/if}--> value="nosel">{$lang.select_pls}</option>     
+                    
+                    </select>
+                    <input type="hidden" name="app" value="seckill" />
+                    <input type="hidden" name="act" value="index" />
+                    <input type="submit" class="btn" value="{$lang.search}" />
+                  </div>
+                </form>
+              </div></th>
+          </tr>
+          <!--{if $seckill_list}-->
+          <tr class="gray">
+		  <th width="25">&nbsp;</th>
+            <th width="50">&nbsp;</th>
+            <th width="160"><span>{$lang.goods_name}</span></th>
+            <th width="50"><span>{$lang.state}</span></th>
+            <th width="150"><span>{$lang.add_time}</span></th>
+            <th width="80"><span>{$lang.start_time}</span></th>
+            <th width="80"><span>{$lang.quantity}</span></th>
+			
+            <th width="80"><span>{$lang.views}</span></th>
+			<th width="80"><span>{$lang.sec_recommended}</span></th>
+            <th width="80">{$lang.handle}</th>
+          </tr>
+          <!--{/if}-->
+          <!--{foreach from=$seckill_list item=seckill name=_group_f}-->
+          <tr class="line<!--{if $smarty.foreach._group_f.last}--> last_line<!--{/if}-->">
+		  <td width="25" class="align2"><input type="checkbox" class="checkitem" value="{$seckill.sec_id}"/></td>
+            <td width="50" class="align2"><a href="{url app=buyer_seckill&act=seckill_goods&id=$seckill.goods_id&sid=$seckill.sec_id}" target="_blank"><img src="{$site_url}/{$seckill.default_image}" width="50" height="50"  /></a></td>
+            <td width="160" align="align2"><p class="ware_text"><span class="color2" ectype="editobj"> {$seckill.goods_name} </span></p></td>
+            <td width="50" class="align2"><span class="color2">{$seckill.sec_state}</span></td>
+            <td width="150" class="align2"><span class="color2" ectype="editobj">{$seckill.add_time|date}</span></td>
+            <td width="80">{$seckill.start_time|date}</td>
+            <td width="80" class="align2"><span class="color2" ectype="editobj">{$seckill.sec_quantity|escape} </span></td>
+<td width="80" class="align2"><span class="color2" ectype="editobj">{$seckill.views|escape} </span></td>
+            <td width="80" class="align2"><span>
+              
+              <!--{if $seckill.recommended eq SECKILL_RECOMMENDED}-->
+              {$lang.yes}
+              <!--{else}-->
+              {$lang.no}
+              <!--{/if}-->
+              </span></td>
+            <td width="80"><div> <a href="javascript:drop_confirm('{$lang.drop_confirm}', 'index.php?app=seckill&amp;act=drop&id={$seckill.sec_id}');" class="delete">{$lang.drop}</a></div></td>
+          </tr>
+          <!--{foreachelse}-->
+          <tr>
+            <td class="align2 member_no_records padding6" colspan="6">{$lang.no_records}</td>
+          </tr>
+          <!--{/foreach}-->
+          <!--{if $seckill_list}-->
+          <tr class="line_bold line_bold_bottom">
+            <td colspan="10"></td>
+          </tr>
+          <tr>
+		  <th><input type="checkbox" id="all2" class="checkall"/></th>
+            <th colspan="8"> <p class="position1"> <span class="all">
+                <label for="all2">{$lang.checkall}</label>
+                </span> <a href="#" class="delete" uri="index.php?app=seckill&act=drop" name="id" presubmit="confirm('{$lang.drop_confirm}')" ectype="batchbutton">{$lang.drop}</a> </p>
+              <p class="position2"> {include file=member.page.bottom.html} </p></th>
+          </tr>
+          <!--{/if}-->
+        </table>
+      </div>
+      <div class="wrap_bottom"></div>
+    </div>
+    <div class="clear"></div>
+    <div class="adorn_right1"></div>
+    <div class="adorn_right2"></div>
+    <div class="adorn_right3"></div>
+    <div class="adorn_right4"></div>
+  </div>
+  <div class="clear"></div>
+</div>
+<iframe name="iframe_post" id="iframe_post" width="0" height="0"></iframe>
+{include file=footer.html}

@@ -1,0 +1,200 @@
+<script type="text/javascript" src="{lib file=goodsinfo.js}" charset="utf-8"></script>
+<script type="text/javascript">
+//<!CDATA[
+/* buy */
+function buy()
+{
+    
+    if (goodsspec.getSpec() == null)
+    {
+        alert(lang.select_specs);
+        return;
+    }
+    var spec_id = goodsspec.getSpec().id;
+
+    var quantity = $("#quantity").val();
+    if (quantity == '')
+    {
+        alert(lang.input_quantity);
+        return;
+    }
+    if (parseInt(quantity) < 1)
+    {
+        alert(lang.invalid_quantity);
+        return;
+    }
+    add_to_cart(spec_id, quantity);
+}
+
+/* add cart */
+function add_to_cart(spec_id, quantity)
+{
+    var url = SITE_URL + '/index.php?app=cart&act=add';
+    $.getJSON(url, {'spec_id':spec_id, 'quantity':quantity}, function(data){
+        if (data.done)
+        {
+            $('.bold_num').text(data.retval.cart.kinds);
+            $('.bold_mly').html(price_format(data.retval.cart.amount));
+            $('.ware_cen').slideDown('slow');
+            setTimeout(slideUp_fn, 5000);
+        }
+        else
+        {
+            alert(data.msg);
+        }
+    });
+}
+
+var specs = new Array();
+var goods_specs_price = new Array();
+<!--{foreach from=$goods._specs item=spec}-->
+specs.push(new spec({$spec.spec_id}, '{$spec.spec_1|escape}', '{$spec.spec_2|escape}', {$spec.price}, {$spec.stock}));
+goods_specs_price.push('{$spec.spec_id}','{$spec.spec_1|escape}','{$spec.spec_2|escape}','{$spec.price}');
+<!--{/foreach}-->
+var specQty = {$goods.spec_qty};
+var defSpec = {$goods.default_spec|escape};
+var goodsspec = new goodsspec(specs, specQty, defSpec);
+var time_array;
+if("{$leve_time|escape}".indexOf(':') != -1){
+   time_array = "{$leve_time|escape}".split(':');
+}
+else{
+   time_array = false
+}
+
+
+$(function(){
+    var seckill_specs_price = new Array();
+    <!--{foreach from=$seckill_info.sec_price item=sec_spec}-->
+	seckill_specs_price.push('{$sec_spec.spec_id}','{$sec_spec.spec_price}');
+	<!--{/foreach}-->
+	$('.seckill_spec_handl:first').children('.dotted').bind('click',bind_spec_sen);
+	
+	function bind_spec_sen(){
+	    $('.seckill_spec_handl:last').children('.dotted').bind('click',seckill_price);
+		$('.seckill_spec_handl:first').children('.dotted').bind('click',bind_spec_sen);
+	}
+   function seckill_price(){
+       for(var i=0; i < goods_specs_price.length; i++){
+	       if(goods_specs_price[i] == $(this).text() && goods_specs_price[i-1] == $('.seckill_spec_handl:first').children('.solid').text()){
+		       $('.seckill_price').eq(0).html('&nbsp;&nbsp;'+seckill_specs_price[i / 2]);
+		   }
+	   }
+   }
+   
+   leve_time_count();
+});
+var hTrue=true;
+var mTrue=true;
+var sTrue=true;
+function leve_time_count(){
+    if(!time_array){
+	   clearTimeout(t);
+	   return;
+	}
+	time_array[2]--;
+	if(time_array[2] <= 0){
+	    time_array[1]--;
+		time_array[2] = 60;
+		mTrue = true;
+	}
+	if(time_array[0] < 10 && hTrue){
+	    hTrue = false;
+	    time_array[0] = '0'+time_array[0];
+	}
+	if(time_array[1] <= 0 && time_array[0] > 0 ){
+		time_array[0]--;
+		time_array[2] =60;
+		time_array[1] = 59;
+		hTrue = true;
+	}
+	if(time_array[0] <= 0 && time_array[1] < 0 && time_array[2] == 60){
+	
+	   //秒杀结束处理
+		clearTimeout(t);
+	}
+	if(time_array[1] < 10 && mTrue){
+	    mTrue = false;
+	    time_array[1] = '0'+time_array[1];
+	}
+	if(time_array[2] < 10){
+	    sTrue = false;
+	    time_array[2] = '0'+time_array[2];
+	}
+	$('#leveTime').text(time_array[0]+':'+time_array[1]+':'+time_array[2]);
+	var t = setTimeout("leve_time_count()",1000);
+}
+//]]>
+</script>
+
+<h2 class="ware_title">{$goods.goods_name|escape}</h2>
+<div class="ware_info">
+  <div class="ware_pic">
+    <div class="big_pic"> <a href="javascript:;"><span class="jqzoom"><img src="{$goods._images.0.thumbnail|default:$default_image}" width="300" height="300" jqimg="{$goods._images.0.image_url}" /></span></a> </div>
+    <div class="bottom_btn">
+      <!--<a class="collect" href="javascript:collect_goods({$goods.goods_id});" title="{$lang.add_to_favorite}"></a>-->
+      <div class="left_btn"></div>
+      <div class="right_btn"></div>
+      <div class="ware_box">
+        <ul>
+          <!--{foreach from=$goods._images item=goods_image name=fe_goods_image}-->
+          <li {if $smarty.foreach.fe_goods_image.first}class="ware_pic_hover"{/if} bigimg="{$goods_image.image_url}"><img src="{$goods_image.thumbnail}" width="55" height="55" /></li>
+          <!--{/foreach}-->
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="ware_text">
+    <div class="rate"><span class="letter1">{$lang.default_price}: </span><span class="delprice">{$goods._specs.0.price|price}</span><br />
+      <span>{$lang.seckill_price}: </span><span class="fontColor3 seckill_price" ectype="goods_price">&nbsp;&nbsp;{$seckill_info.sec_price.0.spec_price|escape}</span><br />
+      <span>{$lang.seckill_qry}: </span><span class="fontColor3">&nbsp;&nbsp;{$seckill_info.sec_quantity|escape}</span><br />
+      <span class="letter1">{$lang.brand}: </span>{$goods.brand|escape}<br />
+      <span>{$lang.end_time}: </span>&nbsp;&nbsp;<span class="red" id="leveTime">{$leve_time|escape}</span><br />
+      
+      {$lang.sale_situation}: {$sales_info}{$comments}<br />
+      {$lang.region}: {$store.region_name|escape} </div>
+    <div class="handle">
+      <!--{if $goods.spec_qty gt 0}-->
+      <ul class="seckill_spec_handl">
+        <li class="handle_title">{$goods.spec_name_1|escape}: </li>
+      </ul>
+      <!--{/if}-->
+      <!--{if $goods.spec_qty gt 1}-->
+      <ul class="seckill_spec_handl">
+        <li class="handle_title">{$goods.spec_name_2|escape}: </li>
+      </ul>
+      <!--{/if}-->
+      <ul>
+        <li class="handle_title">{$lang.quantity}: </li>
+        <li>
+          <input type="text" class="text width1" name="" id="quantity" value="1" />
+          {$lang.unit}{$lang.left_bracket}{$lang.stock}<span class="stock" ectype="goods_stock">{$goods._specs.0.stock}</span>{$lang.unit}{$lang.right_bracket} </li>
+      </ul>
+      <!--{if $goods.spec_qty gt 0}-->
+      <ul>
+        <li class="handle_title">{$lang.your_select}: </li>
+        <li class="aggregate" ectype="current_spec"></li>
+      </ul>
+      <!--{/if}-->
+    </div>
+    <ul class="ware_btn">
+      <div class="ware_cen" style="display:none">
+        <div class="ware_center">
+          <h1> <span class="dialog_title">{$lang.add_to_cart_ok}</span> <span class="close_link" title="{$lang.close}" onmouseover="this.className = 'close_hover'" onmouseout="this.className = 'close_link'" onclick="slideUp_fn();"></span> </h1>
+          <div class="ware_cen_btn">
+            <p class="ware_text_p">{$lang.cart_status}</p>
+            <p class="ware_text_btn">
+              <input type="submit" class="btn1" name="" value="{$lang.view_cart}" onclick="location.href='{$site_url}/index.php?app=cart'" />
+              <input type="submit" class="btn2" name="" value="{$lang.continue_buy}" onclick="$('.ware_cen').css({'display':'none'});" />
+            </p>
+          </div>
+        </div>
+        <div class="ware_cen_bottom"></div>
+      </div>
+      <!--<li class="btn_c1" title="{$lang.buy_now}"><a href="#"></a></li>-->
+      <li class="btn_c2" title="{$lang.add_to_cart}"><a href="javascript:buy();"></a></li>
+      <li class="btn_c3" title="{$lang.add_to_favorite}"><a href="javascript:collect_goods({$goods.goods_id});"></a></li>
+    </ul>
+  </div>
+  <div class="clear"></div>
+</div>

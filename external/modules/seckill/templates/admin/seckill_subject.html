@@ -1,0 +1,107 @@
+{include file="header.html"}
+<script type="text/javascript">
+ $(function(){
+    $('.active_seckill').bind('click',ajax_update_show);
+	});
+function ajax_update_show(){
+    var type = $(this).attr('title') == '{$lang.cancel_scekill_subject}' ? 'hide' : 'show';
+	var id = $(this).parent().children('input').eq(0).val();
+	var cmd = $(this);
+	var imgTil = type == 'show' ? '{$lang.cancel_scekill_subject}' : '{$lang.active_seckill_subject}';
+	var imgUrl = type == 'show' ? "{$site_url}/admin/templates/style/images/positive_enabled.gif" : "{$site_url}/admin/templates/style/images/positive_disabled.gif";
+	$.ajax({
+	   type: 'get',
+	   dataType: 'text',
+	   url: 'index.php?module=seckill&act=subject_ajax_update&id='+id+'&type='+type,
+	   success: function(msg){
+	     if($.trim(msg) == 'true'){
+	       cmd.attr('src',imgUrl);
+		   cmd.attr('title',imgTil);
+		 }
+	   }
+	});
+}
+</script>
+<div id="rightTop">
+  <p>{$lang.second_kill}</p>
+  <ul class="subnav">
+    <li><a class="btn3" href="index.php?module=seckill&act=set_start_time">{$lang.set_start_time}</a></li>
+	</li>
+    <li><a class="btn3" href="index.php?module=seckill&act=set_period">{$lang.period_manage}</a></li>
+    <li><a class="btn3" href="index.php?module=seckill&act=set_goods_qty">{$lang.goods_qty_manage}</a></li>
+    <li><a class="btn3" href="index.php?module=seckill&act=set_store_seckill">{$lang.store_seckill_manage}</a> </li>
+    <li><a class="btn3" href="index.php?module=seckill&act=seckill_manage">{$lang.seckill_manage}</a> </li>
+    <li><a class="btn3" href="index.php?module=seckill&act=seckill_apply">{$lang.seckill_auditing}</a> </li>
+    <li><span>{$lang.seckill_subject}</span> </li>
+    <li><a class="btn3" href="index.php?module=seckill&act=subject_add">{$lang.add_subject}</a> </li>
+  </ul>
+</div>
+<div class="mrightTop">
+  <div class="fontl">
+    <form method="get">
+      <div class="left">
+        <input type="hidden" name="module" value="seckill" />
+        <input type="hidden" name="act" value="seckill_subject" />
+        {$lang.seckill_subject_name}:
+        <input class="queryInput" type="text" name="subject_name" value="{$smarty.get.subject_name|escape}" />
+       <!-- {$lang.state}:
+        <select class="querySelect" name="state">
+          <option value="">{$lang.select_pls}</option>
+          
+          
+            {html_options options=$state selected=$smarty.get.state}
+          
+        
+        </select>-->
+        <input type="submit" class="formbtn" value="{$lang.query}" />
+      </div>
+      <!--{if $filtered}-->
+      <a class="left formbtn1" href="index.php?module=seckill&act=seckill_subject">{$lang.cancel_query}</a>
+      <!--{/if}-->
+    </form>
+  </div>
+  <div class="fontr">{include file=page.top.html} </div>
+</div>
+<div class="tdare">
+  <table width="100%" cellspacing="0" class="dataTable">
+    <!--{if $subject_lists}-->
+    <tr class="tatr1">
+      <td width="20" class="firstCell"><input type="checkbox" class="checkall" /></td>
+      <td width="400" style="text-align:center;">{$lang.seckill_subject_name}</td>
+      <td><span ectype="order_by" fieldname="store_name">{$lang.seckill_detail}</span></td>
+      <td><span ectype="order_by" fieldname="store_name">{$lang.subject_display}</span></td>
+      <td class="handler">{$lang.handdle}</td>
+    </tr>
+    <!--{/if}-->
+    <!--{foreach from=$subject_lists item=lists}-->
+    <tr class="tatr2">
+      <td class="firstCell"><input type="checkbox" class="checkitem" value="{$lists.subject_id}" /></td>
+      <td>{$lists.subject_name|escape}</td>
+      <td>{$lists.subject_desc|escape}</td>
+      <td><!--{if $lists.subject_state eq 1}-->
+        <img src="{$site_url}/admin/templates/style/images/positive_enabled.gif"  title="{$lang.cancel_scekill_subject}" class="active_seckill"/>
+        <!--{else}-->
+        <img src="{$site_url}/admin/templates/style/images/positive_disabled.gif"  title="{$lang.active_seckill_subject}" class="active_seckill"/>
+        <!--{/if}-->
+		<input type="hidden" value="{$lists.subject_id}" />
+		</td>
+      <td class="handler">
+        <a href="index.php?module=seckill&act=edit_subject&id={$lists.subject_id}">{$lang.edit}</a>&nbsp;|&nbsp;<a href="javascript:drop_confirm('{$lang.drop_confirm}','index.php?module=seckill&act=seckill_subject_del&id={$lists.subject_id}')">{$lang.seckill_del}</a></td>
+    </tr>
+    <!--{foreachelse}-->
+    <tr class="no_data">
+      <td colspan="12">{$lang.no_data}</td>
+    </tr>
+    <!--{/foreach}-->
+  </table>
+  <!--{if $subject_lists}-->
+  <div id="dataFuncs">
+    <div class="pageLinks">{include file=page.bottom.html}</div>
+    <div id="batchAction" class="left paddingT15">
+      <input class="formbtn" type="button" value="{$lang.add}" onClick='javascript:location.href = "index.php?module=seckill&act=subject_add"'/>&nbsp;<input class="formbtn batchButton" type="button" value="{$lang.seckill_del}" name="id" uri="index.php?module=seckill&act=seckill_subject_del" presubmit="confirm('{$lang.batch_subject_del}');" />
+    </div>
+  </div>
+  <div class="clear"></div>
+  <!--{/if}-->
+</div>
+{include file="footer.html"} 

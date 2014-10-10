@@ -1,0 +1,178 @@
+{include file="amyheader.html"}
+
+<link rel="stylesheet" type="text/css" href="{res file=css/activity20140217.min.css}"/>
+<div class="back_f4f1f2 pbottom">
+    <div class="w">
+        <div class="clearfix lineh_37 height_37">
+            <span class="img_tou Left"></span>
+            <div class="Left fsize_12  color_333 ffamily_song height_37">当前位置：<a href="/">首页</a><span class="color_999"> > </span><a href="{url app=discountgoods}">特价</a></div>
+        </div>
+        <div class="clearfix">
+            <div class="Left p_relative">
+                <div class="guangao_back p_absolute"></div>
+                <div class="guangao clearfix">
+                    <div  class="guangao_border">
+                        <table id="Js_bargain_price">
+                            <tr>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="guangao_href  tRIght" id="Js_bargain">
+                    </div>
+                </div>
+            </div>
+            <div class="Right newgood_list back_fff clearfix">
+                <p class="title"><span class="ffamily_weiruan fsize_14 color_333 f_weight block Left">特价现货</span></p>
+                <ul id="JS_newgoods">
+                    <!--{foreach from=$rocet_discountgoods_hot item=discountgoodstophot name=discountgoodstophot}-->
+                    <li class="borderBottom">
+                        <div class="goood_details clearfix {if !$smarty.foreach.discountgoodstophot.first}none{/if}">
+                            <p class="lineh_33 height_33"><span class="serial_number back_c9033b tCenter arial fsize_12">{$smarty.foreach.discountgoodstophot.iteration}</span><a href="{url app=goods&id=$discountgoodstophot.goods_id}" title="{$discountgoodstophot.goods_name}" class="color_333 ffamily_song fsize_12 block" target="_blank">{$discountgoodstophot.goods_name|truncate:10}</span></a></p>
+                            <a href="{url app=goods&id=$discountgoodstophot.goods_id}" class="Left" title="{$discountgoodstophot.goods_name}" target="_blank"><img src="{$discountgoodstophot.default_image}" width="122" height="81" title="{$discountgoodstophot.goods_name}" alt="{$discountgoodstophot.goods_name}" target="_blank"></a>
+                            <div class="Left">
+                                <p class="color_c9033b"><span class="fsize_12 ffamily_weiruan">¥</span><span class="fsize_14 f_weight arial">{$discountgoodstophot.active_price}</span></p>
+                                <p class="fsize_12 color_999 del mbottom"><span class="ffamily_weiruan">¥</span><span class="arial">{$discountgoodstophot.price}</span></p>
+                                <p class="discount tCenter color_fff fsize_song"><span class="arail lineh_18">{$discountgoodstophot.discount}</span><span class="ffamily_song lineh_18">折</span></p>
+                            </div>
+                        </div>
+                        <div class="lineh_37 height_37 good_list {if $smarty.foreach.discountgoodstophot.first}none{/if}">
+                            <span class="serial_number back_999 tCenter arial fsize_12">2</span><a href="{url app=goods&id=$discountgoodstophot.goods_id}" title="{$discountgoodstophot.goods_name}" target="_blank"><span class="color_333 ffamily_song fsize_12 block hide_good">{$discountgoodstophot.goods_name|truncate:10}</span></a><span class=" hide_goodprice block color_c9033b fsize_12"><span class="ffamily_weiruan">¥</span><span class="arial">{$discountgoodstophot.active_price}</span></span><span class="discount tCenter color_fff fsize_song lineh_18"><span class="arail lineh_18">{$discountgoodstophot.discount}</span><span class="ffamily_song lineh_18">折</span></span>
+
+                        </div>
+                    </li>
+                    <!--{/foreach}-->
+                </ul>
+            </div>
+        </div>
+        <!--{if $rocet_adv_discountgoodstopad}-->
+        <a class="advertisement" href="{$rocet_adv_discountgoodstopad.link}" target="_blank"><img src="{res file=themes/paipai/images/blank.gif}" data-src="{$rocet_adv_discountgoodstopad.pic}" title="{$rocet_adv_discountgoodstopad.title}"></a>
+        <!--{/if}-->
+        <div  class="type_list">
+            <!-- <table class="back_fff">
+                <tr>
+                    <td class="td_left tCenter color_666 fsize_14 ffamily_weiruan f_weight left_borderBottom">家具</td>
+                    <td class="td_right borderBottom">
+                        <a href="/activity-page-1-show_type-0-sort-total_sold_yes_count-order-desc.html" class="type">全部家具<span >(71)</span></a>
+                        <a href="/activity-page-1-show_type-0-cat-268-sort-total_sold_yes_count-order-desc.html" class="">卧室<span class="color_999">(32)</span></a>
+                        <a href="/activity-page-1-show_type-0-cat-269-sort-total_sold_yes_count-order-desc.html" class="">客厅<span class="color_999">(29)</span></a>
+                        <a href="/activity-page-1-show_type-0-cat-270-sort-total_sold_yes_count-order-desc.html" class="">餐厅<span class="color_999">(5)</span></a>
+                        <a href="/activity-page-1-show_type-0-cat-271-sort-total_sold_yes_count-order-desc.html" class="">书房<span class="color_999">(3)</span></a>
+                        <a href="/activity-page-1-show_type-0-cat-328-sort-total_sold_yes_count-order-desc.html" class="">户外家具<span class="color_999">(2)</span></a>
+                    </td>
+                </tr>
+            </table> -->
+            <!-- <table class="back_fff sort">
+                <tr>
+                    <td class=" tCenter fsize_12 ffamily_song type_width">
+                        <a href="activity-page-1-show_type-0-sort-total_sold_yes_count-order-asc.html" class="color_c9033b">销量<span class="down_pitch"></span></a>
+                    </td>
+                    <td class=" tCenter fsize_12 ffamily_song type_width">
+                        <a href="activity-page-1-show_type-0-sort-effect_price-order-asc.html" class="color_333">价格<span class="up"></span></a>
+                    </td>
+                    <td class=" tCenter fsize_12 ffamily_song type_width">
+                        <a href="activity-page-1-show_type-0-sort-click_count-order-desc.html" class="color_333">关注<span class="down"></span></a>
+                    </td>
+                    <td class=" tCenter fsize_12 ffamily_song type_width">
+                        <a href="activity-page-1-show_type-0-sort-discount-order-asc.html" class="color_333">折扣<span class="up"></span></a>
+                    </td>
+                    <td class="tRIght">
+                        <span class="block color_c9033b fsize_12 ffamily_song good_namber">共<span class="arial f_weight">71</span>件商品</span><span class="fsize_13 arial color_c9033b">1</sapn><span class="fsize_13 arial color_333">/3</span><a href="javascript:;" class="ffamily_song color_999 disabled fsize_12 ffamily_song type_next type_left"><</a><a href="/activity-page-2-show_type-0-sort-total_sold_yes_count-order-desc.html" class="ffamily_song color_333 fsize_12 ffamily_song type_next type_right">></a>
+                    </td>
+                </tr>
+            </table> -->
+        </div>
+
+        
+        <div class="goods_list clearfix">
+            <!--{foreach from=$rocet_discountgoods_goods item=discountgood name=discountgood}-->
+            <div class="Left mbottom  {if $smarty.foreach.discountgood.iteration % 4 neq 0}mright{/if}">
+                <div class="p_relative good">
+                    <div class="slider good_btop"></div>
+                    <div class="info_good good_btop tCenter"><a href="{url app=goods&id=$discountgood.goods_id}" class="block color_fff fsize_12 ffamily_song" title="{$discountgood.goods_name}" target="_blank">{$discountgood.goods_name}</a></div>
+                    <a href="{url app=goods&id=$discountgood.goods_id}" class="block" title="{$discountgood.goods_name}" target="_blank">
+                        <img src="{$discountgood.default_image}" title="{$discountgood.goods_name}" alt="{$discountgood.goods_name}">
+                    </a>
+                </div>
+                <div class="good_price clearfix">
+                    <div class="allprice Left">
+                        <p class="color_c9033b fsize_20 f_weight"><span class="ffamily_weiruan">¥</span><span class="arial">{$discountgood.active_price}</span></p>
+                        <p class="fsize_12 color_999 del mtop"><span class="ffamily_weiruan">¥</span><span class="arial">{$discountgood.price}</span></p>
+                    </div>
+                    <div class="tCenter Left discount_text">
+                        <span class="fsize_34 color_c9033b font_family f_weight">{$discountgood.discount}</span><span class="ffamily_weiruan color_333 fsize_16">折</span>
+                    </div>
+                </div>
+            </div>
+            <!--{/foreach}-->
+
+        </div>
+        <!-- <div class="tCenter color_333 fsize_12 page_div">
+            <a href="javascript:; " class="page up_page block ffamily_song mright_3 disabled"><i></i>上一页</a>
+            <a href="javascript:;" class="page block arial mright_3 psage_number current disabled">1</a>
+            <a href="/activity-page-2-show_type-0-sort-total_sold_yes_count-order-desc.html" class="page block arial mright_3 psage_number ">2</a>
+            <a href="/activity-page-3-show_type-0-sort-total_sold_yes_count-order-desc.html" class="page block arial mright_3 psage_number ">3</a>
+            <a href="/activity-page-2-show_type-0-sort-total_sold_yes_count-order-desc.html"  class="page down_page block ffamily_song meight_10 psage_number">下一页<i></i></a>
+            到第
+            <span class="page block mright_3 mleft_7"><input type="type" value="" onkeyup="this.value=(this.value+'').replace(/\D/g,'');" id="JS_page"></span>
+            页<input type="button" class="mleft_7 page_btn" value="确定" id="JS_btn"/>
+        </div> -->
+    </div>
+    
+    
+</div>
+<script type="text/javascript">
+    var _goods1 = {},
+        _goods2 = {};
+        <!--{foreach from=$rocet_adv_discountgoodsbanner item=discountgoodsbanner name=discountgoodsbanner}-->
+        _goods1['{$smarty.foreach.discountgoodsbanner.iteration}']={
+            'url':'{$discountgoodsbanner.link}',
+            'name':'{$discountgoodsbanner.title}',
+            'img':'{$discountgoodsbanner.pic}',
+            'total':'4'
+        };
+        <!--{/foreach}-->
+        <!--{foreach from=$rocet_adv_discountgoodsbanner item=discountgoodsbanner name=discountgoodsbanner}-->
+        _goods2['{$smarty.foreach.discountgoodsbanner.iteration}']={
+            'url':'{$discountgoodsbanner.link}',
+            'name':'{$discountgoodsbanner.title}',
+            'img':'{$discountgoodsbanner.pic}',
+            'total':'4'
+        };
+        <!--{/foreach}-->
+
+
+    
+    function  top_adcode(arr,len){
+        for(var i=1; i <= len ;i++){
+            var  bargainPrice = document.createElement('td');
+            var  bargainPrice1 = document.createElement('a');
+            bargainPrice1.setAttribute('href',arr[i].url);
+            bargainPrice1.setAttribute('title',arr[i].name);
+            bargainPrice1.setAttribute('target','_blank');
+            var  bargainPrice2 = document.createElement('img');
+            bargainPrice2.setAttribute('src',arr[i].img);
+            bargainPrice2.setAttribute('title',arr[i].name);
+            bargainPrice2.setAttribute('alt',arr[i].name);
+
+            var  bargain = document.createElement('a');
+            bargain.setAttribute('href','javascript:;');
+            if(i == 1){
+                bargain.setAttribute('class','back_c9033b')
+            }
+           
+            document.getElementById('Js_bargain').appendChild(bargain);
+
+            bargainPrice1.appendChild(bargainPrice2);
+            bargainPrice.appendChild(bargainPrice1);
+            document.getElementById('Js_bargain_price').getElementsByTagName('tr')[0].appendChild(bargainPrice);
+        }
+    }
+
+    if( window.screen.width >=1280){
+        top_adcode(_goods1,_goods1[1].total);
+    }else{
+        top_adcode(_goods2,_goods2[1].total);
+    }
+</script>
+
+{include file="amyfooter.html"}

@@ -1,0 +1,35 @@
+<table><tr><!--{foreach from=$goodattrs item=attr name=attr key=key}-->{if $smarty.foreach.attr.iteration < 9}
+					<td width="{if $smarty.foreach.attr.iteration % 3 eq 0}30%{else}35%{/if}">{$key}: <!--{foreach from=$attr item=attrinfo name=attrinfo}-->{$attrinfo}<!--{/foreach}--></td>
+				{if $smarty.foreach.attr.iteration % 3 eq 0}</tr><tr>{/if}{/if}<!--{/foreach}-->
+				</tr></table>
+
+
+<table><tr><!--{foreach from=$attrinfos item=attr name=attr}-->{if $smarty.foreach.attr.iteration < 9}
+					<td width="{if $smarty.foreach.attr.iteration % 3 eq 0}30%{else}35%{/if}"><!--{foreach from=$attr.attr_id_1 item=attrinfo name=attrinfo}-->{$attrinfo.attr_name}：<!--{/foreach}--><!--{foreach from=$attr.attr_id_2 item=attrinfo name=attrinfo}-->{$attrinfo.attr_name}<!--{/foreach}--></td>
+				{if $smarty.foreach.attr.iteration % 3 eq 0}</tr><tr>{/if}{/if}<!--{/foreach}-->
+				</tr></table>
+
+
+
+
+
+
+				<!--{foreach from=$goodattrs item=attr name=attr key=key}-->
+				<tr>
+					<th class="r norm_left">{$key}</th>
+					<td><!--{foreach from=$attr item=attrinfo name=attrinfo}--> {$attrinfo} <!--{/foreach}--></td>
+				</tr>
+				<!--{/foreach}-->
+
+
+
+
+
+
+
+				<!--{foreach from=$attrinfos item=attr name=attr}-->
+				<tr>
+					<th class="r norm_left"><!--{foreach from=$attr.attr_id_1 item=attrinfo name=attrinfo}-->{$attrinfo.attr_name}：<!--{/foreach}--></th>
+					<td><!--{foreach from=$attr.attr_id_2 item=attrinfo name=attrinfo}-->{$attrinfo.attr_name}<!--{/foreach}--></td>
+				</tr>
+				<!--{/foreach}-->

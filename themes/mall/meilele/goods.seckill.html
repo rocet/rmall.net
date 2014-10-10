@@ -1,0 +1,209 @@
+{include file="amyheader.html"}
+
+
+<link rel="stylesheet" href="{res file=css/seckill.min.css}" type="text/css" />
+
+<script>
+window._imgCaptcha = '1';
+document.body.className="";
+</script>
+<!--{if $rocet_adv_seckillgoodsbanner}-->
+<div id="secBanner" class="w"><img src="{$rocet_adv_seckillgoodsbanner.pic}" width="980" height="251" alt="" /></div>
+<!--{/if}-->
+
+<div id="secNav">
+	<div class="bframe">
+		<div id="JS_seckill_header_link" class="menuList"><a class="current" href="/" title="本期秒杀">本期秒杀</a>
+			<!-- <a  href="/miaosha/future.html" title="下期秒杀">下期秒杀</a><a  href="/miaosha/history.html" title="往期秒杀">往期秒杀</a><a  href="/miaosha/rule.html" title="秒杀规则">秒杀规则</a><a  href="/miaosha/strategy.html" title="秒杀攻略">秒杀攻略</a> -->
+		</div>
+		<!-- <table class="toolBar Right">
+			<td><span class="icon_1"><a href="javascript:;" onclick="AddFavorite();return !1;" title="收藏本页">收藏本页</a></span></td>
+			<td><span class="icon_2">本专区浏览量：11499394次</span></td>
+		</table> -->
+	</div>
+</div>
+
+
+<input type="hidden" id="JS_sever_current_time" value="{$smarty.now}" />
+<script type="text/javascript">
+function AddFavorite(){
+	var sURL=window.location.href;
+	var sTitle=document.title;
+	try{
+		window.external.addFavorite(sURL,sTitle);
+	}catch(e){
+		try{
+			window.sidebar.addPanel(sTitle,sURL,"");
+		}catch(e){
+			alert("加入收藏失败，请使用Ctrl+D进行添加");
+		}
+	}
+}
+</script>
+
+<div id="JS_main_group" class="w mt15 clearfix">
+
+	
+	<div class="mainGroup Left">
+		<!--{foreach from=$seckill_lists item=seckillgood name=seckillgood}-->
+		<div class="secGoods secNext ">
+			<div class="goodsMap">
+				<h2 class="goodsName">秒杀商品：<a href="{url app=goods&id=$seckillgood.goods_id}" target="_blank" title="{$seckillgood.goods_name}">{$seckillgood.goods_name}</a></h2>
+				<div class="gdLayout clearfix">
+					<div class="secGoodsInfo infoT1 Left">
+						<div class="floatPrice"><span class="fcn">秒杀价</span> <span class="yen fyen">&yen;</span><span style="max-width: 110px;" class="fnum">{$seckillgood.sec_price.0.spec_price}</span></div>
+						<div class="infoGroup">
+							<div class="pLabel">
+							   <p class="p1">本站价<br /><strong class="yen t1">&yen;<del>{$seckillgood.price}</del></strong></p>
+							   <p class="p2">本期秒杀数量<br /><strong class="red">{$seckillgood.sec_quantity}件</strong></p>
+							</div>
+							<ul id="JS_count_down_show_1" class="countDown">
+								<li><strong>倒计时</strong></li>
+								<li class="time JS_count_down_tag" data-format="<span>$D</span>天<span>$H</span>时<span>$M</span>分<span>$S</span>秒" data-lefttime="{$seckillgood.end_time}" data-index="1"><span>0</span>天<span>00</span>时<span>00</span>分<span>0</span>秒</li>
+								<li><a class="sbtn JS_sec_tmp_1" data-tmp_id="5070" href="javascript:void(0);"></a></li>
+							</ul>
+							<div class="secTime">开始时间：{$seckillgood.start_time|date:Y-m-d H:i:s}<br />结束时间：{$seckillgood.end_time|date:Y-m-d H:i:s}</div>
+							<div class="loginLabel">秒杀前请先 <a href="{url app=member&act=login&ret_url=$ret_url}" title="登录">登录</a> 或 <a href="{url app=member&act=register&ret_url=$ret_url}" target="_blank" title="注册">注册</a></div>
+						</div>
+					</div>
+					<div class="goodsImg Right"><a href="{url app=goods&id=$seckillgood.goods_id}" target="_blank" title="{$seckillgood.goods_name}"><img src="{res file=themes/paipai/images/blank.gif}" data-src="{$seckillgood.default_image}" width="477" height="316" alt="{$seckillgood.goods_name}" /></a></div>
+				</div>
+			</div>
+			<div class="shadowMap"><div class="sl Left"></div><div class="sr Right"></div></div>
+		</div>
+		<!--{/foreach}-->
+								
+		<!-- <div class="secGoods secNext mt15">
+			<div class="goodsMap">
+				<h2 class="goodsName">秒杀商品：<a href="/miaosha/ms-5071.html" target="_blank" title="中性色系卧室印花窗帘（窗户尺寸：宽2.5*高2.8米）">中性色系卧室印花窗帘（窗户尺寸：宽2.5*高2.8米）</a></h2>
+				<div class="gdLayout clearfix">
+					<div class="secGoodsInfo infoT1 Left">
+						<div class="floatPrice"><span class="fcn">秒杀价</span> <span class="yen fyen">yen;</span><span class="fnum">1</span></div>
+						<div class="infoGroup">
+							<div class="pLabel">
+							   <p class="p1">本站价<br /><strong class="yen t1">&yen;<del>222.00</del></strong></p>
+							   <p class="p2">本期秒杀数量<br /><strong class="red">1件</strong></p>
+							</div>
+							<ul id="JS_count_down_show_2" class="countDown">
+								<li><strong>倒计时</strong></li>
+								<li class="time JS_count_down_tag" data-format="<span>$D</span>天<span>$H</span>时<span>$M</span>分<span>$S</span>秒" data-lefttime="1403254800" data-index="2"><span>0</span>天<span>00</span>时<span>00</span>分<span>0</span>秒</li>
+								<li><a class="sbtn JS_sec_tmp_1" data-tmp_id="5071" href="javascript:void(0);"></a></li>
+							</ul>
+							<div class="secTime">开始时间：2014-06-20 17:00<br />结束时间：2014-06-20 18:00</div>
+							<div class="loginLabel">秒杀前请先 <a href="{url app=member&act=login&ret_url=$ret_url}" title="登录">登录</a> 或 <a href="{url app=member&act=register&ret_url=$ret_url}" target="_blank" title="注册">注册</a></div>
+						</div>
+					</div>
+					<div class="goodsImg Right"><a href="/miaosha/ms-5071.html" target="_blank" title="中性色系卧室印花窗帘（窗户尺寸：宽2.5*高2.8米）"><img src="{res file=themes/paipai/images/blank.gif}" data-src="{res file=images/201304/1365563832955984691.jpg}" width="477" height="316" alt="中性色系卧室印花窗帘（窗户尺寸：宽2.5*高2.8米）" /></a></div>
+				</div>
+			</div>
+			<div class="shadowMap"><div class="sl Left"></div><div class="sr Right"></div></div>
+		</div> -->
+	</div>
+		
+	
+
+	
+	<div class="sideGroup Right">
+		<!-- 
+<div class="sideLay killSuccess">
+	<div class="sideHead">秒杀成功的会员</div>
+	<ul class="sideBody">
+				<li>
+			<p class="kName"><a href="http://www.lejj.com/user/1989121/" target="_blank" class="gray">13826567***</a></p>
+			<p class="kTime">订单提交时间：2014-06-19 17:00:07</p>
+		</li> 
+				<li>
+			<p class="kName"><a href="http://www.lejj.com/user/1956206/" target="_blank" class="gray">13715035***</a></p>
+			<p class="kTime">订单提交时间：2014-06-19 11:00:08</p>
+		</li> 
+				<li>
+			<p class="kName"><a href="http://www.lejj.com/user/1983934/" target="_blank" class="gray">qq_13427982***</a></p>
+			<p class="kTime">订单提交时间：2014-06-18 17:00:05</p>
+		</li> 
+				<li>
+			<p class="kName"><a href="http://www.lejj.com/user/1979730/" target="_blank" class="gray">18174635***</a></p>
+			<p class="kTime">订单提交时间：2014-06-18 11:00:06</p>
+		</li> 
+				<li>
+			<p class="kName"><a href="http://www.lejj.com/user/2082984/" target="_blank" class="gray">lian***</a></p>
+			<p class="kTime">订单提交时间：2014-06-17 17:00:08</p>
+		</li> 
+				<li>
+			<p class="kName"><a href="http://www.lejj.com/user/37248/" target="_blank" class="gray">13901358***</a></p>
+			<p class="kTime">订单提交时间：2014-06-17 11:00:23</p>
+		</li> 
+				<li>
+			<p class="kName"><a href="http://www.lejj.com/user/2041021/" target="_blank" class="gray">32wer***</a></p>
+			<p class="kTime">订单提交时间：2014-06-16 17:00:10</p>
+		</li> 
+				<li>
+			<p class="kName"><a href="http://www.lejj.com/user/1341194/" target="_blank" class="gray">ak9***</a></p>
+			<p class="kTime">订单提交时间：2014-06-16 11:00:16</p>
+		</li> 
+			</ul>
+</div>
+
+
+
+		
+
+<div id="JS_is_mt15" class="sideLay killGoods mt15">
+	<div class="sideHead">下期预告</div>
+	<div class="sideBody">
+		<div class="GDImg"><a href="/miaosha/ms-5072.html" target="_blank" title="儿童床头柜 公主床头柜"><img src="{res file=themes/paipai/images/blank.gif}" data-src="{res file=images/201404/1396428266387178509.jpg}" width="206" height="136" alt="儿童床头柜 公主床头柜" /></a></div>
+		<div class="priceTag"><div class="txt"><span class="fcn">秒杀价</span> <span class="yen fyen">&yen;</span><span class="fnum">1</span></div><div class="arrow"></div></div>
+		<div class="pLabel">
+		   <p class="p1">本站价<br /><strong class="yen t1">&yen;<del>360.00</del></strong></p>
+		   <p class="p2">下期秒杀数量<br /><strong class="red">1件</strong></p>
+		</div>
+		<ul id="JS_count_down_show_101" class="countDown">
+			<li><strong>倒计时</strong></li>
+			<li class="time JS_count_down_tag" data-format="<span>$D</span>天<span>$H</span>时<span>$M</span>分<span>$S</span>秒" data-lefttime="1403319600" data-index="101"><span>0</span>天<span>0</span>时<span>00</span>分<span>00</span>秒</li>
+		</ul>
+		<div id="JS_count_down_show_101" class="countDown none"><a class="sbtn JS_sec_tmp_3" data-tmp_id="5072" href="javascript:void(0);" target="_blank"></a></div>
+	</div>
+</div>
+
+<script type="text/javascript">
+window._onReadyList = window._onReadyList || [];
+_onReadyList.push(function(){
+	if(location.search){
+	$("#JS_is_mt15").removeClass("mt15");
+	}
+});
+</script>
+
+ -->
+
+				
+		<div class="sideLay hotGoods mt15">
+			<div class="sideHead clearfix"><span class="Left">超值热卖推荐</span><a href="{url app=discountgoods}" target="_blank" class="Right">更多</a></div>
+			<div class="sideBody">
+				<!--{foreach from=$rocet_seckillgoods_hot item=seckillhotgood name=seckillhotgood}-->
+				<div class="list">
+					<div class="img"><a href="{url app=goods&id=$seckillhotgood.goods_id}" target="_blank" title="{$seckillhotgood.goods_name}"><img src="{res file=themes/paipai/images/blank.gif}" data-src="{$seckillhotgood.default_image}" width="206" height="136" alt="{$seckillhotgood.goods_name}" /></a></div>
+					<p>
+						<a href="/category-cantingtaozhuang/goods-22187.html" target="_blank" title="{$seckillhotgood.goods_name}">{$seckillhotgood.goods_name|truncate:30}</a><br />
+						市场价：<del class="yen">&yen;{$seckillhotgood.market_price}</del>&emsp;促销价：<strong class="red yen">&yen;{$seckillhotgood.price}</strong><br />
+						月销量：<strong class="red">{$seckillhotgood.sales}</strong>&emsp;人气：{$seckillhotgood.views}			
+					</p>
+				</div>
+				<!--{/foreach}-->
+			</div>
+		</div>
+
+			
+        <!--{if $rocet_adv_seckillgoodsrightad}-->
+        <div class="mt10">
+			<a href="{$rocet_adv_seckillgoodsrightad.link}" title="{$rocet_adv_seckillgoodsrightad.title}" target="_blank" style="display:inline-block;width:240px;height:270px;">
+				<img src="{$rocet_adv_seckillgoodsrightad.pic}" alt="{$rocet_adv_seckillgoodsrightad.title}" width="240" height="270">
+			</a>
+		</div> 
+        <!--{/if}-->
+	</div>
+</div>
+
+
+
+
+{include file="amyfooter.html"}

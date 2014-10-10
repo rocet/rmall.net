@@ -1,0 +1,128 @@
+{include file="header.html"}
+<script type="text/javascript">
+//<!CDATA[
+$(function(){
+    $('#arads_form').validate({
+        errorPlacement: function(error, element){
+            $(element).next('.field_notice').hide();
+            $(element).after(error);
+        },
+        success       : function(label){
+            label.addClass('right').text('OK!');
+        },
+        rules : {
+            title : {
+                required : true,
+                byteRange: ['',100,'{$charset}']
+            },
+            aradps_id : {
+                required : true,
+            },
+            link  : {
+                required : true,
+                url      : true
+            },
+            pic  : {
+                accept : 'png|jpe?g|gif'
+            },
+            sort_order : {
+                number   : true
+            }
+        },
+        messages : {
+            title : {
+                required : '{$lang.title_required}',
+                byteRange: '{$lang.title_maxlength_error}'
+            },
+            aradps_id  : {
+                required : '{$lang.aradps_id_required}'
+            },
+            link  : {
+                required : '{$lang.link_required}',
+                url      : '{$lang.link_error}'
+            },
+            pic  : {
+                accept   : '{$lang.pic_accept_error}'
+            },
+            sort_order  : {
+                number   : '{$lang.number_only}'
+            }
+        }
+    });
+});
+//]]>
+</script>
+<div id="rightTop">
+    <p>{$lang.arads}</p>
+    <ul class="subnav">
+        <li><a class="btn1" href="index.php?app=arads">{$lang.manage}</a></li>
+        {if $arads.arads_id}
+        <li><a class="btn1" href="index.php?app=arads&amp;act=add">{$lang.add}</a></li>
+        {else}
+        <li><span>{$lang.add}</span></li>
+        {/if}
+    </ul>
+</div>
+
+<div class="info">
+    <form method="post" enctype="multipart/form-data" id="arads_form">
+        <table class="infoTable">
+            <tr>
+                <th class="paddingT15">
+                    <label for="aradps_id">{$lang.aradps}:</label></th>
+                <td class="paddingT15 wordSpacing5">
+                    <select id="aradps_id" name="aradps_id"><option value="">{$lang.select_pls}</option>{html_options options=$aradps selected=$arads.aradps_id}</select>
+                </td>
+            </tr>
+            <tr>
+                <th class="paddingT15">
+                    {$lang.title}:</th>
+                <td class="paddingT15 wordSpacing5">
+                    <input class="infoTableInput2" id="arads_title" type="text" name="title" value="{$arads.title|escape}" />
+                    <label class="field_notice">{$lang.title_desc}</label>
+                </td>
+            </tr>
+            <tr>
+                <th class="paddingT15">
+                    {$lang.link}:</th>
+                <td class="paddingT15 wordSpacing5">
+                    <input class="infoTableInput" id="arads_link" type="text" name="link" value="{$arads.link|escape}" />
+                    <label class="field_notice">{$lang.link_desc}</label>
+                </td>
+            </tr>
+            <tr>
+                <th class="paddingT15">
+                    {$lang.pic}:</th>
+                <td class="paddingT15 wordSpacing5">
+                    <input class="infoTableFile" id="arads_pic" type="file" name="pic" />
+                    <label class="field_notice">{$lang.pic_desc}</label>
+                </td>
+            </tr>
+            {if $arads.pic}
+            <tr>
+                <th class="paddingT15">
+                </th>
+                <td class="paddingT15 wordSpacing5">
+                <img src="{$arads.pic}" class="makesmall" max_width="120" max_height="90" />
+                </td>
+            </tr>
+            {/if}
+            <tr>
+                <th class="paddingT15">
+                    {$lang.sort_order}:</th>
+                <td class="paddingT15 wordSpacing5">
+                    <input class="sort_order" id="sort_order" type="text" name="sort_order" value="{$arads.sort_order}" />
+                    <label class="field_notice">{$lang.sort_order_desc}</label>
+                </td>
+            </tr>
+        <tr>
+            <th></th>
+            <td class="ptb20">
+                <input class="formbtn" type="submit" name="Submit" value="{$lang.submit}" />
+                <input class="formbtn" type="reset" name="Submit2" value="{$lang.reset}" />
+            </td>
+        </tr>
+        </table>
+    </form>
+</div>
+{include file="footer.html"}

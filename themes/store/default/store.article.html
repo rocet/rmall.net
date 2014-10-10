@@ -1,0 +1,39 @@
+{include file=amyheader.html}
+
+<link href="{res file=shop.css}" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="index.php?act=jslang"></script>
+<script type="text/javascript" src="{lib file=jquery.js}" charset="utf-8"></script>
+<script type="text/javascript" src="{lib file=ecmall.js}" charset="utf-8"></script>
+
+<script type="text/javascript">
+//<!CDATA[
+var SITE_URL = "{$site_url}";
+var REAL_SITE_URL = "{$real_site_url}";
+var PRICE_FORMAT = '{$price_format}';
+
+$(function(){
+    var span = $("#child_nav");
+    span.hover(function(){
+        $("#float_layer:not(:animated)").show();
+    }, function(){
+        $("#float_layer").hide();
+    });
+});
+//]]>
+</script>
+{$_head_tags}
+{include file=top.html}
+
+<div id="content">
+    <div id="left">
+        {include file=left.html}
+    </div>
+    
+    <div id="right">
+        <div class="default">{$article.content|escape:editor}</div>
+    </div>
+    
+    <div class="clear"></div>
+</div>
+
+{include file=amyfooter.html}

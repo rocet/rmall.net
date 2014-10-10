@@ -1,0 +1,334 @@
+{include file="amyheader.html"}
+
+<link rel="stylesheet" href="{res file=css/ornament2.min.css}" />
+<style type="text/css">.comMap{width:978px;border:solid 1px #ddd;margin:11px auto 0}.comMap .mapItem{border-left:solid 1px #ddd;overflow:hidden}.comMap .mapItem .title{height:34px;padding:0 15px;border-bottom:solid 1px #ddd;background:#f9f9f9}.comMap .mapItem .title strong,.comMap .mapItem .title span,.comMap .mapItem .title a{display:inline-block;line-height:34px}.comMap .mapItem .title strong{font-size:15px;font-family:"微软雅黑";color:#333}.comMap .mapItem .title span{padding-left:5px;color:#999}.comMap .mapItem .title a{color:#999;cursor:pointer;font-family:"宋体"}.comMap .mapItem .body{padding:20px 18px}.comMap .first{border-left:none}.comMap .cuxiao{width:324px;height:344px}.comMap .cuxiao .ad{height:132px;padding-bottom:15px;border-bottom:dashed 1px #dadada;overflow:hidden}.comMap .cuxiao ul{height:auto;margin-top:6px}.comMap .cuxiao ul li{width:288px;height:23px;line-height:23px;color:#999;overflow:hidden;white-space:nowrap;-o-text-overflow:ellipsis;text-overflow:ellipsis}.comMap .cuxiao ul li a{color:#666}.comMap .moveLay{height:344px}.comMap .moveLay .body{padding:12px 18px}.comMap .moveLay .outBox{height:285px;overflow:hidden}.comMap .moveLay .list{height:79px;padding:8px 0;overflow:hidden}.comMap .moveLay .list .img{width:119px;overflow:hidden;float:left;margin-right:12px}.comMap .reping{width:332px}.comMap .reping .list p{height:54px;line-height:18px;overflow:hidden;color:#666}.comMap .reping .list p a{color:#666}.comMap .reping .list .star{height:9px}.comMap .reping .list .star .bg{width:55px;height:9px;overflow:hidden;background:url({res file=images/index20121012/weibo_bg2.png}) -124px 0 no-repeat}.comMap .reping .list .star span{display:inline-block;height:9px;overflow:hidden;vertical-align:top;background:url({res file=images/index20121012/weibo_bg2.png}) -124px -9px no-repeat}.comMap .reping .list .star .w1{width:11px}.comMap .reping .list .star .w2{width:22px}.comMap .reping .list .star .w3{width:33px}.comMap .reping .list .star .w4{width:44px}.comMap .reping .list .star .w5{width:55px}.comMap .reping .list .uname{height:16px;line-height:16px;color:#f0670d}.comMap .chengjiao{width:320px}.comMap .chengjiao .list p{height:18px;line-height:18px;overflow:hidden}.comMap .chengjiao .list .name a{color:#666}.comMap .chengjiao .list .price{color:#c9033b}.comMap .chengjiao .list .uname{color:#f0670d;margin-top:6px}.comMap .chengjiao .list .time{color:#999}.comMap .loading{height:16px;text-align:center;margin-top:100px}.comMap .mapLeft{width:324px}.comMap .chuangyi{height:295px;overflow:hidden}.comMap .chuangyi .body{padding:20px 18px 18px}.comMap .chuangyi .notes{height:83px;overflow:hidden}.comMap .chuangyi .notes .img{width:124px;height:83px;overflow:hidden;float:left;margin-right:15px}.comMap .chuangyi .notes h4{height:20px;line-height:20px;font-size:12px;color:#666;overflow:hidden}.comMap .chuangyi .notes h4 a{color:#666}.comMap .chuangyi .notes p{height:54px;line-height:18px;color:#999;text-indent:2em;margin-top:5px;overflow:hidden}.comMap .chuangyi ul{padding-top:6px}.comMap .chuangyi ul li{width:288px;margin-top:9px;color:#666;overflow:hidden;overflow:hidden;white-space:nowrap;-o-text-overflow:ellipsis;text-overflow:ellipsis}.comMap .chuangyi ul li a{color:#666}.comMap .weibo{height:104px;border-top:solid 1px #ddd}.comMap .weibo .title strong,.comMap .weibo .title span{cursor:pointer}.comMap .weibo .title .gz{color:#333}.comMap .weibo .title i{display:inline-block;float:left;width:20px;height:18px;overflow:hidden;background:url({res file=images/index20121012/weibo_bg2.png}) no-repeat;margin-top:7px}.comMap .weibo .title .ico1{background-position:-5px -5px;margin-left:5px}.comMap .weibo .title .ico2{background-position:-101px -4px}.comMap .weibo .body{height:29px}.comMap .weibo .body .input{width:207px;height:19px;line-height:19px;padding:4px 5px;border:solid 1px #ddd;border-right:0;border-top-left-radius:5px;border-bottom-left-radius:5px;color:#999;float:left}.comMap .weibo .body .submit{display:inline-block;width:70px;height:29px;line-height:29px;overflow:hidden;text-decoration:none;color:#fff;text-align:center;background:url({res file=images/index20121012/weibo_bg2.png}) -30px 0 no-repeat;float:left}.comMap .weibo .body .submit:hover{color:#fff!important}.comMap .xiujia{width:653px}.comMap .xiujia .title a{color:#f0670d;font-family:"宋体"}.comMap .xiujia .body{height:236px;padding:20px 19px}.comMap .xiujia .map1{width:141px;height:233px;overflow:hidden}.comMap .xiujia .map1 .td{height:115px;overflow:hidden}.comMap .xiujia .map2{width:327px;height:233px;overflow:hidden;padding-left:3px}.comMap .xiujia .mt3{margin-top:3px}</style>
+
+
+<div class="w clearfix heig">
+    
+    
+        <style>
+.sideMenu {width: 200px;height: 388px;margin-right: 10px;float: left;}
+.sideMenu .in{width: 198px;border: solid 1px #DDD;background: white;}
+.sideMenu .head{height: 41px;line-height: 41px; text-align: center; border-bottom: solid 1px #DDD;background: #F2F2F2;font-size: 18px;
+    font-family: 微软雅黑;}
+.sideMenu .catItem{position:relative;height:61px;z-index: 30;}
+.sideMenu .catItem.cat_bg{background:#f7f1f1;}
+.sideMenu .catItem .item_show{position:absolute;z-index:2;padding:8px 10px;}
+.sideMenu .catItem .item_show .dt{height:24px;line-height:24px;display: inline-block;width: 180px;}
+.sideMenu .catItem .item_show .dt .t{display:inline-block;font-weight:bold;font-size:14px;font-family:微软雅黑;float:left;}
+.sideMenu .catItem .item_show .dt .t img{margin-right: 10px; vertical-align: middle; background: none;border: none;}
+.sideMenu .catItem .item_show .dt .arrow{color:#CCC;float:right;font-family: "宋体";font-size: 12px;font-weight: normal;}
+.sideMenu .catItem .item_show .dd{margin-top:4px;overflow:hidden;}
+.sideMenu .body{/*height: 366px;*/}
+.sideMenu .hover .item_show{width:180px;padding:7px 10px;background:#fff;border-left:solid 4px #c9033b;border-top:solid 1px #ddd;border-bottom:solid 1px #ddd;z-index:3;}
+.sideMenu .hover .item_show .t{color:#c9033b;}
+.sideMenu .catItem .coverMenu{width: 480px;height: auto;border: solid 1px #ddd;box-shadow: 1px 1px 8px #999;background: white;position: absolute;z-index: 1;left: 203px;top: 0px;display: none;}
+.sideMenu .hover .coverMenu{display: block;}
+.sideMenu .catItem .item_show {height: 45px;}
+.sideMenu .catItem .item_show .dd {height: 17px;line-height: 17px;}
+.sideMenu .coverMenu .allCat,.coverMenu .activity{padding:0 20px;}
+.sideMenu .coverMenu .ctitle{color: #c9033b;line-height: 30px;padding-top: 10px;border-bottom: 1px solid #ECECEC;font-weight: bold;}
+.sideMenu .coverMenu .cat{padding-top:0;}
+.sideMenu .coverMenu .allCat .link{line-height: 24px;padding-top: 5px;}
+.sideMenu .coverMenu .allCat .link span.gray{color: #E4E4E4;white-space: nowrap;word-wrap: break-word;}
+.sideMenu .coverMenu .activity ul{padding-top: 10px;}
+.sideMenu .coverMenu .activity ul li{float: left;height: 24px;line-height: 24px;width: 170px;padding-right: 10px;overflow: hidden;}
+.sideMenu .coverMenu .brand{margin: 10px 0;height: 60px;padding-top: 20px;overflow: hidden;background: #F9F9F9;border-top: 1px solid #F2F2F2;}
+.sideMenu .coverMenu .brand a.first{border-left: none;}
+.sideMenu .coverMenu .brand a{display: inline-block;width: 119px;text-align: center;height: 50px;border-left: 1px dashed #E8E8E8;}
+.sideMenu .d1{}
+.sideMenu .d2{margin-top:-60px;}
+.sideMenu .d4{margin-top:-60px;}
+.sideMenu .d5{margin-top:-120px;}
+.sideMenu .d6,.sideMenu .d7,.sideMenu .d8,.sideMenu .d9,.sideMenu .d10,.sideMenu .d11,.sideMenu .d12,.sideMenu .d13,.sideMenu .d14,.sideMenu .d15,.sideMenu .d16,.sideMenu .d17,.sideMenu .d18,.sideMenu .d19,.sideMenu .d20{margin-top:-180px;}
+.root_body .sideMenu .fixedLay{position:fixed;top:0px;z-index:10;_position:absolute;_top:expression(offsetParent.scrollTop);_right:expression(this.offsetRight);}
+.root_body .sideMenu .in{width: 203px;}
+</style>
+
+<div class="sideMenu">
+    <div id="JS_fixed_goods_cat" class="in">
+        <!--{if $rocet_catindex}-->
+        <div class="head">所有{$rocet_catindex.cate_name}分类</div>
+        <div class="body">
+            <!--{foreach from=$rocet_catindex.subcat item=subcat1 name=subcat1}-->
+            <div class="catItem {if $smarty.foreach.subcat1.iteration % 2 eq 0}cat_bg{/if}" id="JS_jiaju_index_cat_menu_{$smarty.foreach.subcat1.iteration}">
+                <dl class="item_show">
+                    <dt class="dt"><a href="{url app=brand&brand_id=$subcat1.cate_id}" title="{$subcat1.cate_name|escape}" class="t"><img src="{res file=images/201312/1387741379995543946.png}" width="20" height="20">{$subcat1.cate_name|escape}</a><strong class="arrow">&gt;</strong></dt>
+                    <dd class="dd">
+                        <!--{foreach from=$subcat1.subcat item=subcat2 name=subcat2}-->
+                        <a href="{url app=brand&brand_id=$subcat2.cate_id}" title="{$subcat2.cate_name|escape}" target="_blank">{$subcat2.cate_name|escape}</a>&emsp;
+                        <!--{/foreach}-->
+                    </dd>
+                </dl>
+                <div id="JS_goods_cat_target_{$smarty.foreach.subcat1.iteration}" class="coverMenu d{$smarty.foreach.subcat1.iteration}"></div>             
+            </div>
+            <!--{/foreach}-->
+        </div>
+        <!--{/if}-->
+    </div>
+    
+    <!--{if $rocet_catindex}-->
+    <!--{foreach from=$rocet_catindex.subcat item=subcat1 name=subcat1}-->
+    <textarea id="JS_goods_cat_source_{$smarty.foreach.subcat1.iteration}" class="none">
+        <div class="allCat">
+            <div class="cat ctitle"><a href="{url app=brand&brand_id=$subcat1.cate_id}" target="_blank" title="{$subcat1.cate_name|escape}">{$subcat1.cate_name|escape}</a></div>
+            <div class="link">
+            <!--{foreach from=$subcat1.subcat item=subcat2 name=subcat2}-->
+                <span class="gray">|&emsp;<a href="{url app=brand&brand_id=$subcat2.cate_id}" target="_blank" title="{$subcat2.cate_name|escape}">{$subcat2.cate_name|escape}</a>&emsp;</span>
+            <!--{/foreach}-->
+            </div>
+        </div>
+        <div class="activity">
+            <div class="ctitle">促销活动</div>
+            <ul class="clearfix">
+                <!--{foreach from=$rocet_catindex.actives item=active name=active}-->
+                <li><a href="{$active.link}" target="_blank" title="{$active.title}">&bull; {$active.title}</a></li>
+                <!--{/foreach}-->
+            </ul>
+        </div>
+        <div class="brand clearfix" style="height:62px;padding-top:8px;"><!--{foreach from=$subcat1.brands item=brand name=brand}--><a title="{$brand.brand_name}" class="{if $smarty.foreach.brand.first}first{/if}" href="{url app=brand&id=$brand.brand_id}" target="_blank"><img src="{$brand.brand_logo}" width="100" height="55" alt="{$brand.brand_name}" /></a><!--{/foreach}--></div>
+
+    </textarea>
+    <script type="text/javascript">
+    _onReadyList.push(function(){
+        $('#JS_jiaju_index_cat_menu_{$smarty.foreach.subcat1.iteration}').hover(function(){
+            _show_(this,{source:'JS_goods_cat_source_{$smarty.foreach.subcat1.iteration}',target:'JS_goods_cat_target_{$smarty.foreach.subcat1.iteration}'});
+        },function(){
+            _hide_(this);
+        })
+    });
+    </script>
+    <!--{/foreach}-->
+    <!--{/if}-->
+    
+    <textarea class="none">1234567887654321</textarea>
+    <script type="text/javascript">
+        _onReadyList.push(
+            function(){
+                var screenWidth_1=window.screen.width;
+                if(screenWidth_1<1280)
+                {
+                    $('#JS_fixed_goods_cat .catItem').each(function(index,element){
+                        if(index > 7)
+                            $(element).hide();
+                    })
+                }
+            }
+        );
+    </script>
+</div> 
+    
+
+    
+    <div class="focus">
+        <div class="stage">
+            <div id="JS_focus_stage"><!--{foreach from=$rocet_adv_catindexbanners item=catindexbanner name=catindexbanner}--><a href="{$catindexbanner.link}" target="_blank" title="{$catindexbanner.title}"><img {if $smarty.foreach.catindexbanner.first}src="{$catindexbanner.pic}"{else}src="{res file=themes/paipai/images/blank.gif}" data-src="{$catindexbanner.pic}"{/if} height="361" alt="{$catindexbanner.title}" width="770"/></a><!--{/foreach}--></div>
+        </div>
+        <div class="nav" id="JS_focus_nav"><!--{foreach from=$rocet_adv_catindexbanners item=catindexbanner name=catindexbanner}--><a {if $smarty.foreach.catindexbanner.first}class="first current"{/if}  href="{$catindexbanner.link}" target="_blank" title="{$catindexbanner.title}"><span>{$catindexbanner.title}</span></a><!--{/foreach}--></div>
+    </div>
+    
+    
+
+    
+    <div class="sideWidth newProduct">
+        <div class="title"><span></span><strong>本周特惠</strong></div>
+        <div class="body" >
+            <!--{foreach from=$rocet_catindex_goodsships item=goodsship name=goodsship}-->
+            <div class="list {if $smarty.foreach.goodsship.first}first{else}mt10{/if} else">
+                <div class="float_bg"><span class="text1">抢</span></div>
+                <div class="img"><a href="{url app=goods&id=$goodsship.goods_id}" target="_blank" title="{$goodsship.goods_name}"><img src="{res file=images/blank.gif}" data-src="{$goodsship.recommend_pic|default:$goodsship.default_image}" width="146" height="97" alt="{$goodsship.goods_name}" /></a></div>
+                <div class="txt"><a href="{url app=goods&id=$goodsship.goods_id}" target="_blank" title="{$goodsship.goods_name}">{$goodsship.goods_name|truncate:19}</a><br /><span class="lh20">特惠价：<span class="yen jred">&yen;</span><strong class="color_price lh20 f13">{$goodsship.price}</strong></span><br /><span class="lh20">仅剩:</span>
+                <span data-format="<span class='time_else'>$D</span>&nbsp;天&nbsp;<span class='time_else'>$H</span>&nbsp;时&nbsp;<span  class='time_else'>$M</span>&nbsp;分"   data-lefttime="1402281000" id="JS_Time_{$smarty.foreach.goodsship.iteration}"></span></div>
+            </div>
+            <!--{/foreach}-->
+        </div>
+    </div>
+    
+    <!-- </div> -->
+
+</div>
+
+
+
+<div class="w clearfix"><div class="mt15 own_w_box">
+    <div class="o_b1_header">
+        <span class="bg2 sp"  id="dangji"><span class="font_1">当季热卖</span><span class="font_2">HOT</span></span><span class="bg1 sp" id="xinpin"><span class="font_1">新品推荐</span><span class="font_2">NEW</span></span>
+    </div>
+    <div class="o_body1 clearfix" id="dangji_else">
+        <!--{foreach from=$rocet_catindex_goodsviews item=goodsviews name=goodsviews}-->
+        <div class="o_list Left">
+            <span class="o_biao {if $smarty.foreach.goodsviews.first}o_biao_2{/if}"></span>
+            <a href="{url app=goods&id=$goodsviews.goods_id}" title="{$goodsviews.goods_name}" target="_blank"><img src="{res file=images/blank.gif}" data-src="{$goodsviews.recommend_pic|default:$goodsviews.default_image}" width="156" height="130" alt="{$goodsviews.goods_name}"/></a>
+            <div class="o_b1_title">
+            <table width="100%">
+                <tr>
+                    <td width="45%" class="c_1 f_1"><span class="s_1">&yen;</span><span class="s_2">{$goodsviews.price}</span></td>
+                    <td width="55%"><span class=" s_1 c_2">已售&nbsp;</span><span class=" s_1 c_1">{$goodsviews.sales}</span><span class="s_1 c_2">&nbsp;件</span></td>
+                </tr>
+            </table>
+            </div>
+            <div class="o_b1_title c_3">
+                <a href="{url app=goods&id=$goodsviews.goods_id}" title="{$goodsviews.goods_name}" target="_blank">{$goodsviews.goods_name|truncate:19}</a>
+            </div>
+        </div>
+        <!--{/foreach}-->
+    </div>
+    
+    
+
+
+
+
+
+
+
+
+    <div class="o_body1 clearfix none" id="xinpin_else">
+        <!--{foreach from=$rocet_catindex_goodsnews item=goodsviews name=goodsviews}-->
+        <div class="o_list Left">
+            <span class="o_biao"></span>
+            <a href="{url app=goods&id=$goodsviews.goods_id}" title="{$goodsviews.goods_name}" target="_blank"><img src="{res file=images/blank.gif}" data-src="{$goodsviews.recommend_pic|default:$goodsviews.default_image}" width="156" height="130" alt="{$goodsviews.goods_name}"/></a>
+            <div class="o_b1_title">
+            <table width="100%">
+                <tr>
+                    <td width="100%" class="c_1 f_1" align="center"><span class="s_1">&yen;</span><span class="s_2">{$goodsviews.price}</span></td>
+                </tr>
+            </table>
+            </div>
+            <div class="o_b1_title c_3 o_t_c">
+                <a href="{url app=goods&id=$goodsviews.goods_id}" title="{$goodsviews.goods_name}" target="_blank">{$goodsviews.goods_name|truncate:19}</a>
+            </div>
+        </div>
+        <!--{/foreach}-->
+    </div>
+
+</div></div>
+
+
+
+<!--{foreach from=$rocet_subcats item=subcat name=subcat}-->
+<div class="w clearfix" id="floor_loo_{$smarty.foreach.subcat.iteration}">
+    <div class="clearfix mt15 own_w_box">
+        <div class="o_b2_header clearfix b_h_{$smarty.foreach.subcat.iteration}">
+            <div class="title Left ">
+                <span class="font_t_1 title_c_{$smarty.foreach.subcat.iteration}">{$smarty.foreach.subcat.iteration}F&nbsp;{$subcat.cate_name}&nbsp;</span><span class="font_t_2 english_{$smarty.foreach.subcat.iteration}"></span>
+            </div>
+            <div class="biaoti Right">
+                <a href="{url app=search&cate_id=$subcat.cate_id}" class="mor more more_p_{$smarty.foreach.subcat.iteration} hove_{$smarty.foreach.subcat.iteration}" target="_blank">更多</a><!--{foreach from=$subcat.subcat item=subcatl name=subcatl}-->{if $smarty.foreach.subcatl.iteration lt 6}<a href="{url app=search&cate_id=$subcatl.cate_id}" class="hove_{$smarty.foreach.subcat.iteration}" target="_blank" title="{$subcatl.cate_name}">{$subcatl.cate_name}</a><span style="vertical-align: middle;">&nbsp;|&nbsp;</span>{/if}<!--{/foreach}-->
+            </div>
+        </div>
+        
+        <div class="o_b2_body clearfix">
+            <div class="Left">
+                <div class="slide Left">
+                    <div class="stage">
+                        <table id="JS_side_style_stage_{$smarty.foreach.subcat.iteration}"><tr>
+                            <!--{foreach from=$subcat.recoms item=recom name=recom}-->
+                            {if $smarty.foreach.recom.iteration < 4}
+                            <td class="item"><a href="{url app=goods&id=$recom.goods_id}" target="_blank" title="{$recom.goods_name}"><img src="{res file=images/blank.gif}" data-src="{$recom.recommend_pic|default:$recom.default_image}" width="206" height="297" alt="{$recom.goods_name}" /></a></td>
+                            {/if}
+                            <!--{/foreach}-->  
+                        </tr></table>
+                    </div>
+                    <div id="JS_side_style_nav_{$smarty.foreach.subcat.iteration}" class="nav">
+                        <!--{foreach from=$subcat.recoms item=recom name=recom}-->
+                        {if $smarty.foreach.recom.iteration < 4}
+                        <a href="javascript:;" class="{if $smarty.foreach.recom.first}current{/if}"></a>
+                        {/if}
+                        <!--{/foreach}-->
+                    </div>
+                </div>
+            </div>
+            
+            <div class="o_b3_body Left">
+                <div class="list_2 Left clearfix">
+                    <!--{foreach from=$subcat.recoms item=recom name=recom}-->
+                    {if $smarty.foreach.recom.iteration > 3}
+                    {if $smarty.foreach.recom.iteration < 8}
+                    <div class="in_li Left clearfix {if $smarty.foreach.recom.iteration == 5}b_none{/if}{if $smarty.foreach.recom.iteration == 7}b_none{/if}" style="">
+                        <div class="img Left">
+                            <a href="{url app=goods&id=$recom.goods_id}" title="{$recom.goods_name}" target="_blank"><img src="{res file=images/blank.gif}" data-src="{$recom.recommend_pic|default:$recom.default_image}" alt="{$recom.goods_name}" width="161" height="116"/></a>
+                        </div>
+                        <div class="word Left">
+                            <a href="{url app=goods&id=$recom.goods_id}" title="{$recom.goods_name}" target="_blank">{$recom.goods_name|truncate:28}</a><br>
+                            <p class="red fz_1">{$recom.brand}</p>
+                            <span class="lih"><span class="fz_1 red">&yen;</span><span class="fz_2 red">{$recom.price}</span></span>
+                        </div>
+                    </div>
+                    {/if}
+                    {/if}
+                    <!--{/foreach}-->   
+                </div>
+            </div>
+      
+            <div class="clearfix Left adv_3_box">
+                <div class="tip">热卖排行榜</div>
+                <!--{foreach from=$subcat.tops item=top name=top}-->
+                <div class="list Left" id="JS_{$smarty.foreach.subcat.iteration}_{$smarty.foreach.top.iteration}">
+                    <div class="up clearfix">
+                        <div class="img Left">
+                            <a href="{url app=goods&id=$top.goods_id}" title="{$top.goods_name}" target="_blank">
+                                <i class="icon_adv icon_adv_1">{$smarty.foreach.top.iteration}</i>
+                                <img src="{res file=images/blank.gif}" data-src="{$top.recommend_pic|default:$top.default_image}" width="96" height="65" alt="{$top.goods_name}" width="100" height="65" alt="{$top.goods_name}">
+                            </a>
+                        </div>
+                        <div class="words Left">
+                            <p class="red"><span class="red f_12">&yen;&nbsp;</span><span class="red f_20">{$top.price}</span></p>
+                            <p class="font_h"><a href="{url app=goods&id=$top.goods_id}" style="color: #999;" target="_blank">{$top.goods_name|truncate:19}</a></p>
+                        </div>
+                    </div> 
+                </div>
+                <!--{/foreach}-->
+
+            </div>
+        </div>
+        
+        <div class="o_b4_body clearfix">
+            <!--{foreach from=$subcat.recoms item=recom name=recom}-->
+            {if $smarty.foreach.recom.iteration > 7}
+            <div class="list_1 Left"><a href="{url app=goods&id=$recom.goods_id}" title="{$recom.goods_name}" target="_blank"><img src="{res file=images/blank.gif}" data-src="{$recom.recommend_pic|default:$recom.default_image}" alt="{$recom.goods_name}" width="206" height="218"/></a></div>
+            {/if}
+            <!--{/foreach}-->   
+        </div>
+    </div>  
+</div>
+<!--{/foreach}-->
+
+
+
+<!--
+<div class="float_loo" id="JS_close">
+    <div class="h_header">
+        <a class="h_closer" href="javascript:;"j onClick="document.body.removeChild(M.$('#JS_close'));return false;">×</a>
+    </div>
+    <div class="href_list">
+            <a class="list first" href="#floor_loo_1">
+            <span class="icon icon1"></span><strong class="txt">床上用品</strong>
+        </a>
+            <a class="list " href="#floor_loo_2">
+            <span class="icon icon2"></span><strong class="txt">布艺织物</strong>
+        </a>
+            <a class="list " href="#floor_loo_3">
+            <span class="icon icon3"></span><strong class="txt">家居家装</strong>
+        </a>
+            <a class="list " href="#floor_loo_4">
+            <span class="icon icon4"></span><strong class="txt">工艺饰品</strong>
+        </a>
+            <a class="list " href="#floor_loo_5">
+            <span class="icon icon5"></span><strong class="txt">收纳洗护</strong>
+        </a>
+        </div>
+</div>-->
+
+<script src="{res file=js/index_shipin2.min.js}"></script>
+
+<script type="text/javascript">
+    var _fliterShowNum = 0;
+    var _fixture_url = [];
+    _fixture_url.push('/shipin/');
+    _fixture_url.push('/jiaju/');
+    var _fixture_bbs=['/article/','http://ecmall2/'];
+</script>
+
+{include file="amyfooter.html"}

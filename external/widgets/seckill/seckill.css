@@ -1,0 +1,42 @@
+.seckill_goods {
+	width: 208px; margin-bottom: 10px; overflow: hidden;
+}
+#CountMsg{color:#FF3300; font-size:14px; padding-left:7px;}
+.seckill_goods ul {padding:0px;margin:0px;margin-left:5px;}
+.seckill_goods ul li { list-style:none;margin-bottom:2px;}
+.seckill_goods p {text-align:center;}
+.seckill_goods img{ border:0px;}
+
+.next_line{
+	width: 180px;height:21px;overflow:hidden;display: block;background: url(seckill.gif) no-repeat -8px -82px; 
+	font-size:12px; line-height:21px; padding-left:16px; color:#FFFFFF;
+}
+
+.seckill_head {
+	background-image: url(seckill.gif);width: 208px;height:35px;display: block; text-align:right; line-height:30px; font-size:16px; font-weight:bold; color:#F00;
+}
+.seckill_head a{text-decoration:none; color:#F00;}
+.seckill_head a:hover{color:#F00; text-decoration:underline;}
+.seckill_border{
+	border-left:#e1e1eb solid 1px;border-right:#e1e1eb solid 1px;
+}
+.seckill_border h3{display:table;table-layout:fixed;word-break:keep-all;white-space:nowrap;overflow:hidden;text-overflow:ellipsis; width:120px;}
+.seckill_floor {
+	display: block; height: 7px; width: 208px; overflow:hidden;
+	background: url(seckill.gif) no-repeat 0 -105px;
+}
+
+.seckill_goods h3 {
+ 	height: 22px;line-height: 22px; padding-left: 20px; font-size:14px;
+	background: url(seckill.gif) no-repeat -88px -36px;
+}
+
+.seckill_goods .ch-price {
+	height: 16px; padding-left: 14px; color: #FF5708; font-weight: bold;
+	background: url(seckill.gif) no-repeat -122px -61px; display:block; float:left;
+}
+
+.seckill_goods .btn1 { 
+	margin-left:10px; padding-left:10px; line-height: 22px; text-decoration: none; color: #323433; font-size: 12px; font-weight: bold; background: url(seckill.gif) no-repeat -7px -42px; display:block; width:68px; height:18px; float:left; overflow:hidden; 
+}
+.hide_seckill_goods{display:none;}

@@ -1,0 +1,38 @@
+{include file="header.html"}
+<script type="text/javascript">
+$(function(){
+    $("#refuce_submit").click(function(){
+	    if($("#refuce_content").val() == ""){
+		    alert('{$lang.must_refuce_content}');
+			return false;
+		}
+	});
+});
+</script>
+<div id="rightTop">
+  <p>{$lang.second_kill}</p>
+  <ul class="subnav">
+    <li><a class="btn3" href="index.php?module=seckill&act=set_period">{$lang.period_manage}</a></li>
+    <li><a class="btn3" href="index.php?module=seckill&act=set_period">{$lang.period_manage}</a></li>
+    <li><a class="btn3" href="index.php?module=seckill&act=set_goods_qty">{$lang.goods_qty_manage}</a></li>
+    <li><a class="btn3" href="index.php?module=seckill&act=set_store_seckill">{$lang.store_seckill_manage}</a> </li>
+	<li><a class="btn3" href="index.php?module=seckill&act=seckill_manage">{$lang.seckill_manage}</a>
+	</li>
+<li><span>{$lang.seckill_auditing}</span>
+	</li>
+<li><a class="btn3" href="index.php?module=seckill&act=seckill_manage">{$lang.seckill_subject}</a>
+	</li>
+  </ul>
+</div>
+<div id="refuce_whys">
+<form method="post">
+<h2>{$lang.seckill_refuce_whys}:({$lang.seckill_refuce_must})</h2>
+<input type="hidden" value="{$smarty.get.state}" name="state" />
+<input type="hidden" value="{$smarty.get.id}" name="id" />
+<textarea name="refuce_content" id="refuce_content"></textarea><br />
+<input type="hidden" name="module" value="seckill" />
+<input type="hidden" name="act" value="seckill_refuce" />
+<input type="submit" value="{$lang.seckill_action_submit}" class="formbtn" id="refuce_submit">
+</form>
+</div>
+{include file="footer.html"}

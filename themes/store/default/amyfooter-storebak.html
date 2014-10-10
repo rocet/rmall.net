@@ -1,0 +1,1307 @@
+<div class="footer-box">
+{if !$smarty.const.ROCETHIDE}
+<div class="footer-table"><div class="w clearfix">
+	<div class="someInfo Left">
+		<div class="phone">
+			<h4>24小时客服热线</h4>
+			<p>{$rocet_settings.site_400}</p>
+		</div>
+		<div class="count">{$site_name}QQ: {$rocet_settings.site_qq1} </div>
+		<div class="count">{$site_name}QQ: {$rocet_settings.site_qq2} </div>
+		
+	</div>
+	<table cellspacing="0" cellpadding="0" class="dtab Left clearfix"><tr>
+		<!--{foreach from=$rocet_foothelpers item=foothelper}-->
+		<td><div class="line"></div></td>
+				<td><dl class="dl">
+			<dt class="dt">{$foothelper.channel}</dt>
+			<dd class="dd">
+				<!--{foreach from=$foothelper.articles item=foothelperart}-->
+				<a href="{url app=article&act=view&article_id=$foothelperart.article_id}" target="_blank" title="{$foothelperart.title}" rel="nofollow">{$foothelperart.title}</a>
+				<!--{/foreach}-->
+			</dd>
+		</dl></td>
+		<!--{/foreach}-->
+			</tr></table>
+
+	<div class="weixin Right" style="width:140px;">
+		<h2 class="title">{$site_name}微信公众号</h2>
+		
+					<div class="img"><a href="/" target="_blank"><img src="{res file=images/201403/1395981498923021867.png}" width="100" height="100" /></a></div>
+		<p>扫一扫，200现金券20拍</p>
+			</div>
+</div></div>
+<div class="w footer-icon" style="text-align:center;">
+	<div class="iconMap">
+		<a href="/" target="_blank" title="O2O双平台" class="iconMap1" rel="nofollow"><p class="iconBg"></p><p class="icon-title">O2O双平台</p><p class="icon-desc">中国家具电商第一品牌</p></a><a href="/" target="_blank" title="全球化采购" class="iconMap2" rel="nofollow"><p class="iconBg iconBg1"></p><p class="icon-title">全球化采购</p><p class="icon-desc">高质平价经营</p></a><a href="/" target="_blank" title="100%" rel="nofollow"><p class="iconBg iconBg2"></p><p class="icon-title">100%</p><p class="icon-desc">正品保证</p></a><a href="/" target="_blank" title="双重质检" rel="nofollow"><p class="iconBg iconBg3"></p><p class="icon-title">双重质检</p><p class="icon-desc">品质保证</p></a><a href="/" target="_blank" title="限时达" rel="nofollow"><p class="iconBg iconBg4"></p><p class="icon-title">限时达</p><p class="icon-desc">最快7天到家</p></a><a href="/" target="_blank" title="45天" rel="nofollow"><p class="iconBg iconBg5"></p><p class="icon-title">45天</p><p class="icon-desc">无理由退换货</p></a><a href="/" target="_blank" title="买贵补差" class="iconMap7" rel="nofollow"><p class="iconBg iconBg6"></p><p class="icon-title">买贵补差</p><p class="icon-desc">价格保护</p></a><a href="/" target="_blank" title="万千口碑" class="iconMap8" rel="nofollow"><p class="iconBg iconBg7"></p><p class="icon-title">万千口碑</p><p class="icon-desc">万千家庭共同选择</p></a>
+	</div>
+</div>
+
+<div id="JS_ship_link" class="w footer-link"><strong>友情链接：</strong>
+	<!--{foreach from=$rocet_flinks item=flink}-->
+	<a href="{$flink.link}" target="_blank" title="{$flink.title}" >{$flink.title}</a>
+	<!--{/foreach}-->
+	<a id="JS_more_link" href="/links.html" target="_blank" title="更多友情链接">更多</a><span id="JS_open_more" class="warpIcon"><em class="arrow"></em></span>
+</div>
+{/if}
+<div class="w footer-copy">
+	<!--{foreach from=$navs.footer item=nav}-->
+	<a href="{$nav.link}"{if $nav.open_new} target="_blank"{/if} title="{$nav.title|escape}">{$nav.title|escape}</a> 
+	|
+	<!--{/foreach}-->
+	<a href="/keywords/" target="_blank" title="更多">更多</a> 
+	<br />
+	<span class="yen">&copy; 2005-2014 </span>{$site_name} 版权所有，并保留所有权利。
+<script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1253254778'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s9.cnzz.com/stat.php%3Fid%3D1253254778%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));</script>    
+    <br />
+	<a href="http://www.miibeian.gov.cn/" target="_blank" class="gray" rel="nofollow">ICP备案证书号：<!--{if $icp_number}-->{$icp_number}<!--{/if}--></a><br />
+	<span style="display:inline-block;margin-right:4px;vertical-align:top;"><a rel="nofollow" href="/" id="kx_verify" tabindex="-1" target="_blank"><img src="{res file=themes/paipai/images/blank.gif}" class="xinyu1" width="82" height="30" alt="可信网站"></a></span>
+	<span style="display:inline-block;vertical-align:top;"><img class="xinyu2" src="{res file=themes/paipai/images/blank.gif}" width="82" height="30" border="0"></span> 
+</div>
+
+</div>
+<script src="{res file=js/mll/jq.js}"></script>
+<script type="text/javascript">
+window.M = window.M || {};if($.addToCart)M.addToCart = $.addToCart;
+$.__IMG = '{$res_url}' || '{$res_url}';
+
+(function($){
+	var lists = [
+		[ 'checkPrize' , 'checkprize.min.js'],
+		[ 'sendSms' , 'sendsms.min.js'],
+		[ 'orderQuery' , 'orderquery.min.js'],
+		[ 'addToCart' , 'addtocart.min.js'],
+		[ 'costDownTip' , 'costdowntip.min.js'],
+		[ 'searchKey' , 'searchkey.min.js'],
+		[ 'getComment' , 'getcomment.min.js'],
+		[ 'quickBuy' , 'quickbuy.min.js'],
+		[ 'onlineVideo' , 'onlinevideo.min.js'],
+		[ 'wholehouse' , 'wholehouse.min.js']
+	];
+	var kk = lists.length;
+	for(var k = 0 ; k < kk ; k++){
+		var key  = lists[k][0];
+		var file = lists[k][1];
+		$[ key ] = (function( key , file ){
+			return function(){
+				var params = arguments;
+				$.req( file , function(){
+					$[key].apply( $ , params );
+				})
+			}
+		})( key , file );
+	}
+	$.showLoginBox = function(callback,refresh,phone_num){
+		if ($.cookie("web_login") == "1" && $.cookie("ECS[username]") ) {
+			if (typeof callback == "function"){
+				callback({
+					"username": $.cookie("ECS[username]"),
+					"email": $.cookie("ECS[email]")
+				});
+			}
+			return;
+		}
+		$.req( 'showloginbox.min.js' , function(){
+			$.showLoginBox( callback,refresh,phone_num );
+		});
+	}
+})(jQuery);
+(function (c, b) {
+	var a = b('#JS_head_login');
+	a.on('click', '#JS_login_out', function () {
+		b.ajax({
+			url: '/user/?act=logout',
+			type: 'get',
+			cache: false,
+			dataType: 'json',
+			success: function (d) {
+				if (d.error == 0) {
+					window.location.reload();
+					return false;
+				} else {
+					b.alert('注销失败，请重试！');
+				}
+			},
+			error: function () {
+				b.alert('网络异常，请重试！');
+			}
+		});
+	});
+}) (document, jQuery);
+function _INIT_HEAD_SEARCH(data) {
+	var json;
+	try {
+		json = eval(data.html_content);
+	} catch (e) {
+	}
+	if (json && json.length) {
+		var url = location.pathname;
+		var wordIndex = - 1;
+		var tmpFilter;
+		window.__HEAD_SEARCH_WORDS_ARR = [
+		];
+		window.__HEAD_SEARCH_WORDS_OBJ = {
+		};
+		if (/\/jiaju\//.test(url)) {
+			wordIndex = 0;
+		} else {
+			if (/\/jiancai\//.test(url)) {
+				wordIndex = 1;
+			} else {
+				if (/\/shipin\//.test(url)) {
+					wordIndex = 2;
+				}
+			}
+		}
+		for (var k = 0, kk = json.length; k < kk; k++) {
+			tmpFilter = json[k].type.split('');
+			if (wordIndex == - 1 || tmpFilter[wordIndex] == 1) {
+				__HEAD_SEARCH_WORDS_ARR.push(json[k]);
+				__HEAD_SEARCH_WORDS_OBJ[json[k].text] = json[k];
+			}
+		}
+		var inpt = $('#JS_MLL_search_header_input') [0];
+		if (__HEAD_SEARCH_WORDS_ARR.length && inpt && inpt.value == '') {
+			inpt.value = MLL_Header_search_words();
+			inpt.onfocus = function () {
+				this.value = '';
+				this.onfocus = function () {
+				};
+			};
+			inpt.onblur = function () {
+				if (this.value == '') {
+					this.value = MLL_Header_search_words();
+					this.onfocus = function () {
+						this.value = '';
+						this.onfocus = function () {
+						};
+					};
+				}
+			};
+		}
+	}
+}
+function MLL_Header_search_words() {
+	var b = __HEAD_SEARCH_WORDS_ARR,
+	a = Math.floor(Math.random() * b.length);
+	return b[a].text;
+}
+function MLL_header_search_submit() {
+	var a = $('#JS_MLL_search_header_input') [0];
+	var b = $('#JS_search_form') [0];
+	var c = a.value + '';
+	c = c.replace(/\s/g, '');
+	if (!c) {
+		return false;
+	}
+	if (window.__HEAD_SEARCH_WORDS_OBJ && __HEAD_SEARCH_WORDS_OBJ[c]) {
+		location.href = __HEAD_SEARCH_WORDS_OBJ[c].href + (__HEAD_SEARCH_WORDS_OBJ[c].href.indexOf('#') >= 0 ? '&' : '#') + 'kw=' + encodeURIComponent(c);
+		return false;
+	} else {
+		a.value = c;
+		return true;
+	}
+}
+function _show_(j, d) {
+	if (!j) {
+		return ;
+	}
+	if (d && d.source && d.target) {
+		var b = typeof d.source === 'string' ? $('#' + d.source)  : $(d.source);
+		var l = typeof d.target === 'string' ? $('#' + d.target)  : $(d.target);
+		var f = typeof d.data === 'string' ? $('#' + d.data)  : $(d.data);
+		if (b.length && l.length && !l.isDone) {
+			var h = $(b.val() || sourse.html());
+			if (f.length && typeof d.templateFunction == 'function') {
+				var i = f.val() || f.html();
+				i = $.parseJSON(i);
+				h = d.templateFunction(h, i);
+				f.remove();
+			}
+			l.empty() .append(h);
+			b.remove();
+			if (typeof d.callback == 'function') {
+				d.callback();
+			}
+			l.isDone = true;
+		}
+	}
+	$(j) .addClass('hover');
+	if (d && d.isLazyLoad && j.isDone) {
+		var g = j.find('img');
+		for (var e = 0, c = g.length; e < c; e++) {
+			var a = g[e].getAttribute('data-src_index_menu');
+			if (a) {
+				g[e].setAttribute('src', a);
+				g[e].removeAttribute('data-src_index_menu');
+			}
+		}
+		j.isDone = true;
+	}
+}
+function _hide_(b) {
+	if (!b) {
+		return ;
+	}
+	var a = $(b);
+	if (a.hasClass('hover')) {
+		a.removeClass('hover');
+	}
+}
+function shoucang() {
+	window._gaq = window._gaq || [];
+	_gaq.push(['_trackEvent',
+	'headerAddFavorite',
+	location.href]);
+	var b = window.location.href;
+	var a = document.title;
+	try {
+		window.external.addFavorite(b, a);
+	} catch (c) {
+		try {
+			window.sidebar.addPanel(a, b, '');
+		} catch (c) {
+			alert('对不起，您的浏览器不支持此操作！\n请您使用菜单栏或Ctrl+D收藏本站。');
+		}
+	}
+}
+var car_number = 0;
+function DY_cart_detail_nav_cb(b) {
+	Cart.goodsList = 1;
+	var a = b.goods_list.length;
+	if (a > 0) {
+		Cart.formatData(b);
+		Cart.goodsNum = a;
+		if (a > 4) {
+			$('#JS_header_cart') .css({
+				height: '312px',
+				'overflow-y': 'scroll'
+			});
+		}
+	} else {
+		$.cookie('cart_number', 0);
+		$('#cartInfo_number') .html(0);
+		Cart.Dom.html('<div class="loadLay" style="color:#626262;">您的购物车中还没有商品，先去选购吧！</div>');
+	}
+}
+$('#cartInfo_number') .html($.cookie('cart_number') || 0);
+var Cart = {
+};
+Cart.handdler = $('#JS_header_cart_handler');
+Cart.Dom = $('#JS_header_cart_list');
+Cart.show = function () {
+	if (!Cart.goodsList) {
+		$.ajax({
+			url: '/mll_api/api/cart_info',
+			dataType: 'json',
+			cache: false,
+			success: DY_cart_detail_nav_cb
+		});
+		Cart.Dom.html('<div class="loadLay" style="color:#626262;">数据加载中...</div>');
+	}
+	Cart.handdler.addClass('hover');
+};
+Cart.hide = function () {
+	Cart.handdler.removeClass('hover');
+};
+Cart.del = function (i) {
+	var l = i || window.event,
+	j = l.target || l.srcElement;
+	var a = $(j);
+	if (!a.hasClass('Cart_del')) {
+		return false;
+	}
+	var g = j.getAttribute('data-index'),
+	b = j.getAttribute('data-rec_id'),
+	f = j.getAttribute('data-num');
+	var k = j.getAttribute('data-act_id');
+	var d = [
+	];
+	var c = {
+	};
+	if (k > 0) {
+		var h = Cart.Dom.find('.JS_cart_list_act_' + k);
+		h.each(function (o, p) {
+			var q = $(this);
+			var n = q.data('rec_id');
+			var m = q.data('index');
+			var e = q.data('num');
+			d.push(n);
+			c[n] = {
+				index: m,
+				num: e
+			};
+		});
+	} else {
+		d.push(b);
+		c[b] = {
+			index: g,
+			num: f
+		};
+	}
+	if (!Cart.inDelAjax && d.length > 0) {
+		Cart.inDelAjax = true;
+		$.ajax({
+			url: '/add_cart/?step=dropGoods&ajax=1&goods=' + d.join('|'),
+			type: 'GET',
+			dataType: 'json',
+			success: function (e) {
+				if (e.error == 0) {
+					$.each(d, function (o) {
+						var r = d[o];
+						var s = c[r].index;
+						var q = c[r].num;
+						var u = $('#JS_total') .html() - 0;
+						var p = ($('#JS_danjia' + s) .html() - 0) * parseInt(q);
+						var v = u - p;
+						var n = parseInt($('#JS_num') .html() - 0) - parseInt(q);
+						var t = $('.JS_cart_list_gift_' + r);
+						var m = $('#JS_cart_gift_total') .html() - 0;
+						t.each(function (w) {
+							var x = parseInt(t.eq(w) .attr('data-num'));
+							n -= x;
+							m -= x;
+						});
+						$('#JS_cart_list_index_' + s) .remove();
+						t.remove();
+						$('#cartInfo_number') .html(n);
+						if (n == 0) {
+							Cart.Dom.html('<div class="loadLay" style="color:#626262;">您的购物车中还没有商品，先去选购吧！</div>');
+						} else {
+							$('#JS_total') .html(v);
+							$('#JS_num') .html(n);
+							if ($('li', '#JS_header_cart') .length <= 4) {
+								$('#JS_header_cart') [0].style.cssText = '';
+							}
+							if (m > 0) {
+								$('#JS_cart_gift_total') .html(m);
+							} else {
+								$('#JS_cart_gift_count') .remove();
+							}
+						}
+						Cart.goodsNum--;
+						$.cookie('cart_number', n);
+					});
+				} else {
+					this.error();
+				}
+			},
+			error: function () {
+				alert('删除失败，请稍后再试！');
+			},
+			complete: function () {
+				Cart.inDelAjax = false;
+			}
+		});
+	}
+};
+Cart.formatData = function (e) {
+	var g = e.goods_list;
+	var f = 0;
+	var b = 0;
+	var d = [
+	];
+	d.push('<ul id="JS_header_cart" class="cartUL" onclick="Cart.del(event);">');
+	for (var a = 0, h = g.length; a < h; a++) {
+		var c = (g[a].goods_thumb_1) ? g[a].goods_thumb_1 : g[a].goods_thumb;
+		d.push('<li id="JS_cart_list_index_' + a + '" class="' + (g[a].goods_activity_type != 'newgift' ? '' : 'JS_cart_list_gift_' + g[a].activity_par_id) + (g[a].price_activity_id > 0 ? ' JS_cart_list_act_' + g[a].price_activity_id : '') + '" data-num="' + g[a].goods_number + '" data-rec_id="' + g[a].rec_id + '" data-index="' + a + '">');
+		d.push('<div class="tImg"><a href="' + g[a].url + '" target="_blank" title="' + g[a].goods_name + '"><img src="http://image.meilele.com/' + c + '" width="86" height="57" alt="' + g[a].goods_name + '" /></a></div>');
+		d.push('<div class="gInfo">');
+		d.push('<p class="gn"><a href="' + g[a].url + '" target="_blank" title="' + g[a].goods_name + '">' + g[a].goods_name + '</a></p>');
+		if (g[a].goods_activity_type != 'newgift') {
+			d.push('<p class="gt"><strong class="Left"><span class="cl yen">&yen;<span id="JS_danjia' + a + '">' + g[a].goods_price + '</span></span>&times;' + g[a].goods_number + '</strong><a class="Right Cart_del" href="javascript:;" data-index="' + a + '" data-rec_id="' + g[a].rec_id + '" data-num="' + g[a].goods_number + '" data-act_id="' + (g[a].price_activity_id || 0) + '">删除</a></p>');
+		} else {
+			d.push('<p class="gt"><strong class="Left"><span class="cl">赠品</span>&times;' + g[a].goods_number + '</strong></p>');
+			b += parseInt(g[a].goods_number);
+		}
+		d.push('</div>');
+		d.push('</li>');
+		f += parseInt(g[a].goods_number);
+	}
+	d.push('</ul>');
+	d.push('<div class="cartDiv clearfix"><p class="totaoFee">共<strong class="red f14" id="JS_num">' + f + '</strong>件商品，共计<strong class="yen red num" >&yen;<span id="JS_total">' + e.total + '</span></strong></p>' + (b > 0 ? '<p id="JS_cart_gift_count" class="gray r">其中包含<strong id="JS_cart_gift_total" class="red f14">' + b + '</strong>件赠品</p>' : '') + '<div class="clearfix"><a class="toPay" href="javascript:;" onclick="Cart.goPreCheckOut();return false;">立刻购买</a><a href="/flow/?step=cart&rel=header" style="color:#333;margin-top:15px;padding-right:10px;" class="Right">查看购物车&gt;&gt;</a></div></div>');
+	$('#cartInfo_number') .html(f);
+	Cart.Dom.html(d.join(''));
+	$.cookie('cart_number', f);
+};
+Cart.goPreCheckOut = function () {
+	$.showLoginBox(function () {
+		location.href = '/flow/?step=pre_checkout&rel=header';
+	});
+};
+function exprCallBackNum(json) {
+	if (json && json.html_content) {
+		try {
+			eval('json.html_content=' + json.html_content);
+		} catch (e) {
+			return ;
+		}
+		if (!json) {
+			return ;
+		}
+		var o1 = $('#JS_n_head_menu_expr');
+		var o2 = $('#JS_temai_n_menu');
+		var o3 = $('#JS_Header_Home_Link');
+		var o4 = $('#JS_Header_Logo_link_home');
+		if (json.html_content && json.html_content.expr_count > 0) {
+			o1.attr('href', '/' + json.html_content.pinyin + '/expr.html');
+			o3.attr('href', '/' + json.html_content.pinyin + '/');
+			o4.attr('href', '/' + json.html_content.pinyin + '/');
+			if (o2.length && json.html_content.out_goods) {
+				o2.html('&nbsp;|&nbsp;<a class="red" href="/' + json.html_content.pinyin + '/temai_all_' + json.html_content.region_id + '.html" target="_blank" title="体验馆特卖">体验馆特卖</a>');
+				o2.removeClass('none');
+			}
+		}
+	}
+}
+$('#JS_header_cart_handler') .hover(Cart.show, Cart.hide);
+(function($){
+	if( $("#JS_ship_link a").length > 26 ){
+		$("#JS_more_link").hide();
+		var openArrow = $("#JS_open_more");
+		openArrow.css('display','inline-block').click(function(){
+			$("#JS_ship_link a").each(function(){
+				$(this).show();
+			});
+			$(this).hide();
+		});
+	}
+})(jQuery);
+
+function SyncLoginStatus(type){
+	if( !$.cookie('_sendCookie_') || type){
+		var keys = ['ECS[email]', 'ECS[username]', 'user_id', 'autoLogin', 'web_login', 'ECS[login_type]', 'ECS_ID'],
+			parma = [],
+			img = new Image();
+
+		for ( var i = 0, ii = keys.length; i < ii; i++ ) {
+			var name = $.cookie(keys[i]) || null,
+			item = keys[i]+"|"+name+"|.lejj.com";
+			parma.push(item);
+		}
+		img.src = "http://www.lejj.com/rsync_data/?value="+parma.join(',');
+		$.cookie('_sendCookie_', 1, 'session');
+	}
+}
+
+if(window.userName || ( $.cookie('web_login') == "1" && $.cookie('ECS[username]') )){
+	SyncLoginStatus();
+}
+
+window._backToTopConfig = window._backToTopConfig || [];
+window._backToTopConfig.push(
+	{
+		show:function(){return true},
+		html:'<div class="JS_back_to_top_hover back_to_top_hover_zoom"><div class="back_to_top_tip">20抵200</div><div class="in_box back_to_top_bonus"></div></div>',
+		click:[function(){
+			window.open('http://web');
+		}],
+		order:25
+	}
+);
+
+window.__QUIZ = false;
+_LOAD_SCRIPT_($.__IMG+'/js/back_to_top.min.js');
+</script>
+
+<!--  pinpai  -->
+{if $smarty.get.app == 'brand'}
+<script type="text/javascript">
+function Focus(b,a,c){if(!a){return;}this.nav=b;this.stage=a;this.step=c;this.index=0;this.len=b.length;this.warp();}Focus.prototype={warp:function(){var c=this;for(var b=0;b<c.len;b++){c.nav[b]._key=b;c.nav[b].onmouseover=function(){c.index=this._key;clearInterval(auto);a();};c.nav[b].onmouseout=function(){c.index=this._key;auto=setInterval(function(){a();},5000);};}var a=function(){for(var d=0;d<c.len;d++){(c.nav[d].className.indexOf("current")>-1)?M.removeClass(c.nav[d],"current"):(function(){})();}M.addClass(c.nav[c.index],"current");M.Animate(c.stage,{marginTop:(0-c.step*c.index)+"px"},200);c.index=(c.index>=c.len-1)?0:parseInt(c.index)+1;};auto=setInterval(function(){a();},5000);}};
+new Focus(M.$("a","#JS_focus_nav"),M.$("#JS_focus_stage"),361);new Tab(M.$("a","#JS_news_tab_nav"),M.$("ul","#JS_news_tab_body"),M.$("#JS_news_tab_body"));new Tab(M.$("a","#JS_sail_tab_nav"),M.$(".tabBody","#JS_sail_tab_body"),M.$("#JS_sail_tab_body"));M.addHandler(window,"load",function(){;for(var b=0,c=document.images.length;b<c;b++){var a=document.images[b];var d=a.getAttribute("data-src");if(d){a.src=d;a.removeAttribute("data-src");}}});
+</script>
+{/if}
+
+
+<!--  tejia  
+<script type="text/javascript">
+$(function(){
+    $('#JS_btn').click(function(){
+        var pagestr = '/activity-page-1-show_type-0-sort-total_sold_yes_count-order-desc.html',
+            page = $('#JS_page').val(),
+            max_page = '3';
+            if(page > 0){
+                var arr = pagestr.split('/activity-page-1');
+                location.href = '/activity-page-'+(page>parseInt(max_page) ? max_page: page)+arr[1];
+            }
+
+    });
+    $('#JS_newgoods li').mouseover(function(){
+        if($(this).find('.goood_details').hasClass('none')){
+            $(this).find('.goood_details').removeClass('none').siblings('div').addClass('none');
+            $(this).siblings('li').find('.goood_details').addClass('none').siblings('div').removeClass('none');
+        }
+    });
+    $.lazyImg.start();//图片懒加载
+})
+function Focus(focus_nav,focus_stage)
+{
+    if(!focus_stage)return;
+    this.nav = focus_nav;
+    this.stage = focus_stage;
+    this.step = (window.screen.width>=1280) ? 891 : 681;
+    this.index = 0;
+    this.len = focus_nav.length;
+    if(this.len <= 0)return;
+    this.warp();
+}
+Focus.prototype = {
+    warp:function()
+    {
+        var me = this;
+        for(var i=0;i<me.len;i++){
+            me.nav[i]._key = i;
+            me.nav[i].onmouseover = function(){
+                me.index = this._key;
+                clearInterval(auto);
+                Run();
+            }
+            me.nav[i].onmouseout = function(){
+                auto = setInterval(function(){Run();},5000);
+            }
+        }
+
+        var Run = function()
+        {
+            for(var j=0;j<me.len;j++){
+                ( me.nav[j].className.indexOf("back_c9033b") > -1 ) ? me.nav.eq(j).removeClass("back_c9033b") : (function(){})();
+            }
+            me.nav.eq(me.index).addClass("back_c9033b");
+            var to = (0 - me.step * me.index) + "px"
+            me.stage.animate({'marginLeft':to}, 200 );
+            me.index = (me.index >= me.len-1) ? 0 : parseInt(me.index) + 1;
+        }
+        var auto = setInterval(function(){Run();},5000);
+    }
+}
+new Focus($('#Js_bargain a'),$('#Js_bargain_price'));
+</script>
+-->
+
+
+<!--  xinpinshoufa  -->
+{if $smarty.get.app == 'newgoods'}
+<script type="text/javascript">
+$(function(){
+	var menu=$("#JS_fixed_nav").offset().top;
+     myscroll(menu);
+
+	$(document).on('mousemove','[id^=Js_new_goods_]',function(){
+		$(this).parent().attr("class","none");
+		$(this).parent().next().attr("class","block");
+		var i = "#"+$(this).attr("id");
+		$('[id^=Js_new_goods_]').not($(i)[0]).parent().next().attr("class","none");
+		$('[id^=Js_new_goods_]').not($(i)[0]).parent().attr("class","block");	
+	});
+
+	  
+	window.onscroll=function(){
+   		 myscroll(menu);
+	};
+	function  myscroll(menu){
+		 var s_Top = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
+   		 if(s_Top>menu){
+   		 	$("#JS_fixed_nav").attr("class","right_top  top_right fixed");
+   		 }else{
+   		 	$("#JS_fixed_nav").attr("class","right_top top_right");
+   		 }
+	}
+	$.lazyImg.start();//图片懒加载
+})
+function btn_page(){
+	var allpage = $("#Js_lastpage").html();
+	var page = $("#Js_countdown_page_input").val();
+	if(parseInt(page) > parseInt(allpage)){
+		page = allpage;
+	}
+	if('' == "" && page == 1){
+		location.href='/new_products.html';
+	}else{
+		location.href='/new_products-page-'+page+''+'.html';
+	}
+}
+function Focus(focus_nav,focus_stage)
+{
+	if(!focus_stage)return;
+	this.nav = focus_nav;
+	this.stage = focus_stage;
+	this.step = (window.screen.width>=1280) ? 1190 : 980;
+	this.index = 0;
+	this.len = focus_nav.length;
+	if(this.len <= 0)return;
+	this.warp();
+}
+Focus.prototype = {
+	warp:function()
+	{
+		var me = this;
+		for(var i=0;i<me.len;i++){
+			me.nav[i]._key = i;
+			me.nav[i].onmouseover = function(){
+				me.index = this._key;
+				clearInterval(auto);
+				Run();
+			}
+			me.nav[i].onmouseout = function(){
+				auto = setInterval(function(){Run();},5000);
+			}
+		}
+
+		var Run = function()
+		{
+			for(var j=0;j<me.len;j++){
+				( me.nav[j].className.indexOf("current") > -1 ) ? me.nav.eq(j).removeClass("current") : (function(){})();
+			}
+			me.nav.eq(me.index).addClass("current");
+			var to = (0 - me.step * me.index) + "px"
+			me.stage.animate({'marginLeft':to}, 200 );
+			me.index = (me.index >= me.len-1) ? 0 : parseInt(me.index) + 1;
+		}
+		var auto = setInterval(function(){Run();},5000);
+	}
+}
+
+new Focus( $('#Js_guanggao_a a'), $("#Js_guanggao_img") );
+</script>
+{/if}
+
+
+
+
+<!---   lanmu.php  -->
+{if $smarty.get.app == 'search'}
+<script src="{res file=js/mll/category_wide_b.min.js}"></script>
+<script type="text/javascript" src="{res file=js/jquery.query.js}"></script>
+<script type="text/javascript">
+    $(function(){
+        $.fn.sortprocess = function(arg, vol){
+        	vol = arg == 'order' ? 0 < $.query.get(arg).indexOf('asc') ? vol+' desc' : vol+' asc' : vol;
+            location.href = location.href.split('?')[0]+$.query.set(arg, vol).toString();
+        }
+    });
+
+if( $.saleNumUpdate ){
+	$.saleNumUpdate([{
+		'selector': '.JS_show_price_ajax',
+		'type': 'price',
+		'param': 'price_id',
+		'key': 'show_price'
+	},//更新价格
+	{
+		'selector': '.JS_sale_num_ajax',
+		'type': 'sale_num',
+		'param':'id',
+		'key': 'num'
+	}]);//更新销量
+}
+var CG = CG || {};
+	CG.priceUrl = '/category-chuangdian/mcat0-scat0-b0-max0-min0-city00-rt0-attr-page-1-sort-sort_order-order-asc.html';
+	var _basic_url = '/category-chuangdian/mcat0-scat0-b0-max0-min0-cityxxxx-rt0-attr-page-1-sort-sort_order-order-asc.html';
+
+	CG.cat_id = 313;
+
+	new TabMouseover('JS_fixture_tag','fixture_show',0);
+
+
+
+
+(function(){
+	$('#JS_more_link_g_new').click(function(){
+		var item =$(this),span=$('#JS_more'),arrow=$('#JS_more_arrow'),show_div=$('#JS_show_more');
+		if( item.data('link') == 'more'){
+			item.data('link','reduce');
+			span.html('收起');
+			arrow[0].className="arrow_up";
+			show_div.show();
+		}else{
+			item.data('link','more');
+			span.html('更多');
+			arrow[0].className="arrow_down";
+			show_div.hide();
+		}
+	});
+
+	var select_div=$('#JS_new_pro_select');
+	$('#JS_new_select').mouseenter(function(){
+		select_div.show();
+	}).mouseleave(function(){
+		select_div.hide();
+	});
+})();
+
+
+
+
+var google_tag_params = {
+	ecomm_pagetype: 'category'
+};
+
+
+
+(function(){//标记用户搜索
+	var kw =  "";
+	var category = "床垫"||"卧室";
+	var sort = "sort_order";
+	var act = "";
+	var add = '';
+	if( sort == 'total_sold_yes_count' || sort == "click_count" ){ //质量
+		add = "::2";
+	}else if( sort == "effect_price" || act == '特价' || act == '惊爆价' || act == '返现' || act == '直降'){//优惠
+		add = "::1";
+	}
+	if( kw && window._ana){
+		_ana.push(['setCustomer','siteSearch',kw]);
+	}else if(category && window._ana && add){
+		_ana.push(['setCustomer','category',category+add]);
+	}
+})();
+</script>
+{/if}
+
+
+
+
+<!--  goods -->
+
+
+{if $smarty.get.app == 'goods'}
+<script type="text/javascript" src="{res file=js/mll/goods_wide_new.min.js}"></script>
+<script type="text/javascript">
+	goodsInit();
+</script>
+
+<script type="text/javascript" id="bdshare_js" data="type=tools"></script>
+<script type="text/javascript" id="bdshell_js"></script>
+<script type="text/javascript">
+	document.getElementById("bdshell_js").src = "http://share.baidu.com/static/js/shell_v2.js?cdnversion=" + new Date().getHours();
+</script>
+
+<script type="text/javascript">
+function TabMouseover(_fobj,_fclass,type,url){
+	var _ftitle = $('#' + _fobj +' .fixture_title');
+	var _fcontent = $('.'+ _fclass);
+	var _fmore = $('#' + _fobj + ' a');
+
+	_ftitle.mouseover(function(){
+		var index = _ftitle.index(this);
+		for(var j=0;j<_ftitle.length;j++){
+			_ftitle[j].className = 'fixture_title Left';
+			_fcontent[j].className = _fclass + ' none';
+		}
+		_ftitle[index].className = 'fixture_title Left current';
+		_fcontent[index].className = _fclass;
+		if(url) _fmore[0].href = url[index];
+	});
+}
+var url = ['/article/','http://club.web.com/'];
+new TabMouseover('JS_fixture_article','fixture_knowledge1',0,url);
+</script>
+{/if}
+
+
+
+
+<!--  home  -->
+{if !$smarty.get.app}
+<script type="text/javascript">
+var __vir = 0;
+if(__vir){
+	$.cookie("region_virtual",1,{expires:5,domain:'web.com'});
+}else{
+	$.cookie("region_virtual",'',{expires:-1,domain:'web.com'});
+}
+
+$('#JS_index_menu_box>div.list').hover(function(){
+	var idx = $(this).index() + 1;
+	_show_(this);
+},
+function(){
+	_hide_(this);
+});
+window._QUIZ = 'http://web/diaocha63.html';
+</script>
+
+<script type="text/javascript">function limitCount(){var a=limitCount.doms=limitCount.doms||$("#JS_limit_table div.JS_leaveTime");a.each(function(){var c=$(this);var b=c[0]._timeline=c[0]._timeline||c.data("timeline");c.html(limitFormatTime(b-limitCount.unixTime));});limitCount.unixTime++;}function limitFormatTime(e){if(e<0){e=0;}var f=Math.floor(e/3600/24),c=Math.floor((e/3600)%24),a=Math.floor((e%3600)/60),b=Math.floor((e%3600)%60);if(c<10){c="0"+c;}if(a<10){a="0"+a;}if(b<10){b="0"+b;}return"剩余"+(f>0?'<span class="digital">'+f+"</span>天":"")+'<span class="digital">'+c+'</span>时<span class="digital">'+a+'</span>分<span class="digital">'+b+"</span>秒";}function _COMMON_UNIX_TIME(a){if(a&&a.html_content){limitCount.unixTime=a.html_content;setInterval(limitCount,1000);}}function getNewDealRecord(){$.ajax({url:"/mem_ajax/?act=get_newly_sales",dataType:"json",type:"get",success:function(b){$("#INDEX_LeiHao_XXXXX").html('<div class="loading"><img src="{res file=images/sub_expr20120717/loading.gif}" width="16" height="16" /> 正在获取数据，请稍后...</div>');var a=[];a.push('<div id="JS_scroll_out_box" class="scrollBox">');for(k in b){var c=formatTime(b[k].order_time);a.push('<div class="item">');a.push('<div class="img"><a href="'+b[k].goods_url+'" target="_blank" title="'+b[k].goods_name+'"><img src="'+$.__IMG+"/"+b[k].img+'" width="117" height="79" alt="'+b[k].goods_name+'" /></a></div>');a.push('<div class="txt">'+(b[k].zx_user_url?'<a href="'+b[k].zx_user_url+'" target="_blank">'+b[k].consignee+"</a>":b[k].consignee)+'<br /><span class="time">'+c+'</span>购买了<br /><a href="'+b[k].goods_url+'" target="_blank" title="'+b[k].goods_name+'">'+b[k].goods_name+"</a></div>");a.push("</div>");}a.push("</div>");$("#INDEX_LeiHao_XXXXX").html(a.join(""));dealRecordAnimate();}});}function formatTime(i){if(!i){return"刚刚";}var b=parseInt((new Date()).getTime()/1000);var f=b-i;if(f<0){f=0;}var e=f%60;var a=parseInt(f%3600/60);var c=parseInt(f%(3600*24)/3600);var g=parseInt(f/(3600*24));if(g){return g+"天前";}else{if(c){return c+"小时前";}else{if(a){return a+"分钟前";}else{if(e){return e+"秒前";}else{return"刚刚";}}}}}function dealRecordAnimate(){window._JS_ZZ_LOCK_=false;var e=$("#JS_scroll_out_box");var b=$("#JS_scroll_out_box .item");var a=window.LOAD?parseInt(b.length/2):b.length;var c;if(a>3){e.css("margin-top",a*(-91)+"px");c=-a;e.hover(function(){window._JS_ZZ_LOCK_=true;},function(){window._JS_ZZ_LOCK_=false;});var d=e.html();d+=d;e.html(d);setInterval(f,4000);}function f(){if(window._JS_ZZ_LOCK_){return;}c++;e.animate({"margin-top":c*91+"px"},200,"linear",function(){if(c>-1){e.css("margin-top",a*(-91)+"px");c=-a;}});}}$(function(){$.lazyImg.start("both",{attributeTag:"data-src2"});window._currentWidth=document.body.clientWidth;window.onresize=function(){window._currentWidth=document.body.clientWidth;c=0;g();};var f=$("#JS_side_stage"),a=$("#JS_side_stage a"),i=$("#JS_side_nav a"),b=$("#JS_side_stage a"),d=i.length,e=0,c=0;i.on("mouseover",function(){c=$(this).index();if(h){clearInterval(h);}g();}).on("mouseout",function(){h=setInterval(function(){g();},6000);});var g=function(){$(i.get(e)).removeClass("current");$(i.get(c)).addClass("current");f.stop(true,false).animate({"margin-left":(0-c)*window._currentWidth+"px"},200);e=c;var l=$(b.get(e));var j=l.attr("data-bg");if(j){l.css({background:"url("+j+") center center no-repeat"}).removeAttr("data-bg");}c=(c>=d-1)?0:c+1;};var h=setInterval(function(){g();},6000);});function slideLazy(a){if(a.index>0){var b=a["_img_"+a.index]||a.stage.find("img").get(a.index);if(b&&!b._lazYDone){$.lazyImg.prepend([{target:b,src:b.getAttribute("lazy-src2")}]);a["_img_"+a.index]=b;b._lazYDone=true;}}}$(function(){$.tab($("#JS_expr_num_box td.enav"),$("#JS_expr_num_box td.ebody"),{lazy:false});$.tab($("#JS_side_tab_nav a"),$("#JS_side_tab_body .tBody"),{lazy:false});$("#JS_group_buy_body").on("mouseover",function(){this.className="body current";}).on("mouseout",function(){this.className="body";});$.slide({prevBtn:$("#JS_group_nav_prev"),nextBtn:$("#JS_group_nav_next")},$("#JS_groupBuy_stage"),{step:210});$.slide({prevBtn:$("#JS_limit_left"),nextBtn:$("#JS_limit_right")},$("#JS_limit_table"),{step:window.LOAD?960:750,onSlide:function(b){if(b.index>0&&!b._lazYDone){var e=b.stage.find("div.img img");var d=[];for(var c=3;c<6;c++){if(e[c]){d.push({target:e[c],src:e[c].getAttribute("lazy-src2")});}}if(d.length)b._lazYDone=true;}}});$("#JS_limit_table").on("mouseenter","td",function(){this.className="current";});$("#JS_limit_table").on("mouseleave","td",function(){this.className="";});$("#JS_check_order").click(function(){var c=$("#JS_ordersn"),b=$("#JS_phone");$.orderQuery(c,b);});for(var a=1;a<=4;a++){$.slide($("#JS_floor_focus_nav_"+a+" a"),$("#JS_floor_focus_stage_"+a),{step:721,eventType:"mouseenter",autoRun:5000,onSlide:slideLazy});}});(function(c){for(var b=1;b<=4;b++){var a=c("#JS_floor_brand_"+b);if(a.length){a.find("li").hover(function(){c(this).addClass("hover");},function(){c(this).removeClass("hover");});}}})(jQuery);$(window).on("load",function(){$.slide($("#JS_zx_slide_nav a"),$("#JS_zx_slide_body"),{step:510,eventType:"mouseenter",autoRun:3000,onSlide:slideLazy});$.slide($("#JS_focus_xspace_nav a"),$("#JS_focus_xspace_body"),{step:760,eventType:"mouseenter",autoRun:3500,onSlide:function(d){var c=d.index;if(c>0&&!d["_lazyDone_"+c]){var g=d.stage.find("div.img img");var f=[];for(var e=c*3;e<(c+1)*3;e++){if(g[e]){f.push({target:g[e],src:g[e].getAttribute("lazy-src2")});}}if(f.length)d["_lazyDone_"+c]=true;}}});var a=$("#JS_tab_article_nav a"),b=$("#JS_tab_article_body div.tabBody");$.tab(a,b);getNewDealRecord();$("#JS_hotBrand_table").on("mouseenter","td",function(){jQuery(this).addClass("current");});$("#JS_hotBrand_table").on("mouseleave","td",function(){jQuery(this).removeClass("current");});});</script>
+<script type="text/javascript">
+var google_tag_params = {
+	pagetype: 'home'
+}
+</script>
+{/if}
+
+{if $smarty.const.ROCETHIDE}
+
+<script type="text/javascript" src="{res file=js/mll/user3.min.js}"></script>
+<script type="text/javascript" src="{res file=js/mll/jquery.mailAutoComplete-4.0.min.js}"></script>
+<script type="text/javascript">
+
+(function(){
+    var value = __redirectUrl;
+    var refer = document.referrer;
+    if(!__redirectUrl && refer && refer.indexOf("/user/") < 0 && refer.indexOf("act=login") < 0 && refer.indexOf("act=register") < 0){
+        value = refer;
+    }
+    if(!value) value = "/";
+    M.$('#back_act').value = value.replace("'","").replace('"',"") ;
+
+    // window.loginType;
+
+    $('.user_type_change').click(function(){
+        var _this = $(this);
+        var type = window.loginType;
+        if(type == 'expr') {
+            $('.user_type_expr').addClass('none');
+            $('.user_type_user').removeClass('none');
+            window.loginType = 'user';
+        } else {
+            $('.user_type_user').addClass('none');
+            $('.user_type_expr').removeClass('none');
+            window.loginType = 'expr';
+        }
+    });
+})();
+
+$("#register_username").mailAutoComplete();
+
+function addRedirect(obj, key){
+    __redirectUrl = __redirectUrl || M.$('#back_act').value;
+    if(  obj && __redirectUrl){
+        var href = obj.getAttribute('href');
+        __redirectUrl = __redirectUrl.replace("'","").replace('"',"")
+        obj.setAttribute( 'href' , href + (href.indexOf("?") >=0 ? '&':'?') + (key? key: 'redirect_url')+'='+encodeURIComponent(__redirectUrl) );
+        
+    }
+}
+function refreshCaptchaLogin(type){
+    US.changeCaptcha(M.$('#JS_login_captcha_img_1'),'',type);
+            _reset_captcha();
+    }
+function showCaptchaLogin(){
+    M.removeClass(M.$('#JS_login_captcha_1') , 'none')
+    M.removeClass(M.$('#JS_login_captcha_2') , 'none')
+    refreshCaptchaLogin();
+}
+function hideCaptchaLogin(){
+    M.addClass(M.$('#JS_login_captcha_1') , 'none')
+    M.addClass(M.$('#JS_login_captcha_2') , 'none')
+}
+if( M.getCookie('login_need_captcha') ){
+    showCaptchaLogin();
+}
+function setWindowName(region, obj){
+    addRedirect(obj, 'back_url');
+    M.setWindowName('js','parseGaData','_trackEvent','apiLogin',region,'网页_'+document.referrer);
+}
+function _reset_captcha(){
+    if(M.$('#_JS_sndSms_captcha_icon') && M.$('#login_uname_c')){
+        M.$('#_JS_sndSms_captcha_icon').className = '_check_icon';
+        M.$('#login_uname_c').value = '';
+    }
+}
+(function($){
+    US.addEventListener($('#JS_login'),'click',function(){
+        SB = LSB;
+        $('#back_act').value = encodeURIComponent(decodeURIComponent($('#back_act').value)).replace("'","").replace('"',"");
+        US.formSubmit();
+    });
+    new Check({
+        type: 1,
+        elem: $('#login_uname'),
+        errorElem: $('#login_uname_a'),
+        defaultTip: '',
+        firstFocus: true,
+        memberAucount: (M.getCookie("rember_username") || ''),
+        minLength: 1,
+        maxLength: 100,
+        defaultValue:"邮箱/用户名/手机号",
+        lengthError: '请输入正确帐户名',
+        ruleError: '您输入的账户名不存在，请核对后重新输入。',
+        ajaxUrl: '/act_is_registered/',
+        checkOnline: true,
+        detection:true, //是否不需要检测注册
+        keyName: 'username',
+        eventType:'keypress',
+        eventFunction: function(e){
+            e = e || window.event;
+            if (e.keyCode == 13 && !(e.ctrlKey || e.shiftKey || e.altKey)) {
+                if(this.value == '' || $('#login_uname_p').value == '' || !option.loginCheck) return false;
+                this.blur();
+                $('#JS_login').click();
+                return false;
+            }
+        }
+    });
+    new Check({
+        type:1,
+        elem: $('#login_uname_p'),
+        errorElem: $('#login_uname_p_a')
+    });
+    US.addEventListener($('#login_uname_p'),'keypress',function(e){
+        e = e || window.event;
+        if (e.keyCode == 13 && !(e.ctrlKey || e.shiftKey || e.altKey)) {
+            if(this.value == '' || $('#login_uname').value == '' || !option.loginCheck) return false;
+            this.blur();
+            $('#JS_login').click();
+            return false;
+        }
+    }); 
+})(M.$);
+(function(){
+    $.checkCaptcha( $('#login_uname_c') , {
+            success:function(){
+                var check_icon = $('#_JS_sndSms_captcha_icon');
+                check_icon.addClass('sms_captcha_success');
+                check_icon.removeClass('sms_captcha_error');
+            },
+            error:function(){
+                var check_icon = $('#_JS_sndSms_captcha_icon');
+                check_icon.removeClass('sms_captcha_success');
+                check_icon.addClass('sms_captcha_error');
+            }
+        });
+})();
+//---------====================
+
+
+
+(function($){
+    var _User_Config = {
+        email: {
+            minLength: 1,
+            maxLength: 40,
+            lengthError: '请输入正确的邮箱地址',
+            pattent: /^[\w-]+(\.[\w-]+)*@[\w-]+(\.[\w-]+)+$/i,
+            ruleError: '请输入正确的邮箱地址'
+        },
+        telephone: {
+            minLength: 11,
+            maxLength: 11,
+            lengthError: '请输入正确的手机号码',
+            pattent: /^(13|14|15|18)[0-9]{9}$/,
+            ruleError: '请输入正确的手机号码'
+        },
+        username: {
+            minLength: 5,
+            maxLength: 20,
+            lengthError: '用户名请输入5-20位中英文字符、数字及下划线',
+            pattent: /^[a-zA-Z0-9\u4e00-\u9fa5_]+$/,
+            ruleError: '用户名请输入5-20位中英文字符、数字及下划线'
+        }
+    }
+    $('#JS_captcha').onclick = $('#JS_captcha_tip').onclick = function(){
+        US.changeCaptcha($('#JS_captcha'),'',true);
+        return false;
+    }
+    US.addEventListener($('#JS_register'),'click',function(){
+
+            if($('#register_password').value==""){
+                $('#register_password_a').innerHTML="请输入密码";
+                $('#register_password_a').className="error error2";
+                $('#register_password_a').style.visibility="visible";
+                state = false;
+            }           
+            
+            if($('#register_confirm_password').value==""){
+                $('#register_confirm_password_a').innerHTML="请输入密码";
+                $('#register_confirm_password_a').className="error error2";
+                $('#register_confirm_password_a').style.visibility="visible";
+                state = false;
+            }
+                        
+            if($('#register_captcha').value==""){
+
+                var advice_icon = M.$('#register_ver_s');
+                M.addClass(advice_icon,'to_error')
+                advice_icon.style.display = "inline-block";
+                state = false;
+            }           
+            
+            if($('#sms_captcha').value==""){
+                $('#sms_captcha_s_a').innerHTML="请输入短信验证码";
+                $('#sms_captcha_s_a').className="error error2";
+                $('#sms_captcha_s_a').style.visibility="visible";
+                state = false;
+            }
+            
+            SB = RSB;
+            option.regSub = true;
+            US.formSubmit();
+    });
+    new Check({
+        elem: $('#register_username'),
+        errorElem: $('#register_username_a'),
+        successElem: $('#register_username_s'),
+        defaultTip: '请输入邮箱/用户名/手机号',
+        firstFocus: 1,
+        minLength: 5,
+        maxLength: 20,
+        lengthError: '请输入正确的帐户名',
+        pattent: /^(.*)$/i,
+        ruleError: '请输入正确的帐户名',
+        checkOnline: true,
+        ajaxUrl: '/act_is_registered/',
+        fixJson:function(json){
+            var value = $('#register_username').value;
+            if( json && json.error && json.msg == '用户名已经存在' ){
+                switch(option.userType){
+                    case 1:
+                        json.msg = '该用户名已被使用，请重新输入。如果您是"'+value+'"，请立刻<a style="color:#4a92f5" href="/user/?act=login" onclick="addRedirect(this)">登录</a>';
+                        break;
+                    case 2:
+                        json.msg = '该邮箱已存在，立刻<a style="color:#4a92f5" href="/user/?act=login">登录</a>';
+                        break;
+                    case 3:
+                        json.msg = '该手机号已存在，立刻<a style="color:#4a92f5" href="/user/?act=login">登录</a>';
+                        break;
+                }
+            }
+            return json;
+        },
+        keyName: 'username',
+        checkKey: 'username',
+        eventType:'keyup',
+        eventFunction:function(){
+            var d = $('#register_username');
+            $('#register_username_a').style.visibility = 'visible';
+            var v = d.value || '';
+            if( /^1[0-9]{10,10}$/.test(v) ){
+                d.setting = M.extend( d.setting , _User_Config.telephone );
+            }else if( v.indexOf('@') >= 0 ){
+                d.setting = M.extend( d.setting , _User_Config.email );
+            }else{
+                d.setting = M.extend( d.setting , _User_Config.username );
+            }
+        },
+        blurFunction : function(){
+            var d = $('#register_username');
+            var v = d.value || '';
+            if( /^1[0-9]{10,10}$/.test(v) ){
+
+                $('#sms_captcha_e').style.display = '';
+                $('#sms_captcha_s_a').style.display = '';
+                $('#register_captcha_e').style.display = 'none';
+                $('#register_captcha_a').style.display = 'none';
+                option.userType = 3;
+            }else if( v.indexOf('@') >= 0 ){
+
+                $('#sms_captcha_e').style.display = 'none';
+                $('#sms_captcha_s_a').style.display = 'none';
+                $('#register_captcha_e').style.display = '';
+                $('#register_captcha_a').style.display = '';
+                option.userType = 2;
+            }else if( v ){
+
+                $('#sms_captcha_e').style.display = 'none';
+                $('#sms_captcha_s_a').style.display = 'none';
+                $('#register_captcha_e').style.display = '';
+                $('#register_captcha_a').style.display = '';
+                option.userType = 1;
+            }
+            if($('#register_username').value==""){
+            $('#register_username_a').innerHTML="请输入邮箱/用户名/手机号";
+            $('#register_username_a').className="error error2";
+            $('#register_username_a').style.visibility="visible";
+            state = false;
+        }
+        }
+    });
+
+    new Check({
+        elem: $('#register_email'),
+        errorElem: $('#register_email_a'),
+        successElem: $('#register_email_s'),
+        defaultTip: '邮箱将用于找回密码，请填写常用邮箱',
+        minLength: 0,
+        maxLength: 0,
+        lengthError: '请输入正确的邮箱地址',
+        pattent: /^[\w-]+(\.[\w-]+)*@[\w-]+(\.[\w-]+)+$/i,
+        ruleError: '请输入正确的邮箱地址',
+        checkOnline: true,
+        ajaxUrl: '/user/?act=check_email',
+        keyName: 'email',
+        checkKey: 'email',
+        eventType:'keyup',
+        eventFunction: function(){
+            $('#register_email_a').style.visibility = 'visible';
+        },
+        blurFunction:function(){
+            if($('#register_email').value==""){
+                $('#register_email_a').innerHTML="请输入邮箱";
+                $('#register_email_a').className="error error2";
+                $('#register_email_a').style.visibility="visible";  
+                state = false;      
+            }
+        }
+    });
+
+
+    new Check({
+        elem: $('#register_password'),
+        errorElem: $('#register_password_a'),
+        successElem: $('#register_pw_s'),
+        defaultTip: '6-20位，支持字母、数字或符号的组合，不可单独使用字母、数字或符号',
+        minLength: 6,
+        maxLength: 20,
+        lengthError: '6-20位，支持字母、数字或符号的组合，不可单独使用字母、数字或符号',
+        pattent: /^[^\u4e00-\u9fa5\s]{1,}$/i,
+        ruleError: '6-20位，支持字母、数字或符号的组合，不可单独使用字母、数字或符号',
+        extendPattent: /^(([a-zA-Z]+)|([\d]+)|([\W_]+))$/i,
+        extendError: '6-20位，支持字母、数字或符号的组合，不可单独使用字母、数字或符号',
+        eventType:'keyup',
+        eventFunction: function(){
+            AuthPasswd(this.value);
+            $('#register_password_a').style.visibility = 'visible';
+        },
+        keyName: 'password',
+        checkKey: 'password',
+        blurFunction:function(){
+            var val = $('#register_password').value;
+            
+            if(val==""){
+                $('#register_password_a').innerHTML="6-20位，支持字母、数字或符号的组合，不可单独使用字母、数字或符号";
+                $('#register_password_a').className="error error2";
+                $('#register_password_a').style.visibility="visible";
+                state = false;
+            }
+        }
+    });
+
+    new Check({
+        elem: $('#register_confirm_password'),
+        errorElem: $('#register_confirm_password_a'),
+        successElem: $('#register_rpw_s'),
+        defaultTip: '请确保两次输入的密码一致',
+        ruleError: '两次输入的密码不一致',
+        pwElem: $('#register_password'),
+        checkPassword: true,
+        eventType:'keyup',
+        eventFunction: function(){
+            AuthPasswd(this.value);
+            $('#register_confirm_password_a').style.visibility = 'visible';
+
+        },
+        checkKey: 'confirm_password',
+        blurFunction:function(){
+            if($('#register_confirm_password').value==""){
+                $('#register_confirm_password_a').innerHTML="请输入密码";
+                $('#register_confirm_password_a').className="error error2";
+                $('#register_confirm_password_a').style.visibility="visible";
+                state = false;
+            }
+        }
+    });
+
+    new Check({
+        elem: $('#sms_captcha'),
+        errorElem: $('#sms_captcha_s_a'),
+        successElem: $('#sms_captcha_s'),
+        defaultTip: '',
+        minLength: 6,
+        maxLength: 6,
+        lengthError: '请输入您收到的短信验证码！',
+        checkOnline: true,
+        ajaxUrl: '/ajax_ajax.html?act=check_phone_value',
+        extraData : function(){
+            return '&mobile='+M.$('#register_username').value;
+        },
+        keyName: 'phone_sn',
+        checkKey: 'phone_sn',
+        blurFunction:function(){
+            if($('#sms_captcha').value==""){
+                $('#sms_captcha_s_a').innerHTML="请输入短信验证码";
+                $('#sms_captcha_s_a').className="error error2";
+                $('#sms_captcha_s_a').style.visibility="visible";   
+                state = false;
+            }
+        }
+    });
+
+    US.changeCaptcha($('#JS_captcha'));
+    $('#JS_captcha').style.display = '';
+    $('#JS_captcha_tip').style.display = '';
+})(M.$);
+(function(){
+    var advice_icon = M.$('#register_ver_s'),
+        errorElem = M.$('#register_captcha_a');
+
+    $.checkCaptcha( $('#register_captcha') , {
+            success:function(){
+                M.removeClass(advice_icon,'to_error');
+                advice_icon.style.display = "inline-block";
+                option.registerCheck['captcha'] = false;
+            },
+            error:function(){
+                M.addClass(errorElem,'error2');
+                M.addClass(advice_icon,'to_error')
+                advice_icon.style.display = "inline-block";
+                option.registerCheck['captcha'] = true;
+            }
+        });
+})();
+
+
+
+//----------==============================
+$(function(){
+    var send = false;
+    $('#JS_refresh_pw').click(function(){
+        if( send ) {
+            return false;
+        }
+
+        send = true;
+
+        var _this = $(this);
+
+        var mobile = $('#login_uname').val();
+        if( mobile == '' ) {
+            $('#login_uname_a').addClass('error2').html( '请输入已验证手机号码' ).css('visibility','visible');
+            send = false;
+            return false;
+        }
+        if( !/\d{6,16}/.test(mobile) ){
+            $('#login_uname_a').addClass('error2').html( '收货人手机号码不正确' ).css('visibility','visible');
+            send = false;
+            return false;
+        }
+        _this.html('正在发送...');
+        $.ajax({
+            url: '/sendpassword/?username='+mobile,
+            dataType: 'json',
+            success: function(json){
+                if( json.error == 0 ) {
+                    var n = 120;
+                    var timer = setInterval(function(){
+                        var msg = '';
+                        if( n <= 0 ) {
+                            clearInterval( timer );
+                            msg = '免费重发';
+                            send = false;
+                        } else {
+                            msg = n+'秒后重新发送';
+                            n--;
+                        }
+                        _this.html( msg );
+
+                    },1000);
+                } else {
+                    send = false;
+                    $.alert(json.msg || '发送失败');
+                }
+            },
+            error: function(){
+                send = false;
+                _this.html('免费重发');
+                $.alert('网络错误请刷新后重试');
+            }
+        })
+        
+    });
+});
+var img = new Image();
+if(!/ECS_ID\=/.test(document.cookie) || /autoLogin\=/.test(document.cookie))img.src ='/ecsid_maker/?_='+(new Date()).getTime();
+</script> 
+
+{/if}
+</body>
+</html>

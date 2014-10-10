@@ -1,0 +1,121 @@
+{include file="header.html"}
+<script type="text/javascript">
+   $(function(){
+       $('.active_seckill').bind('click',active_seckill);
+   });
+   
+   function active_seckill(){
+       var sec_id = $(this).parent().children('input').val();
+	   var type = ($(this).attr('title') == "{$lang.active_seckill}") ? 'active' : 'cancel';
+	   var text = type == 'active' ? '{$lang.cancel_scekill}' : '{$lang.active_seckill}';
+	   var image_url = type != 'active' ? '{$site_url}/admin/templates/style/images/positive_disabled.gif' : '{$site_url}/admin/templates/style/images/positive_enabled.gif';
+	   var cmdObj = $(this);
+	   $.ajax({
+	       type: 'get',
+		   url: 'index.php?module=seckill&act=seckill_recommended&ajax=true&id='+sec_id+'&type='+type,
+		   success: function(msg){
+		       if($.trim(msg) == 'success'){
+			       cmdObj.attr('title',text);
+				   
+				   cmdObj.attr('src',image_url);
+			   }
+			   else{
+			       alert('{$lang.edit_recommended_error}');
+			   }
+		   }
+	   })
+
+   }
+</script>
+<div id="rightTop">
+  <p>{$lang.second_kill}</p>
+  <ul class="subnav">
+    <li><a class="btn3" href="index.php?module=seckill&act=set_start_time">{$lang.set_start_time}</a></li>
+    <li><a class="btn3" href="index.php?module=seckill&act=set_period">{$lang.period_manage}</a></li>
+    <li><a class="btn3" href="index.php?module=seckill&act=set_goods_qty">{$lang.goods_qty_manage}</a></li>
+    <li><a class="btn3" href="index.php?module=seckill&act=set_store_seckill">{$lang.store_seckill_manage}</a> </li>
+    <li><span>{$lang.seckill_manage}</span></li>
+<li><a class="btn3" href="index.php?module=seckill&act=seckill_apply">{$lang.seckill_auditing}</a>
+	</li>
+<li><a class="btn3" href="index.php?module=seckill&act=seckill_subject">{$lang.seckill_subject}</a>
+	</li>
+  </ul>
+</div>
+<div class="mrightTop">
+  <div class="fontl">
+    <form method="get">
+      <div class="left">
+        <input type="hidden" name="module" value="seckill" />
+        <input type="hidden" name="act" value="seckill_manage" />
+        {$lang.seckill_goods_name}:
+        <input class="queryInput" type="text" name="goods_name" value="{$smarty.get.goods_name|escape}" />
+		{$lang.seckill_state}:
+          <select class="querySelect" name="state">
+            <option value="">{$lang.select_pls}</option>
+            {html_options options=$state selected=$smarty.get.state}
+          </select>
+        <input type="submit" class="formbtn" value="{$lang.query}" />
+      </div>
+      <!--{if $filtered}-->
+      <a class="left formbtn1" href="index.php?module=seckill&act=seckill_manage">{$lang.cancel_query}</a>
+      <!--{/if}-->
+    </form>
+  </div>
+  <div class="fontr">{include file=page.top.html} </div>
+</div>
+<div class="tdare">
+  <table width="100%" cellspacing="0" class="dataTable">
+    <!--{if $seckill_goods_lists}-->
+    <tr class="tatr1">
+      <td width="20" class="firstCell"><input type="checkbox" class="checkall" /></td>
+      <td>{$lang.seckill_subject}</td>
+      <td><span ectype="order_by" fieldname="store_name">{$lang.seckill_goods_name}</span></td>
+      <td><span ectype="order_by" fieldname="store_name">{$lang.seckill_goods_price}/{$lang.seckill_formaly_price}</span></td>
+      <td><span ectype="order_by" fieldname="region_id">{$lang.seckill_goods_qyt}</span></td>
+      <td class="table-center"><span ectype="order_by" fieldname="sgrade">{$lang.seckill_store_name}</span></td>
+	  <td class="table-center"><span ectype="order_by" fieldname="sgrade">{$lang.start_time}</span></td>
+      <td class="table-center"><span ectype="order_by" fieldname="add_time">{$lang.seckill_state}</span></td>
+      <td class="table-center"><span ectype="order_by" fieldname="state">{$lang.seckill_recommended}</span></td>
+      <td class="handler">{$lang.handdle}</td>
+    </tr>
+    <!--{/if}-->
+    <!--{foreach from=$seckill_goods_lists item=lists}-->
+    <tr class="tatr2">
+      <td class="firstCell"><input type="checkbox" class="checkitem" value="{$lists.sec_id}" /></td>
+      <td>{$lists.subject_name|escape}</td>
+      <td>{$lists.goods_name|escape}</td>
+      <td>{$lists.sec_price.0.price|price}/{$lists.price|price}</td>
+      <td>{$lists.sec_quantity|escape}</td>
+      <td class="table-center"><span>{$lists.store_name|escape}</span> </td>
+	  <td class="table-center"><span>{$lists.start_time|date}</span> </td>
+      <td class="table-center"><span>{$lists.sec_state|escape}
+        </span></td>
+      <td class="table-center"> <!--{if $lists.sec_state ne $lang.seckill_end}--><!--{if $lists.recommended eq SECKILL_RECOMMENDED}-->
+        <img src="{$site_url}/admin/templates/style/images/positive_enabled.gif"  title="{$lang.cancel_scekill}" class="active_seckill"/>
+        <!--{else}-->
+        <img src="{$site_url}/admin/templates/style/images/positive_disabled.gif"  title="{$lang.active_seckill}" class="active_seckill"/>
+        <!--{/if}-->
+		<!--{else}-->
+		{$lang.seckill_end}
+		<!--{/if}-->
+        <input type="hidden" value="{$lists.sec_id}" /></td>
+      <td class="handler"><a href="index.php?module=seckill&act=seckill_del&id={$lists.sec_id}"> {$lang.seckill_del}</a></td>
+    </tr>
+    <!--{foreachelse}-->
+    <tr class="no_data">
+      <td colspan="12">{$lang.no_data}</td>
+    </tr>
+    <!--{/foreach}-->
+  </table>
+  <!--{if $seckill_goods_lists}-->
+  <div id="dataFuncs">
+    <div class="pageLinks">{include file=page.bottom.html}</div>
+    <div id="batchAction" class="left paddingT15">
+	 <input class="formbtn batchButton" type="button" value="{$lang.recommended}" name="id" uri="index.php?module=seckill&act=seckill_recommended" presubmit="confirm('{$lang.batch_recommended}');" />
+      <input class="formbtn batchButton" type="button" value="{$lang.seckill_del}" name="id" uri="index.php?module=seckill&act=seckill_del" presubmit="confirm('{$lang.batch_delete}');" />
+    </div>
+  </div>
+  <div class="clear"></div>
+  <!--{/if}-->
+</div>
+{include file="footer.html"} 

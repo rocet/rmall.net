@@ -1,0 +1,93 @@
+{include file="amyheader.html"}
+<style type="text/css">
+section,figure,aside{padding:0;margin:0;border:none;}
+/*---common---*/
+.art_title{height:30px;line-height:30px;padding:0 10px;border-bottom:solid 1px #dddddd;/*background:url({res file=images/zhuanti/upload/art_new20120417_1336631930.png}) 0px 0px repeat-x;*/background:#f5f5f5;font-size:14px;color:#333333;font-family: "微软雅黑";}
+.art_title_nav{background: #949494;border-bottom:0px;}
+.art_title .line{background: url({res file=images/zhuanti/upload/line_1387604615.png}) 0 5px no-repeat; padding-left: 8px;color: #333333;font-size: 14px;font-weight: bold;}
+/*---main---*/
+section.art_main{height:auto;margin-top:10px;}
+/*aside nav*/
+aside.art_nav{width:198px;height:auto;}
+aside h2{color:#c5c5c5;}
+span.aside_txt{font-size:14px;color:#FFF;font-family: "微软雅黑";font-weight: bold;}
+aside section{height:auto;padding:10px;border: 1px solid #dddddd;border-top: 0px;}
+aside section dl{padding-bottom:10px;}
+aside section dl dt,aside section dl dd{padding:0 10px;overflow:hidden;}
+aside section dl dt{height:20px;padding:5px 10px;border-bottom:dotted 1px #d7d7d7;}
+span.dt_ico,span.dt_txt{display:inline-block;float:left;}
+span.dt_ico{width:16px;height:16px;margin:2px 0;overflow:hidden;background:url({res file=images/zhuanti/upload/art_1387765832.png}) no-repeat;}
+span.dt_txt{line-height:20px;padding-left:10px;font-size:12px;font-weight:bold;color:#444444;}
+.art_ico1{background-position:0px -101px!important;}
+.art_ico2{background-position:-16px -101px!important;}
+.art_ico3{background-position:-32px -101px!important;}
+.art_ico4{background-position:-48px -101px!important;}
+aside section dl dd{height:24px;line-height:24px;margin-top:0px;}
+aside section dl dd .current{color:#c9033b!important;background:url({res file=images/zhuanti/upload/art_1387765832.png}) 0 -78px;}
+aside section dl dd a,aside section dl dd a:hover{display:block;height:24px;line-height:24px;padding-left:23px;background:url({res file=images/zhuanti/upload/art_1387765832.png});text-decoration:none;overflow:hidden;}
+aside section dl dd a{background-position:0px -30px;color:#666666;}
+aside section dl dd a:hover{background-position:0px -54px;color:#ffffff!important;}
+
+/*aside content*/
+.art_content{width:760px;overflow:hidden;height:auto;line-height:24px;border:1px solid #dddddd;}
+.art_content h2,.art_content h2 a{color:#777777;}
+.art_content article{padding:20px;}
+
+.titleTwo{font-size:12px !important;}
+.Tab_current{_margin-bottom:-17px;_position: relative;_padding:7px 12px 0 12px !important;}
+.Tab {_padding:6px 4px 0px 3px !important;}
+</style>
+
+<section class="art_main w clearfix">
+    
+    <aside class="art_nav art_box clearfix Left">
+        <h2 class="art_title art_title_nav"><span class="aside_txt">客服中心</span><span style="font-size:13px;font-family:'Arial';font-weight:normal;color:#FFF;padding-left: 5px;">service</span></h2>
+        <section id="JS_silde_menu">
+            <!-- {foreach from=$acategories item=acategory} -->
+            <dl>
+                <dt><span class="dt_ico art_ico{$smarty.foreach.acategories.iteration}"></span><span class="dt_txt"><a href="{url app=article&cate_id=$acategory.cate_id}">{$acategory.cate_name|escape}</a></span></dt>
+                        <dd><a href="/article_cat-6/article-5404.html" title="注册新用户">注册新用户</a></dd>
+                        <dd><a href="/article_cat-6/article-9930.html" title="会员级别">会员级别</a></dd>
+                        <dd><a href="/article_cat-6/article-9931.html" title="金币说明">金币说明</a></dd>
+                        <dd><a href="/article_cat-6/article-9932.html" title="体验馆用户登录">体验馆用户登录</a></dd>
+                        <dd><a href="/article_cat-6/article-101.html" title="订购家具流程">订购家具流程</a></dd>
+                        <dd><a href="/article_cat-6/article-5280.html" title="体验馆购买指导">体验馆购买指导</a></dd>
+                        <dd><a href="/article_cat-6/article-624.html" title="付款方式">付款方式</a></dd>
+                        <dd><a href="/article_cat-6/article-646.html" title="常见问题解答">常见问题解答</a></dd>
+                        <dd><a href="/article_cat-6/article-9342.html" title="家具保养手册">家具保养手册</a></dd>
+                    </dl>
+                <dl>
+                <!-- {/foreach} -->
+        </section>
+    </aside>
+    
+
+    
+    <section class="art_content clearfix Right" style="">
+        <h2 class="art_title"><span class="line">{$article.title}</span></h2>
+        <article>
+            {$article.content}
+        </article>
+    </section>
+    
+</section>
+
+
+<script type="text/javascript">
+window.onload = function()
+{
+    var menu = document.getElementById("JS_silde_menu").getElementsByTagName("a");
+    var url = location.href.split("/");
+    var uu = url[url.length-1].split(".");
+    var artId = uu[0];
+    for(var i=0,len=menu.length;i<len;i++)
+    {
+        var h = menu[i].getAttribute("href").split("/");
+        var hh = h[h.length-1]
+        var aa = hh.split(".")[0]
+        menu[i].className = (aa == artId)?"current":"";
+    }
+}
+</script>
+
+{include file="amyfooter.html"}

@@ -1,0 +1,68 @@
+{include file="header.html"}
+<script type="text/javascript">
+//<!CDATA[
+$(function(){
+    $("#period_form").validate({
+        errorPlacement: function(error, element){
+            element.parents('td').append(error);
+        },
+        success: function(label){
+            label.addClass('validate_right').text('OK!');
+        },
+        onkeyup: false,
+        rules: {
+        	period: {
+                required: true,                
+                digits:true,
+                min:1
+            }
+        },
+        messages: {
+        	period:{
+        		required:'{$lang.empty_period}',
+        		digits:'{$lang.only_digits}',
+        		min:'{$lang.min_zero}'        		
+        	}
+        }
+    });
+});
+//]]>
+</script>
+<div id="rightTop">
+  <p>{$lang.second_kill}</p>
+  <ul class="subnav">
+<li><a class="btn3" href="index.php?module=seckill&act=set_start_time">{$lang.set_start_time}</a></li>
+	</li>
+    <li><span>{$lang.period_manage}</span></li>
+    <li><a class="btn3" href="index.php?module=seckill&act=set_goods_qty">{$lang.goods_qty_manage}</a></li>
+	<li><a class="btn3" href="index.php?module=seckill&act=set_store_seckill">{$lang.store_seckill_manage}</a>
+	<li><a class="btn3" href="index.php?module=seckill&act=seckill_manage">{$lang.seckill_manage}</a>
+	</li>
+	<li><a class="btn3" href="index.php?module=seckill&act=seckill_manage">{$lang.seckill_manage}</a>
+	</li>
+<li><a class="btn3" href="index.php?module=seckill&act=seckill_apply">{$lang.seckill_auditing}</a>
+	</li>
+<li><a class="btn3" href="index.php?module=seckill&act=seckill_subject">{$lang.seckill_subject}</a>
+	</li>
+  </ul>
+</div>
+
+<div class="info">
+<form method="post" enctype="multipart/form-data" id="period_form">
+	<table class="infoTable">
+    	<tr>
+        	<th class="paddingT15">{$lang.period}:</th>
+        	<td><input type="text" id="period" name="period" value="{$period}" /></td>
+        </tr>
+        <tr>
+        	<th></th>
+            <td class="ptb20">
+            	<input class="formbtn" type="submit" name="Submit" value="{$lang.submit}" />
+                <input class="formbtn" type="reset" name="Submit2" value="{$lang.reset}" />
+            </td>
+        </tr>
+	</table>
+ </form>
+</div>
+
+{include file="footer.html"} 

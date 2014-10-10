@@ -1,0 +1,69 @@
+{include file="header.html"}
+<div id="rightTop">
+  <p>{$lang.second_kill}</p>
+  <ul class="subnav">
+   <li><a class="btn3" href="index.php?module=seckill&act=set_start_time">{$lang.set_start_time}</a></li>
+	</li>
+    <li><a class="btn3" href="index.php?module=seckill&act=set_period">{$lang.period_manage}</a></li>
+    <li><a class="btn3" href="index.php?module=seckill&act=set_goods_qty">{$lang.goods_qty_manage}</a></li>
+    <li><a class="btn3" href="index.php?module=seckill&act=set_store_seckill">{$lang.store_seckill_manage}</a> </li>
+    <li><a class="btn3" href="index.php?module=seckill&act=seckill_manage">{$lang.seckill_manage}</a> </li>
+    <li><span>{$lang.seckill_auditing}</span> </li>
+    <li><a class="btn3" href="index.php?module=seckill&act=seckill_manage">{$lang.seckill_subject}</a> </li>
+  </ul>
+</div>
+<div id="group_view_content">
+  <div id="groupbuy_info">
+    <ul>
+      <li class="item">{$lang.seckill_subject}</li>
+      <li class="colon">:</li>
+      <li class="content"><span>{$seckill_info.subject_name|escape}</span></li>
+      <li class="item">{$lang.seckill_store_name}</li>
+      <li class="colon">:</li>
+      <li class="content">{$seckill_info.store_name|escape}</li>
+      <li class="item">{$lang.seckill_goods_name}</li>
+      <li class="colon">:</li>
+      <li class="content">{$seckill_info.goods_name|escape}</li>
+
+      <li class="item">{$lang.seckill_goods_qyt}</li>
+      <li class="colon">:</li>
+      <li class="content">{$seckill_info.sec_quantity|escape}</li>
+      <li class="item">{$lang.add_time}</li>
+      <li class="colon">:</li>
+      <li class="content">{$seckill_info.add_time|date}</li>
+      <li class="item">{$lang.start_time}</li>
+      <li class="colon">:</li>
+      <li class="content">{$seckill_info.start_time|date}</li>
+      <li class="item">{$lang.seckill_spec_price}</li>
+      <li class="colon">:</li>
+      <li class="content">
+        <ul>
+          <li class="distance2">{$lang.goods_spec}</li>
+          <li class="distance1">{$lang.goods_stock}</li>
+          <li class="distance1">{$lang.goods_price}</li>
+          <li class="distance1">{$lang.seckill_goods_price}</li>
+          <!--{foreach from=$seckill_info._spec item=spec}-->
+          <li class="distance2">
+            <!--{if $spec.spec_1 eq "" AND $spec.spec_2 eq "" AND $spec.color_rgb eq ""}-->
+            {$lang.goods_default_spec}
+            <!--{else}-->
+            {$spec.spec_1|escape}&nbsp;|&nbsp;{$spec.spec_2|escape}&nbsp;|&nbsp;{$spec.color_rgb|escape}
+            <!--{/if}-->
+          </li>
+          <li class="distance1">{$spec.stock|escape}</li>
+          <li class="distance1">{$spec.price|price}</li>
+          <li class="distance1">{$spec.seckill_price|price}</li>
+          <!--{/foreach}-->
+          <div class="clear"></div>
+        </ul>
+        <div class="clear"></div>
+      </li>
+      <div class="clear"></div>
+    </ul>
+  </div>
+  <div id="goods_image"><img src="{$site_url}/{$seckill_info.default_image|escape}"/></div>
+  <div class="clear"></div>
+  <div class="groupbuy_view_action"><a href="index.php?module=seckill&act=seckill_goods_list&id={$smarty.get.uid}" class="formbtn">{$lang.seckill_view_back}</a></div>
+  <div class="clear"></div>
+</div>
+{include file="footer.html"}

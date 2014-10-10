@@ -1,0 +1,32 @@
+    <div id="left">
+        <h2>
+        </h2>
+    <!--{foreach from=$_member_menu item=item name=item}-->
+        <!--{if $item.submenu}-->
+        <dl>
+            <dt><span class="s{$smarty.foreach.item.iteration}"></span>{$item.text}</dt>
+        <!--{foreach from=$item.submenu item=subitem k=k}-->
+            <dd>
+            <!--{if $subitem.name eq $_curitem}-->
+                <a href="{$subitem.url}" class="isa active"><span class="isp {$subitem.icon}">{$subitem.text}</span></a>
+            <!--{else}-->
+                <a href="{$subitem.url}" class="isa normal"><span class="isp {$subitem.icon}">{$subitem.text}</span></a>
+            <!--{/if}-->
+            </dd>
+        <!--{/foreach}-->
+        </dl>
+        <!--{/if}-->
+    <!--{/foreach}-->
+        <!--{if $_member_menu.overview}-->
+        <div class="application">
+            <p>{$lang.not_seller}: </p>
+            <a href="{$_member_menu.overview.url}" title="{$_member_menu.overview.text}"></a>
+        </div>
+        <div class="clear"></div> 
+        <!--{/if}-->
+    </div>
+<style type="text/css">
+.wrap {width: 768px;}
+#left dd{ height: 30px; padding-top: 8px; }
+#left dd a.isa{ background-position:0px -175px; height: 20px; }
+</style>

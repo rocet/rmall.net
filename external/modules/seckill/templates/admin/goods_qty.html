@@ -1,0 +1,70 @@
+{include file="header.html"}
+<script type="text/javascript">
+//<!CDATA[
+$(function(){
+    $("#goods_qty_form").validate({
+        errorPlacement: function(error, element){
+            var error_td = element.parents('td');
+            //error_td.find('.field_notice').hide();
+            error_td.append(error);
+        },
+        success: function(label){
+            label.addClass('validate_right').text('OK!');
+        },
+        onkeyup: false,
+        rules: {        	
+        	goods_qty: {
+                required: true,
+                digits:true
+            }
+        },
+        messages: {        	
+        	goods_qty: {
+                required: '{$lang.empty_goods_qty}',
+                digits:'{$lang.only_digits}'
+            }
+        }
+    });
+});
+//]]>
+</script>
+<div id="rightTop">
+  <p>{$lang.second_kill}</p>
+  <ul class="subnav">
+  <li><a class="btn3" href="index.php?module=seckill&act=set_start_time">{$lang.set_start_time}</a></li>
+	</li>
+  	<li><a class="btn3" href="index.php?module=seckill&act=set_period">{$lang.period_manage}</a></li>
+    <li><span>{$lang.goods_qty_manage}</span></li>    
+	<li><a class="btn3" href="index.php?module=seckill&act=set_store_seckill">{$lang.store_seckill_manage}</a>
+	</li>
+		<li><a class="btn3" href="index.php?module=seckill&act=seckill_manage">{$lang.seckill_manage}</a>
+	</li>
+	<li><a class="btn3" href="index.php?module=seckill&act=seckill_manage">{$lang.seckill_manage}</a>
+	</li>
+<li><a class="btn3" href="index.php?module=seckill&act=seckill_apply">{$lang.seckill_auditing}</a>
+	</li>
+<li><a class="btn3" href="index.php?module=seckill&act=seckill_subject">{$lang.seckill_subject}</a>
+	</li>
+  </ul>
+</div>
+
+<div class="info">
+<form method="post" enctype="multipart/form-data" id="goods_qty_form">
+	<table class="infoTable">
+    	<tr>
+        	<th style="width:152px;">{$lang.goods_qty}:</th>
+        	<td><input type="text" id="goods_qty" name="goods_qty" value="{$goods_qty}" />
+        	<label class="field_notice">{$lang.goods_qty_desc}</label></td>
+        </tr>
+        <tr>
+        	<th></th>
+            <td class="ptb20">
+            	<input class="formbtn" type="submit" name="Submit" value="{$lang.submit}" />
+                <input class="formbtn" type="reset" name="Submit2" value="{$lang.reset}" />
+            </td>
+        </tr>
+	</table>
+ </form>
+</div>
+
+{include file="footer.html"} 

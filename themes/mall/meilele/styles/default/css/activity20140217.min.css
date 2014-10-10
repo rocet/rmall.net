@@ -1,0 +1,46 @@
+.color_999{color:#999}.color_333{color:#333}.color_666{color:#666}.color_fff{color:#fff}.color_c9033b{color:#c9033b}.fsize_12{font-size:12px}.fsize_13{font-size:13px}
+.fsize_14{font-size:14px}.fsize_16{font-size:16px}.fsize_20{font-size:20px}.fsize_34{font-size:34px}.ffamily_song{font-family:'宋体'}
+.ffamily_weiruan{font-family:'微软雅黑'}.arial{font-family:arial}.font_family{font-family:helvetica}.f_weight{font-weight:bold}
+.lineh_18{line-height:18px}.lineh_30{line-height:30px}.lineh_33{line-height:33px}.lineh_37{line-height:37px}.lineh_38{line-height:38px}.height_33{height:33px}
+.height_37{height:37px}.height_38{height:38px}.back_fff{background:#fff}.back_c9033b{background:#c9033b!important}.back_f4f1f2{background:#f4f1f2}.guangao_back{background:url(../images/activity_bg27.png) 0 0 no-repeat;display:block;width:88px;height:88px}
+.back_999{background:#999}.p_relative{position:relative}.p_absolute{position:absolute}.tRIght{text-align:right}.tCenter{text-align:center}.pbottom{padding-bottom:30px}
+.img_tou{background:url(../images/ranking/tou.png) 3px 12px no-repeat;width:25px;height:37px;display:inline-block;vertical-align:middle}.block{display:inline-block}
+.guangao_href{margin-top:-30px;margin-right:9px}.guangao_href a{width:10px;height:10px;display:inline-block;-moz-border-radius:50%;-khtml-border-radius:50%;-webkit-border-radius:50%;border-radius:50%;margin-right:9px;background:#fff}
+.disabled{cursor:default;text-decoration:none!important}.type_list a:hover{text-decoration:none}.sort .tRIght a.disabled:hover{color:#999!important}.newgood_list{width:289px;height:318px;border:1px solid #ddd}
+.newgood_list .title{border-bottom:1px solid #e0e0e0;height:33px;line-height:33px;padding:0 14px 0 11px}.del{text-decoration:line-through}.mbottom{margin-bottom:4px}
+.newgood_list .goood_details{padding:0 17px 11px 17px}.borderBottom{border-bottom:1px solid #f2f2f2}.newgood_list .serial_number{width:16px;height:16px;line-height:16px;display:inline-block;-moz-border-radius:50%;-khtml-border-radius:50%;-webkit-border-radius:50%;border-radius:50%;margin-right:9px;color:#fff}
+.newgood_list .goood_details img{margin-left:24px}.newgood_list .goood_details div{margin-left:16px}.discount{background:url(../images/activity_bg27.png) -93px 0 no-repeat;width:55px;height:18px;display:inline-block;vertical-align:middle}
+.newgood_list .good_list{padding:0 16px 0 17px}.newgood_list .hide_good{width:84px}.newgood_list .hide_goodprice{width:74px;text-align:right;margin-right:16px}
+.type_list{margin-top:12px;width:100%}.type_list table{width:100%;border:1px solid #ddd;margin-bottom:12px}.sort td{height:37px}.type_list table .td_left{width:95px;background:#f5f5f5;padding-top:9px;vertical-align:top}
+.type_list table .td_right{padding:9px 0 3px 30px}.type_list table .td_right a{padding:0 5px;height:18px;line-height:18px;margin-right:16px;display:inline-block;font-family:'宋体';font-size:12px;margin-bottom:6px}
+.type_list table .td_right .type{background:#c9033b;color:#fff}.type_width{width:64px;border-right:1px solid #ddd}.left_borderBottom{border-bottom:1px solid #ececec}
+.down{display:inline-block;background:url(../images/ranking/new_goods.gif) no-repeat;background-position:-65px -65px;_background-position:-65px -64px;width:10px;height:12px;vertical-align:bottom;_vertical-align:middle}
+.up{display:inline-block;background:url(../images/ranking/new_goods.gif) no-repeat;background-position:-54px -64px;width:10px;height:12px;vertical-align:bottom;_vertical-align:middle}
+.down_pitch{display:inline-block;background:url(../images/ranking/btn.gif) no-repeat;background-position:-10px 1px;width:10px;height:13px;vertical-align:bottom;_vertical-align:middle}
+.up_pitch{display:inline-block;background:url(../images/ranking/btn.gif) no-repeat;background-position:0 0;width:10px;height:13px;vertical-align:bottom;_vertical-align:middle}
+.type_list .good_namber{padding-right:9px;margin-right:11px;border-right:1px solid #e5e5e5}.type_left{margin:0 6px 0 19px}.type_right{margin-right:8px}
+.type_next{border:1px solid #e5e5e5;padding:0 7px;height:20px;line-height:20px;display:inline-block}.slider{position:absolute;width:100%;height:26px;background:#000;opacity:.4;-moz-opacity:.4;-khtml-opacity:.4;filter:alpha(opacity=40)}
+.info_good{height:26px;line-height:26px;position:absolute}.guangao,.guangao_border img{width:681px;height:320px}.guangao_border{width:681px;height:320px;overflow:hidden}
+.goods_list img,.good{width:233px;height:155px}.good_btop{margin-top:129px;width:100%}.good_price{border:1px solid #e0e0e0;border-top:0;padding:20px 0 19px 19px;background:#fff;width:212px}
+.good_price .allprice{width:105px;height:40px;border-right:1px solid #d8d8d8}.discount_text{width:106px}.mtop{margin-top:-4px}.mbottom{margin-bottom:16px}
+.mright{margin-right:15px}.page_div{padding:13px 0 26px}.page{height:23px;border:1px solid #ddd;background:#fff;width:23px;line-height:23px;vertical-align:middle}
+.omit{height:23px;width:23px;line-height:23px}.up_page,.down_page{width:68px}.page i{background:url(../images/ranking/new_goods.gif) no-repeat;width:11px;height:23px;display:inline-block;vertical-align:middle}
+.up_page i{background-position:-75px -60px}.down_page i{background-position:-85px -60px}.page input{width:21px;height:19px;text-align:center;vertical-align:middle;border:0}
+.page_div a:hover{text-decoration:none}.page_div a.current,a.psage_number:hover{border:solid 1px #c9033b;background:#c9033b;color:#fff!important}.page_div a.psage_number:hover i{background:url(../images/images/zhuanti/upload/pager_1338970136.gif) no-repeat}
+.page_div a.up_page.psage_number:hover i{background-position:-5px 6px;margin-right:2px;width:5px}.page_div a.down_page.psage_number:hover i{background-position:-15px 6px;width:5px;margin-left:2px}
+.page_div a.up_page.disabled:hover,.page_div a.down_page.disabled:hover{color:#333!important}.mright_3{margin-right:3px}.meight_10{margin-right:10px}.mleft_7{margin-left:7px}
+.page_btn{background:url(../images/activity_btn.png) -1px -1px no-repeat;width:46px;height:25px;border:1px solid #ddd;cursor:pointer;vertical-align:middle}
+.advertisement{width:980px;display:inline-block;margin-top:12px}.advertisement img{width:980px;max-height:60px}.root_body .guangao,.root_body .guangao_border,.root_body .guangao_border img{width:891px}
+.root_body .guangao_border{width:891px}.root_body .goods_list img,.root_body .good{width:286px;height:191px}.root_body .good_btop{margin-top:165px}.root_body .good_price{padding:20px 0 20px 42px;width:242px}
+.root_body .good_price .allprice{width:111px}.root_body .discount_text{width:130px}.root_body .page_div{padding:22px 0 35px}.root_body .advertisement{width:1190px}
+.root_body .advertisement img{width:1190px;height:60px}.reno .renobox{border:1px solid #ddd;padding:18px 0}.root_body .reno .renobox .reno_pro{padding-right:20px}
+.reno .renobox .reno_pro{width:300px;margin-left:20px;display:inline;float:left;border-right:1px solid #ddd;padding-right:9px;height:240px}.reno .renobox .reno_pro div.title_zh_en,.reno .renobox .reno_info div.title_zh_en,.reno .renobox .reno_pic div.title_zh_en{height:24px;line-height:24px;vertical-align:bottom}
+.reno .renobox .reno_pro div.title_zh_en .en,.reno .renobox .reno_info div.title_zh_en .en,.reno .renobox .reno_pic div.title_zh_en .en{color:#757474;display:inline-block;font-size:10px;height:16px;vertical-align:top}
+.reno .renobox .reno_pro div.more,.reno .renobox .reno_info div.more,.reno .renobox .reno_pic div.more{padding-top:5px}.fixture_commune,.fixture_knowledge,.fixture_show{height:auto;margin-top:15px}
+.commune_notes{height:118px}.commune_notes .commune_pic{border:1px solid #dadada;float:left;height:116px;width:146px}.root_body .commune_txt{float:left;margin-left:10px}
+.commune_txt{float:right;width:142px}.commune_txt p,.show_block .show_info p{color:#777;line-height:20px}.commune_info{margin-top:15px}.commune_info li{height:24px;line-height:24px;overflow:hidden;text-align:left}
+.root_body .reno .renobox .reno_info{padding-left:20px;padding-right:20px}.reno .renobox .reno_info{display:inline;float:left;font-size:12px;height:240px;width:300px;padding-left:9px;padding-right:9px;border-right:1px solid #ddd}
+.fixture_knowledge li{height:23px;line-height:23px;overflow:hidden}.fixture_knowledge li span{color:#bbb;display:inline-block;float:right}.root_body .reno .renobox .reno_pic{padding-left:20px}
+.root_body .reno .renobox .reno_pro,.root_body .reno .renobox .reno_info,.root_body .reno .renobox .reno_pic{width:350px}.reno .renobox .reno_pic{display:inline;float:left;font-size:12px;height:240px;width:300px;padding-left:9px}
+.fixture_show .show_block{height:90px}.mt20{margin-top:20px}.show_block .show_pic{float:left;height:90px;width:133px}.show_block .show_pic img{border:0 none;display:block;height:90px;width:133px}
+.show_block .show_info{float:right;height:90px;width:160px}.show_block .show_info h3{font-size:14px;height:22px;line-height:22px;text-align:left}

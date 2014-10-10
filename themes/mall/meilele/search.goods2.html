@@ -1,0 +1,434 @@
+{include file="amyheader.html"}
+
+<link href="{res file=css/category_wide.min.css}" rel="stylesheet" type="text/css"/>
+<style>
+    .category_activity_nav_ad a{display:inline-block;width:980px;height: 60px;}
+    .root_body .category_activity_nav_ad a{width: 1190px;}
+</style>
+<div class="w mt10 category_activity_nav_ad" style="overflow:hidden;height:60px;">
+    <!--{if $rocet_adv_search_topad}-->
+    <a href="{$rocet_adv_search_topad.link}" title="{$rocet_adv_search_topad.title}" target="_blank" style="background:url({$rocet_adv_search_topad.pic}) center 0 no-repeat;">
+    </a>
+    <!--{/if}-->
+</div>
+
+<div class="w clearfix mt10">
+    <div class="cat_r">
+        <div class="position">
+            <!-- <span class="icon"></span> -->
+            <!--{foreach from=$_curlocal item=lnk name=lnk}-->
+            <!--{if $lnk.id}-->
+            <a href="{url app=search&cate_id=$lnk.id}">{$lnk.text|escape}</a> {if !$smarty.foreach.lnk.last}<span class="yen">&gt;</span>{/if}
+            <!--{/if}-->
+            <!--{/foreach}-->
+        </div>
+                        
+        <ul class="ad_list clearfix">
+            <!--{foreach from=$rocet_search_adtuijian item=adtuijian name=adtuijian}-->
+            <li class="clearfix">
+                <div class="img Left">
+                    <a href="{url app=goods&id=$adtuijian.goods_id}" title="{$adtuijian.goods_name}" target="_blank"><img src="{res file=themes/paipai/images/blank.gif}" data-src="{$adtuijian.default_image}" width="185" height="124" alt="{$adtuijian.goods_name}" /></a>
+                </div>
+                <div class="info Right">
+                    <a href="{url app=goods&id=$adtuijian.goods_id}" title="{$adtuijian.goods_name}" target="_blank" class="ad_goods_name">{$adtuijian.brand}<p class="orange">{$adtuijian.goods_name}</p>
+                    </a>
+                    <p class="red">本站价：<span class="yen">&yen;<strong class="f16 JS_show_price_ajax" data-goods_id="{$adtuijian.goods_id}">{$adtuijian.price}</strong></span></p>
+                    <a href="{url app=goods&id=$adtuijian.goods_id}" title="{$adtuijian.goods_name}" target="_blank" class="buy_now c">去看看</a>
+                </div>
+            </li>
+            <!--{/foreach}-->
+        </ul>       
+        
+        
+        <div class="filter">
+            <script type="text/javascript">
+                var _basic_url = '/';
+                var _fliterShowNum = 5;
+                var _fliterShowCount = 5;
+                var _brandNumber = [];
+            </script>
+
+            <div id="JS_fliterTable" class="filterTable">
+                <dl class="clearfix selected">
+                    <dt>您已选择：</dt>
+                    <dd><table><tr>
+                        <!-- <td><a href="javascript:location.href='/category-wofang/';" class="off" rel="nofollow">床垫<em></em></a></td> -->          
+                        <td><a href="javascript:location.href='{url app=search&cate_id=$pageparam.cate_id}';" rel="nofollow" class="clear">清空</a></td>
+                    </tr></table></dl>
+
+                {if $rocet_show_html_hides}
+                <!--             
+                <dl class="clearfix" is-brand="true">
+                    <dt>品牌：</dt>
+                    <dd>
+                        <div class="brand">
+                            <table><tr>
+                                <td>
+                                    <div id="JS_brand_overflow" class="overflow">
+                                        <ul class="clearfix">
+                                                                                                                                    <li class=" li5">
+                                                <div class="relative"><a href="/category-chuangdian/mcat0-scat0-b506-max0-min0-city00-rt0-attr-page-1-sort-sort_order-order-asc.html" title="梦百合" class="abs">梦百合</a></div>
+                                                <a href="/category-chuangdian/mcat0-scat0-b506-max0-min0-city00-rt0-attr-page-1-sort-sort_order-order-asc.html" title="梦百合" class="a"><img src="{res file=images/small/372/width/102/height/51/mode/1/encrypt/1e73a8f13023732c9922b5ecedcb42db/path/YKkxtD0+l8CT6mdTP0jUTosXyzGqRaYb484nDncYwHMQNbgTJpCassMFvJPsVjYiXxsw6f1r7_XOFBnSqyOXczC0fqIP9RQ7Xq8DZGWY5jKUfbE_RIrLdrhFAtjnbKsS.jpg}" data-logo="images/data/brandlogo/1403031557636835268.jpg}" width="102" height="51" alt="梦百合" /></a>
+                                                <script type="text/javascript">_brandNumber.push('1');</script>
+                                            </li>
+                                                                                                                                                                                <li class=" li5">
+                                                <div class="relative"><a href="/category-chuangdian/mcat0-scat0-b474-max0-min0-city00-rt0-attr-page-1-sort-sort_order-order-asc.html" title="喜临门·睡美人" class="abs">喜临门·睡美人</a></div>
+                                                <a href="/category-chuangdian/mcat0-scat0-b474-max0-min0-city00-rt0-attr-page-1-sort-sort_order-order-asc.html" title="喜临门·睡美人" class="a"><img src="{res file=images/small/380/width/102/height/51/mode/1/encrypt/7e842ca06e5d16446183282f6043aebb/path/YKkxtD0+l8CT6mdTP0jUTosXyzGqRaYb484nDncYwHN+uAIeTSy+F7z6gwisXH125EUEiHyCfDcqhYssrNsjf6k6SXA8N9VLC97Eb26Flqg2f8fvwl8RCV7LrE+1rI6H.jpg}" data-logo="images/data/brandlogo/1403144540208952616.jpg}" width="102" height="51" alt="喜临门·睡美人" /></a>
+                                                <script type="text/javascript">_brandNumber.push('2');</script>
+                                            </li>
+                                                                                                                                                                                <li class=" li5">
+                                                <div class="relative"><a href="/category-chuangdian/mcat0-scat0-b352-max0-min0-city00-rt0-attr-page-1-sort-sort_order-order-asc.html" title="艾玛诗" class="abs">艾玛诗</a></div>
+                                                <a href="/category-chuangdian/mcat0-scat0-b352-max0-min0-city00-rt0-attr-page-1-sort-sort_order-order-asc.html" title="艾玛诗" class="a"><img src="{res file=images/small/149/width/102/height/51/mode/1/encrypt/6254e9e0a7a37a9e295e775ce4ca8de1/path/YKkxtD0+l8CT6mdTP0jUTosXyzGqRaYb484nDncYwHNh9MTJX8Wnzcx63KcssMPsoU7n11mZk_5qeJyKJgzide3fcG1GY_P6Z1iAT3eJwfezSvw_KCh88fyoOMmXgej5.jpg}" data-logo="images/data/brandlogo/1403027611669114767.jpg}" width="102" height="51" alt="艾玛诗" /></a>
+                                                <script type="text/javascript">_brandNumber.push('3');</script>
+                                            </li>
+                                                                                                                                                                                <li class=" li5">
+                                                <div class="relative"><a href="/category-chuangdian/mcat0-scat0-b266-max0-min0-city00-rt0-attr-page-1-sort-sort_order-order-asc.html" title="恒逸" class="abs">恒逸</a></div>
+                                                <a href="/category-chuangdian/mcat0-scat0-b266-max0-min0-city00-rt0-attr-page-1-sort-sort_order-order-asc.html" title="恒逸" class="a"><img src="{res file=images/small/271/width/102/height/51/mode/1/encrypt/e7da3c8df7aca3d3cf53afc63f24711c/path/YKkxtD0+l8CT6mdTP0jUTosXyzGqRaYb484nDncYwHMKWQVeX0+QfCHbFJlfVkwvYANEChnACZ_IofIaQ8kkfVY+w7exuj8nTZGuapp_r7xYL4e4DaUdLdcsJl3AypSN.jpg}" data-logo="images/data/brandlogo/1403050547821211808.jpg}" width="102" height="51" alt="恒逸" /></a>
+                                                <script type="text/javascript">_brandNumber.push('4');</script>
+                                            </li>
+                                                                                                                                </ul>
+                                    </div>
+                                </td>
+                                <td class="side"><div class="more close" title="更多" id="JS_brand_more"><span>更多</span><em></em></div></td>
+                            </tr></table>
+                            <script type="text/javascript">
+                                (function(){
+                                    var doc = document,
+                                    _rootBrandDom = doc.getElementById('JS_brand_overflow'),
+                                    _moreDom = doc.getElementById('JS_brand_more'),
+                                    css = '',
+                                    total = _brandNumber.length,
+                                    line = 1;
+                                    if ( window.LOAD ) {
+                                        line = total % 7 > 0 ? parseInt(total / 7) + 1 : total % 7;
+                                    } else {
+                                        line = total % 5 > 0 ? parseInt(total / 5) + 1 : total % 5;
+                                    }
+                                    if ( line > 1 ) {
+                                        css = 'height:105px;overflow:hidden;';
+                                    } else {
+                                        css = 'height:53px;';
+                                    }
+                                    _rootBrandDom.style.cssText = css;
+                                    _rootBrandDom.setAttribute('data-total', total);
+                                    _rootBrandDom.setAttribute('data-line', line);
+                                })();
+                            </script>
+                        </div>
+                    </dd>
+                </dl> -->
+                {/if}
+                <!--{foreach from=$rocet_search_attrs item=attr name=attr}-->
+                <dl class="clearfix">
+                    <dt>{$attr.attr_name}：</dt>
+                    <dd>
+                        <div class="lists {if $attr.attr_name == '价格'}auto{/if}"><table><tr>
+                            <td{if $attr.attr_name == '价格'}colspan="2"{/if}>
+                                <!--{foreach from=$attr.subattrs item=subattr name=subattr}-->
+                                <a href="javascript:$.fn.sortprocess('keyword[]', '{$subattr.attr_name}');"   >{$subattr.attr_name}<span></span></a>
+                                <!--{/foreach}-->
+                            </td>
+                            {if $attr.attr_name == '价格'}
+                            <input type="text" id="JS_filter_price_min" value="" /> - <input type="text" id="JS_filter_price_max" value="" /> <button id="JS_filter_price_btn">确定</button>
+                            {else}
+                            <td class="side"><div class="more close" title="更多"><span>更多</span><em></em></div></td>
+                            {/if}
+                        </tr></table></div>
+                    </dd>
+                </dl>
+                <!--{/foreach}-->
+            </div>
+        </div>
+        
+        <div class="toggle" data-1="8" data-2="0">
+            <div class="bar"></div>
+            <div class="c">
+                <div id="JS_exp_fliter" class="nav_box clearfix">
+                    <div class="nav nav_left Left"></div>                   
+                    <div class="nav nav_content Left" id="JS_exp_fliter_text" data-show-text="更多选项<span class='nav_more_opt'>（<!--{foreach from=$rocet_search_attrs item=attr name=attr}-->{if $smarty.foreach.attr.iteration > 3}{$attr.attr_name}{if !$smarty.foreach.attr.last},{/if}{/if}<!--{/foreach}-->）</span>">更多选项<span class="nav_more_opt">（<!--{foreach from=$rocet_search_attrs item=attr name=attr}-->{if $smarty.foreach.attr.iteration > 3}{$attr.attr_name}{if !$smarty.foreach.attr.last},{/if}{/if}<!--{/foreach}-->）</span></div>
+                    <div class="nav nav_right Left"></div>
+                </div>
+            </div>
+        </div>
+
+
+        
+        <div class="sort clearfix mt10" > <!-- style="border-bottom: 0;margin-bottom: 0;z-index:5;"  -->
+            <div class="Left">
+                <span class="box">排序：</span>
+                    <a href="javascript:$.fn.sortprocess('order', 'sales');" class="box arrow ">销量</a>
+                    <a href="javascript:$.fn.sortprocess('order', 'price');" class="box arrow aup ">价格</a>
+                    <a href="javascript:$.fn.sortprocess('order', 'views');" class="box arrow ">关注</a>
+                    <a href="javascript:$.fn.sortprocess('order', 'add_time');" class="box arrow aup ">最新</a>
+            </div>
+            {if $rocet_show_html_hides}
+            <!-- 
+            <div class="Left active_new">活动类型：
+                <label><input type="checkbox" onclick="window.location.href='/category-chuangdian/mcat0-scat0-b0-max0-min0-city00-rt0-attr-page-1-sort-sort_order-order-asc-spe-1.html'" >特价</label><label><input type="checkbox" onclick="window.location.href='/category-chuangdian/mcat0-scat0-b0-max0-min0-city00-rt0-attr-page-1-sort-sort_order-order-asc-pos-1.html'" >包邮</label>                <a href="javascript:;" id="JS_more_link_g_new" class="link_more_choose" data-link="more"><span id="JS_more">更多</span><span id="JS_more_arrow" class="arrow_down"></span></a>
+                <div class="show_more" id="JS_show_more">
+                    <span class="show_span"><label><input type="checkbox" onclick="window.location.href='/category-chuangdian/mcat0-scat0-b0-max0-min0-city00-rt0-attr-page-1-sort-sort_order-order-asc-spe-1.html'" >特价</label><label><input type="checkbox" onclick="window.location.href='/category-chuangdian/mcat0-scat0-b0-max0-min0-city00-rt0-attr-page-1-sort-sort_order-order-asc-pos-1.html'" >包邮</label><label><input type="checkbox" onclick="window.location.href='/category-chuangdian/mcat0-scat0-b0-max0-min0-city00-rt0-attr-page-1-sort-sort_order-order-asc-pro-1.html'" >惊爆价</label><label><input type="checkbox" onclick="window.location.href='/category-chuangdian/mcat0-scat0-b0-max0-min0-city00-rt0-attr-page-1-sort-sort_order-order-asc-dis-1.html'" >返现</label><label><input type="checkbox" onclick="window.location.href='/category-chuangdian/mcat0-scat0-b0-max0-min0-city00-rt0-attr-page-1-sort-sort_order-order-asc-dsd-1.html'" >直降</label></span>
+                    <a href="#" class="Right link_more_choose"><span>收起</span><span class="arrow_up"></span></a>
+                </div>
+            </div> -->
+            {/if}
+
+            <div class="Right page_box">
+                <span class="red stat_num">共<strong>51</strong>件商品</span>
+                <span class="page_num"><strong class="red">{$page|default:1}</strong>/{$page_info.page_count}</span>
+                <!--{if $page_info.page_count gt 1}-->
+                <a href="{$page_info.prev_link}" class="btn disabled"><i class="icon_triangle triangle_prev"></i></a>&ensp;
+                <a href="{$page_info.next_link}" class="btn"><i class="icon_triangle triangle_next"></i></a>
+                <!--{/if}-->
+            </div>
+        </div>
+        {if $rocet_show_html_hides}
+        <!-- 
+        <div class="sort clearfix">
+            <span class="box Left">库存：</span>
+            <div id="JS_new_select"  class="stock Left" style="padding-bottom:0;margin-top:6px;">
+                <div id="JS_new_pro_select" class="new_selectbox">
+                    <div id="JS_stock_pro_select" class="stock Left current">
+                        <div class="selected"><span class="select Left" id="JS_selected_pro_name">请选择</span><span class="selecticon_new Left"><span class="arrow_new"></span></span></div>
+                    </div>
+                    <div id="JS_stock_city_select" class="stock Left none">
+                        <div class="selected"><span class="select Left" id="JS_selected_city_name" data-parent_id="0">请选择</span><span class="selecticon_new Left"><span class="arrow_new"></span></span></div>                          
+                    </div>
+                    <div id="JS_stock_dis_select" class="stock Left none">
+                        <div class="selected"><span class="select Left" id="JS_selected_dis_name" data-parent_id="0">请选择</span><span class="selecticon_new Left"><span class="arrow_new"></span></span></div>                           
+                    </div>
+                    <div id="JS_stock_pro_selectbox" class="selectbox">
+                            <a href="javascript:void(0);" data-region="0" class="bold">全国</a><br/>
+                                                            <a href="javascript:void(0);" data-region_id="10">上海</a>
+                                <a href="javascript:void(0);" data-region_id="11">江苏</a>
+                                <a href="javascript:void(0);" data-region_id="12">浙江</a>
+                                <a href="javascript:void(0);" data-region_id="13">安徽</a>
+                                <a href="javascript:void(0);" data-region_id="14">福建</a>
+                                <a href="javascript:void(0);" data-region_id="15">江西</a>
+                                <a href="javascript:void(0);" data-region_id="16">山东</a>
+                                                                                        <a href="javascript:void(0);" data-region_id="2">北京</a>
+                                <a href="javascript:void(0);" data-region_id="3">天津</a>
+                                <a href="javascript:void(0);" data-region_id="4">河北</a>
+                                <a href="javascript:void(0);" data-region_id="5">山西</a>
+                                <a href="javascript:void(0);" data-region_id="6">内蒙古</a>
+                                                                                        <a href="javascript:void(0);" data-region_id="17">河南</a>
+                                <a href="javascript:void(0);" data-region_id="18">湖北</a>
+                                <a href="javascript:void(0);" data-region_id="19">湖南</a>
+                                                                                        <a href="javascript:void(0);" data-region_id="20">广东</a>
+                                <a href="javascript:void(0);" data-region_id="21">广西</a>
+                                <a href="javascript:void(0);" data-region_id="22">海南</a>
+                                                                                        <a href="javascript:void(0);" data-region_id="7">辽宁</a>
+                                <a href="javascript:void(0);" data-region_id="8">吉林</a>
+                                <a href="javascript:void(0);" data-region_id="9">黑龙江</a>
+                                                                                        <a href="javascript:void(0);" data-region_id="23">重庆</a>
+                                <a href="javascript:void(0);" data-region_id="24">四川</a>
+                                <a href="javascript:void(0);" data-region_id="25">贵州</a>
+                                <a href="javascript:void(0);" data-region_id="26">云南</a>
+                                <a href="javascript:void(0);" data-region_id="27">西藏</a>
+                                                                                        <a href="javascript:void(0);" data-region_id="28">陕西</a>
+                                <a href="javascript:void(0);" data-region_id="29">甘肃</a>
+                                <a href="javascript:void(0);" data-region_id="30">青海</a>
+                                <a href="javascript:void(0);" data-region_id="31">宁夏</a>
+                                <a href="javascript:void(0);" data-region_id="32">新疆</a>
+                                                                                        <a href="javascript:void(0);" data-region_id="34">台湾</a>
+                                <a href="javascript:void(0);" data-region_id="33">香港</a>
+                                <a href="javascript:void(0);" data-region_id="15395">澳门</a>
+                                                                                                                                            </div>
+                    <div id="JS_stock_city_selectbox" class="selectbox selectcitybox none"></div>
+                    <div id="JS_stock_dis_selectbox" class="selectbox selectcitybox none"></div>
+                </div>
+                <div class="selected"><span class="select" id="JS_selected_pro_name_new">请选择地区</span><span class="selecticon">&nbsp;</span></div>
+            </div>
+            <div id="" class="only_show_have Left">
+                <label><input type="checkbox" onclick="location.href='/category-chuangdian/mcat0-scat0-b0-max0-min0-city0-rt1-attr-page-1-sort-sort_order-order-asc.html';">仅显示有货</label>
+            </div>
+                        <div id="JS_active_select" class="active Left">
+                商品类型：<label><input type="checkbox" onclick="window.location.href='/category-chuangdian/mcat0-scat0-b0-max0-min0-city00-rt0-attr-page-1-sort-sort_order-order-asc.html'"  checked="checked">全部</label><label><input type="checkbox" onclick="window.location.href='/category-chuangdian/mcat0-scat0-b0-max0-min0-city00-rt0-attr-page-1-sort-sort_order-order-asc-dt1.html'"  >配送</label><label><input type="checkbox" onclick="window.location.href='/category-chuangdian/mcat0-scat0-b0-max0-min0-city00-rt0-attr-page-1-sort-sort_order-order-asc-dt2.html'"  >第三方配送</label>           </div>
+        </div> -->
+        {/if}
+
+
+
+        <div id="JS_goods_list" class="goods clearfix">
+
+
+
+            <!-- {if $goods_list} -->
+            <!--{foreach from=$goods_list item=goods name=goods}-->
+
+            <div class="list{if $smarty.foreach.goods.iteration % 3 eq 0} first{/if}" data-id="{$goods.goods_id}">
+                <div class="img">
+                    <a href="{url app=goods&id=$goods.goods_id}" target="_blank" title="{$goods.goods_name|escape}">
+                        <img src="{res file=themes/paipai/images/blank.gif}" data-src="{$goods.default_image}" data-wide-src="{$goods.default_image}" alt="{$goods.goods_name|escape}" title="{$goods.goods_name|escape}" width="235" height="156"/>
+                    </a>
+                </div>
+                <div class="info">
+                    <p class="goods_name f14">
+                        <a class="name f14" href="{url app=goods&id=$goods.goods_id}" target="_blank" title="{$goods.goods_name|escape}">{$goods.goods_name|escape}</a>
+                    </p>
+                    <p><span class="red bold yen f16">&yen;<span class="JS_show_price_ajax" data-goods_id="{$goods.goods_id}">{$goods.price}</span></span>&nbsp;|&nbsp;</span><span class="price red">销量：<span id="JS_bought_number_36975" data-goods_id="{$goods.goods_id}" class="JS_sale_num_ajax">{$goods.sales}</span></span></p>
+                </div>
+                <div class="goods_button">
+                    <p class="com gray l">评价：<a href="{url app=goods&id=$goods.goods_id}" target="_blank" class="orange">{$goods.comments|default:0}</a>&emsp;人气：{$goods.views|default:0}</p>
+                    <!-- <p class="com gray l" title="comment-title">user：comment-content</p>    -->
+                    <div class="buttons">                
+                        <a href="/category-chuangdian/goods-{$goods.goods_id}.html?page=1&index=1" onclick="goodAddToCat('{$goods.goods_id}',this.href);return false;" class="icon shoping_cat">放入购物车</a>
+                        <a href="javascript:;" onclick="goodCollect('{$goods.goods_id}');return false;" class="icon collect">收藏</a>
+                    </div>
+                </div>
+            </div>
+
+
+            <!--{/foreach}-->
+            <!-- {/if} -->
+
+
+        </div>
+
+
+
+
+
+        <!--{if $page_info.page_count gt 1}-->
+        <div class="page R pageC">  
+            <a class="stat">{sprintf lang=total_item var1=page_info.item_count}</a>
+            <!--{if $page_info.prev_link}-->
+            <a class="icon_prev" href="{$page_info.prev_link}"><span class="arrow"><span class="aleft">◆</span></span>上一页</a>
+            <!--{else}-->
+            <span class="former_no"></span>
+            <!--{/if}-->
+            <!--{if $page_info.first_link}-->
+            <a class="page_link" href="{$page_info.first_link}">1&nbsp;<!--{$page_info.first_suspen}--></a>
+            <!--{/if}-->
+            <!--{foreach from=$page_info.page_links key=page item=link}-->
+            <!--{if $page_info.curr_page eq $page}-->
+            <a class="current" href="{$link}">{$page}</a>
+            <!--{else}-->
+            <a class="page_link" href="{$link}">{$page}</a>
+            <!--{/if}-->
+            <!--{/foreach}-->
+            <!--{if $page_info.last_link}-->
+            <a class="page_link" href="{$page_info.last_link}"><!--{$page_info.last_suspen}-->&nbsp;<!--{$page_info.page_count}--></a>
+            <!--{/if}-->
+            &ensp;共{$page_info.page_count}页&ensp;到第 <input id="JS_jump_input" class="number" value="{$page_info.curr_page}" />&ensp;页&ensp;
+            <a class="go" title="跳转" href="javascript:;" onclick="goToPage('JS_jump_input');"> 确 定 </a>
+            <!--{if $page_info.next_link}-->
+            <a class="icon_next" href="{$page_info.next_link}">下一页<span class="arrow"><span class="aright">◆</span></span></a>
+            <!--{else}-->
+            <span class="down_no">{$lang.next_page}</span>
+            <!--{/if}-->
+
+
+            <script type="text/javascript">
+                //跳转到指定的分页
+                var max_page = 2;
+                function goToPage(id)
+                {
+                    var input_num = document.getElementById(id).value;
+                    if(isNaN(input_num) || input_num <= 0) {
+                        alert('请输入大于0的数字!'); 
+                        return;
+                    }
+                    if(input_num > max_page) {
+                        input_num = max_page;
+                    }
+                    var url = "/";
+                    url = url.replace("attr-page-1","attr-page-"+input_num);
+                    location.href = url;
+                }
+            </script>
+        </div>
+        <!--{/if}-->
+        <script type="text/javascript">
+        window._onReadyList = window._onReadyList || [];
+        _onReadyList.push(function(){
+            $('.JS_qwg_button').on('click', function(event){
+                var offset = {
+                    x: event.clientX,
+                    y: event.clientY
+                };
+                var id = $(this).data('id');
+                var img = $(this).parentsUntil('#JS_goods_list').last().find('.img img').attr('src');
+
+                var num = 1;
+                var tmp = {};
+                tmp[id] = num;
+
+                $.currentWholeHouse && $.currentWholeHouse.add(tmp, '', '', offset, img);
+
+                return false;
+            });
+        });
+        </script>       
+    </div>
+    <div class="cat_l">
+        <script type="text/javascript">
+            var _currentCat = '0';
+        </script>
+        <div class="category">
+            <div class="cate_title">所有分类</div>
+            <!--{foreach from=$rocet_gcatgorynavs item=gcatgorynavs name=gcatgorynavs}-->
+            <div class="category_title" onclick="toggleCatgory1({$smarty.foreach.gcatgorynavs.index});return false;">
+                <a class="" href="{url app=search&cate_id=$gcatgorynavs.cate_id}" id="JS_category_title_{$smarty.foreach.gcatgorynavs.index}" onclick="return false;">{$gcatgorynavs.cate_name|escape}</a>
+                <span class="icon2" id="JS_category_icon2_{$smarty.foreach.gcatgorynavs.index}">+</span>
+            </div>
+            <div id="JS_category_body_{$smarty.foreach.gcatgorynavs.index}" class="category_body{if !$smarty.foreach.gcatgorynavs.first} none{/if}">
+                <!--{foreach from=$gcatgorynavs.subcat item=nav name=nav}-->
+                <dl class="{if $smarty.foreach.nav.first} first{/if}">
+                    <dt>
+                        <b{if $nav.cate_id == $cate_id} class="current"{/if} onclick="toggleCatgory2(this);return false;">+</b>
+                        <a href="{url app=search&cate_id=$nav.cate_id}" title="{$nav.cate_name|escape}">{$nav.cate_name|escape}</a>
+                    </dt>
+                    <dd class="{if !$smarty.foreach.nav.first} none{/if}">
+                        <!--{foreach from=$nav.subcat item=subnav}-->
+                        <span>
+                            {if $subnav.cate_id == $cate_id}
+                            <i class="current">
+                                <a class="url" href="{url app=search&cate_id=$subnav.cate_id}" title="{$subnav.cate_name|escape}">{$subnav.cate_name|escape}</a>
+                                <a class="close" href="javascript:location.href='{url app=search&cate_id=$nav.cate_id}';" rel="nofollow"></a>
+                            </i>
+                            {else}
+                            <a class="url" href="{url app=search&cate_id=$subnav.cate_id}" title="{$subnav.cate_name|escape}">{$subnav.cate_name|escape}</a>
+                            {/if}
+                        </span>
+                        <!--{/foreach}-->
+                    </dd>
+                </dl>
+                <!--{/foreach}-->
+            </div>
+            <!--{/foreach}-->
+        </div>
+        
+
+        <div class="comment mt10 comment_padding">
+            <div class="title_1"><span class="icon"></span><span class="zh">本月推荐</span></div>
+            <div class="recommend">
+                <!--{foreach from=$rocet_search_tuijian item=tuijian name=tuijian}-->
+                <div class="list clearfix{if $smarty.foreach.tuijian.first} first{/if}">
+                    <div class="Left">
+                        <a href="{url app=goods&id=$tuijian.goods_id}" title="{$tuijian.goods_name}" target="_blank">
+                            <img width="96" height="64" data-src="{$tuijian.default_image}"  src="{res file=themes/paipai/images/blank.gif}" alt="{$tuijian.goods_name}" />
+                        </a>
+                    </div>
+                    <div class="Right">
+                        <a href="{url app=goods&id=$tuijian.goods_id}" title="{$tuijian.goods_name}" target="_blank">
+                            <p class="orange">{$tuijian.brand}</p>{$tuijian.goods_name}
+                        </a>
+                        <p class="gray">本站价：<span class="red yen">&yen;</span><span class="red JS_show_price_ajax" data-goods_id="{$tuijian.goods_id}">{$tuijian.price}</span></p>
+                    </div>
+                </div>
+                <!--{/foreach}-->
+            </div>  
+        </div>
+        <div class="mt10" id="JS_adimg_rand"></div>     
+        <div class="mt10"></div>
+    </div>
+</div>
+<script type="text/javascript">
+    var _fixture_url = [];
+    _fixture_url.push('/shipin/');
+    _fixture_url.push('/jiaju/');
+    var _fixture_bbs=['/article/','http://ecmall2/'];
+</script>
+
+<div id="JS_viewHistory" class="mt10"></div>
+{include file="amyfooter.html"}

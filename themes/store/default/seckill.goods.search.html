@@ -1,0 +1,207 @@
+{include file=header.html}
+<script type="text/javascript">
+
+var leave_time = "{$leave_time|escape}";
+
+if(leave_time.indexOf(':') != -1){
+   
+   time_array = leave_time.split(':');
+}
+else{
+   time_array = false
+}
+
+var hTrue=true;
+var mTrue=true;
+var sTrue=true;
+$(function(){
+    leve_time_count();
+});
+
+function leve_time_count(){
+    if(!time_array){
+	   clearTimeout(t);
+	   return;
+	}
+	time_array[2]--;
+	if(time_array[2] <= 0){
+	    time_array[1]--;
+		time_array[2] = 60;
+		mTrue = true;
+	}
+	if(time_array[0] < 10 && hTrue){
+	    hTrue = false;
+	    time_array[0] = '0'+time_array[0];
+	}
+	if(time_array[1] <= 0 && time_array[0] > 0 ){
+		time_array[0]--;
+		time_array[2] =60;
+		time_array[1] = 59;
+		hTrue = true;
+	}
+	if(time_array[0] <= 0 && time_array[1] < 0 && time_array[2] == 60){
+	   ajax_update()
+	   $('#seckill_goods_list').find('li').remove();
+	   $('#leveTime').text('{$lang.seckill_end}');
+		clearTimeout(t);
+		return;
+	}
+	if(time_array[1] < 10 && mTrue){
+	    mTrue = false;
+	    time_array[1] = '0'+time_array[1];
+	}
+	if(time_array[2] < 10){
+	    sTrue = false;
+	    time_array[2] = '0'+time_array[2];
+	}
+	$('#leveTime').text(time_array[0]+':'+time_array[1]+':'+time_array[2]);
+	var t = setTimeout("leve_time_count()",1000);
+}
+
+function ajax_update(){
+   var goods_id;
+   var sec_id;
+   var cmdObj = $('.seckill_border').eq(0);
+   for(var i=0; i<$('.seckill_goods_id').length; i++){
+       if(goods_id != undefined){
+	       goods_id += ","+$('.seckill_goods_id').eq(i).val();
+		   sec_id += ","+$('.seckill_id').eq(i).val();
+	   }
+       else{
+	       goods_id = $('.seckill_goods_id').eq(i).val();
+		   sec_id = $('.seckill_id').eq(i).val();
+	   }
+   }
+   if(goods_id == 'undefined' || sec_id == 'undefined'){
+       return;
+   }
+   $.ajax({
+      type: "GET",
+	  url: "index.php?module=seckill&act=ajax_goods_update&ids="+goods_id+"&secid="+sec_id,
+	  dataType: "text",
+	  success: function(msg){
+	      if($.trim(msg) == 'true'){
+		      
+		 }
+	  }
+   });
+}
+
+$(function(){
+var page_size = '{$page_per_num}';
+   $('#order_by').change(function(){
+       window.location.href = 'index.php?app=buyer_seckill&act={$smarty.get.act}&order_by='+$(this).val();
+   });
+   for(var pi=0;pi<$('.perPage').length;pi++){
+      if($('.perPage').eq(pi).attr('title') == page_size){
+	      $('.perPage').eq(pi).removeClass('per'+page_size+'NoSel');
+		  $('.perPage').eq(pi).addClass('per'+page_size+'Sel');
+	  }
+	  
+   }
+   $('.perPage').click(function(){
+       if($(this).attr('title') == page_size){
+	       return;
+	   }
+	   window.location.href = 'index.php?app=buyer_seckill&act={$smarty.get.act}&max_page='+$(this).attr('title');
+   });
+})
+</script>
+<div id="seckill_content">
+  <div id="goodSort">
+    <h2><b>{$lang.subject_alert}:</b><span>{$lang.hide_list}</span></h2>
+    <div class="wrap">
+      <div class="wrap_child">
+        <div class="side_textlist">
+          <ul ectype="ul_category">
+            <!--{foreach from=$subject_lists item=subject name=subject_lists}-->
+            <!-- {if $smarty.foreach.subject_lists.iteration le 10} -->
+            <li><a href="index.php?app=buyer_seckill&act={$smarty.get.act}&id={$subject.subject_id}&sub_name={$subject.subject_name|escape}">{$subject.subject_name|escape}</a>({$subject.subject_count})</li>
+            <!-- {else} -->
+            <li style="display:none"><a href="javascript:void(0);" id="{$category.cate_id}">{$category.cate_name|escape}</a></li>
+            <!-- {/if} -->
+            <!--{/foreach}-->
+          </ul>
+        </div>
+        <!-- {if $category_count gt 10} -->
+        <div class="more">
+          <input type="button" class="brands_btn" value="{$lang.view_all_category}" id="show_category" />
+        </div>
+        <!-- {/if} -->
+      </div>
+    </div>
+    <div class="clear"></div>
+  </div>
+  <h2 class="goods_list_head">
+    <div class="ornament1"></div>
+    <div class="ornament2"></div>
+    <div class="h2_wrap">
+      <div class="table_title">
+        <p class="title">{$lang.max_per_page}:</p>
+        <input type="hidden" value="{$display_num_page}" id="display_page_num" />
+        <p class="perPage per20NoSel" title="20"></p>
+        <p class="perPage per40NoSel" title="40"></p>
+        <p class="perPage per80NoSel" title="80"></p>
+        <p class="line_ico"></p>
+        <p class="title">{$lang.order_by}:</p>
+        <p>
+          <select ectype="order_by" id="order_by">
+            
+            
+                {html_options options=$orders selected=$smarty.get.order_by}
+            
+          
+          
+          </select>
+        </p>
+        <!--{if $current_seckill}-->
+        <p class="title seckill_align_right"><span>
+          <!--{if $smarty.get.act eq 'seckill_search'}-->
+          {$lang.seckill_leave_time}:
+          <!--{/if}-->
+          </span><b id="leveTime">{$leave_time|escape}</b></p>
+        <!--{/if}-->
+        <div class="clear"></div>
+      </div>
+      <div class="clear"></div>
+    </div>
+  </h2>
+  <div id="seckill_goods_list">
+    <ul>
+      <!--{foreach from=$seckill_lists item=lists}-->
+      <li>
+        <input type="hidden" value="{$goods.goods_id}" class="seckill_goods_id" />
+        <input type="hidden" value="{$goods.sec_id}" class="seckill_id" />
+        <div class="seckill_li_back">
+          <p class="seckill_list_name"><span>{$lists.goods_name|wordwrap:10:...}</span></p>
+          <img src="{$site_url}/{$lists.default_image|escape}">
+          <div class="seckill_sear_list_intr" >
+            <p>{$lang.formaly_price}:<span class="delprice">{$lists.price|price|wordwrap:10:...}</span></p>
+            <p>{$lang.seckill_price}:<span class="seckill_price">{$lists.sec_price.0.spec_price|wordwrap:10:...}</span></p>
+            <!--{if $smarty.get.act eq 'seckill_prev_search'}-->
+            <p>{$lang.store_name}:<span>{$lists.store_name|wordwrap:10:...}</span></p>
+            <p>{$lang.seckill_time}:<span>{$lists.start_time|date}</span></p>
+            <!--{/if}-->
+            <p>{$lang.seckill_subject}:<span>{$lists.subject_name|wordwrap:10:...}</span></p>
+            <!--{if $smarty.get.act eq 'seckill_prev_search'}-->
+            <p><span class="seckill_price"><a href="index.php?app=goods&id={$lists.goods_id}">{$lang.seckill_goods_detail}</a></span></p>
+            <!--{/if}-->
+            <div class="clear"></div>
+          </div>
+          <!--{if $smarty.get.act eq 'seckill_search'}-->
+          <b><a href="index.php?app=buyer_seckill&act=seckill_goods&id={$lists.goods_id}&sid={$lists.sec_id}">{$lang.seckill_now}</a></b>
+          <!--{/if}-->
+          <div class="clear"></div>
+          <!--{if $now_seckill}-->
+          <b><a href="index.php?app=buyer_seckill&act=seckill_goods&id={$lists.goods_id}&sid={$lists.sec_id}">{$lang.seckill_now}</a></b>
+          <!--{/if}-->
+        </div>
+        <div class="seckill_li_bottom"></div>
+      </li>
+      <!--{/foreach}-->
+    </ul>
+  </div>
+  <div class="shop_list_page"> {include file=page.bottom.html} </div>
+</div>
+<div class="clear"></div>
+{include file=footer.html}

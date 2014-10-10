@@ -1,0 +1,152 @@
+{include file="amyheader.html"}
+
+<script> 
+   (function() {
+     if (! 
+     /*@cc_on!@*/
+     0) return;
+     var e = "abbr, article, aside, audio, canvas, datalist, details, dialog, eventsource, figure, footer, header, hgroup, mark, menu, meter, nav, output, progress, section, time, video".split(', ');
+     var i= e.length;
+     while (i--){
+         document.createElement(e[i])
+     } 
+})() 
+</script>
+<style type="text/css">
+section,figure,aside,article{display: block\0;}
+section,figure,aside{padding:0;margin:0;border:none;}
+/*---common----*/
+.mt20{margin-top:20px;}
+.mt30{margin-top:30px;}
+.mb20{margin-bottom:20px;}
+/*---banner---*/
+figure.art_banner{width:976px;height:auto;padding:1px;border:solid 1px #d5d5d5;margin:10px auto 0;}
+figure img{display:block;}
+/*---main---*/
+section.art_main{height:auto;margin-top:10px;}
+/*aside nav*/
+.art_nav{width:240px;height:auto;border:solid 1px #e8e8e8;background:#f9f9f9;border-radius: 4px 4px 0 0;}
+.art_nav figure{height:57px;overflow:hidden;}
+.art_nav_menu{height:auto;padding:10px 15px 20px 15px;}
+.art_nav_menu .art_box_title,.art_nav_menu .art_box_title:hover,.cat_name{display:inline-block;padding:0 40px 0px 35px;width:138px;height:44px;line-height:44px;background:url({res file=themes/paipai/images/article_830_left_nav_bg.jpg});text-decoration:none;text-align:left;font-size:14px;font-family:微软雅黑,黑体;margin-bottom: 10px;}
+.art_nav_menu .art_box_title,.cat_name{background-position:0px 0px;overflow: hidden;}
+.art_nav_menu .current,body .art_nav_menu .current:hover{background-position:0px -43px;color:#ffffff!important;}
+.art_nav_menu .art_box_title:hover,.cat_name:hover{background-position:0px -86px;color: #333!important;}
+.art_nav_menu .art_box_title span{font-size:12px;color:#848383;text-transform:uppercase;padding-left:5px;font-family: 'Tunga';}
+.art_nav_menu .current span{color:#fff!important;}
+.art_nav_menu .art_box_title:hover span{}
+.art_box .art_box_list{text-align:center;padding-bottom:12px;display:none;}
+.art_box .art_box_list a{color:#333333 !important; font-family:"微软雅黑"; font-size:14px; line-height:23px;}
+.art_box .art_box_list li{padding-left: 30px;text-align: left;}
+.cat_name{cursor:pointer;}
+/*aside content*/
+article.art_content{padding:15px 20px;width:680px;height:auto;border:1px solid #ebebeb;}
+.art_title{color:#c00;font:18px/18px "微软雅黑","黑体";padding-bottom:15px;}
+.art_title span{display:inline-block;height:24px;line-height:24px;padding-left:10px;background:url({res file=themes/paipai/images/dot20111227.gif}) left center no-repeat;}
+.post_content,.article_content{padding:10px;font-size:14px;color:#454545;}
+.post_content p{text-indent:2em;line-height:1.8;margin-bottom:20px;}
+.article_content{width:676px;margin-left:auto; margin-right:auto; border-top:1px solid #cccccc;}
+.article_content p{text-indent:2em;line-height:1.8;}
+.article_content div{margin-bottom:5px;}
+</style>
+
+<section class="art_main w clearfix">
+    
+    <aside class="art_nav clearfix Left">
+        <figure><img src="{res file=themes/paipai/images/article_830_logo.jpg}" /></figure>
+
+        <ul id="JS_silde_menu" class="art_nav_menu">
+            <!-- {foreach from=$acategories item=acategory} -->
+            <li class="art_box">
+            <a href="{url app=article&cate_id=$acategory.cate_id}" title="{$acategory.cate_name}" name="JS_art_title" class="art_box_title " id="JS_art_{$smarty.foreach.acategory.iteration}" >{$acategory.cate_name|escape}</a>
+            </li>
+            <!-- {/foreach} -->
+
+            <!-- 
+                        <li class="art_box">
+            <a href="/article_cat-12/article-10715.html" title="企业文化" name="JS_art_title" class="art_box_title " id="JS_art_13" >企业文化<span></span></a>
+                            <ul class="art_box_list" name="JS_art_list" id="JS_list_13" >
+                                        <li><a href="/article_cat-48/article-5228.html" name="JS_list" id="JS_list_13_1" title="首席执行官">&bull;&nbsp;首席执行官</a></li>
+                                        <li><a href="/article_cat-48/article-10732.html" name="JS_list" id="JS_list_13_2" title="首席运营官">&bull;&nbsp;首席运营官</a></li>
+                                        <li><a href="/article_cat-48/article-6129.html" name="JS_list" id="JS_list_13_3" title="团队建设">&bull;&nbsp;团队建设</a></li>
+                                        <li><a href="/article_cat-48/article-6131.html" name="JS_list" id="JS_list_13_4" title="团队生活">&bull;&nbsp;团队生活</a></li>
+                                        <li><a href="/article_cat-48/article-11843.html" name="JS_list" id="JS_list_13_5" title="美乐乐激情48小时 下单返现疯狂购 ">&bull;&nbsp;美乐乐激情48小时 下单返现疯狂购 </a></li>
+                                    </ul>
+                        </li> -->
+        </ul>
+    </aside>
+    
+
+    
+    
+    <article class="art_content clearfix Right">
+    <p>
+        <style type="text/css">
+            .media{ width: 630px; margin-bottom: 30px; } .media .media_con{ margin-top:
+            10px; margin: 12px 0 20px 10px; } .media .media_title{ background: url(http://image.meilele.com/images/zhuanti/upload/m_t_1392702950.jpg)
+            no-repeat; width: 630px; height: 35px; line-height: 35px; color: #666666;
+            overflow: hidden; } .media .media_title a{ font-family: "微软雅黑"; color:
+            #333333; font-weight: bold; padding-left: 25px; font-size:14px; } .media
+            .media_title span{ padding-right: 20px; } .media_con p{ color: #777777;
+            font-weight: normal; line-height: 23px; } .media_con img.imgBorder { border:1px
+            solid #dddddd; margin: 15px 4px 5px 0; padding:7px; background:#FFF; display:
+            block; max-width: 500px; _width: expression(this.height> 500 ? 500 : true);
+            overflow:hidden; } .imgBorder img{ margin:10px 0;} .media_con a{ color:
+            #c9033b; font-family: "宋体"; } .leftImg{width: 20px;height: 20px;margin-top:
+            5px;} .rightCon{width: 600px;height: auto;}
+        </style>
+    </p>
+    
+    <h1 class="art_title">
+        <span>
+            <a href="{url app=article}">全部咨讯</a> &gt;
+            <!--{foreach from=$_curlocal item=lnk name=lnk}-->
+            <!--{if $lnk.url}-->
+            <!--{if !$smarty.foreach.lnk.first}-->
+            <a href="{$lnk.url}">{$lnk.text|escape}</a> &gt;
+            <!--{/if}-->
+            <!--{else}-->
+            {$lnk.text|escape}
+            <!--{/if}-->
+            <!--{/foreach}-->
+        </span>
+    </h1>
+    <p>
+        &nbsp;
+    </p>
+
+    <!-- {foreach from=$articles item=article} -->
+    <div class="media">
+        <div class="media_title">
+            <a class="Left" target="_blank" href="{url app=article&act=view&article_id=$article.article_id}">
+                {$article.title|escape}
+            </a>
+        </div>
+        <div class="media_con clearfix">
+            <div class="Left leftImg">
+                <img alt="" width="15" height="11" src="http://image.meilele.com/images/zhuanti/upload/ml_1392702856.jpg"
+                />
+            </div>
+            <div class="Left rightCon">
+                <p>
+                    {$article.description}
+                </p>
+                <a target="_blank" href="{url app=article&act=view&article_id=$article.article_id}">
+                    查看全文&gt;&gt;
+                </a>
+            </div>
+            <p>
+                &nbsp;
+            </p>
+        </div>
+    </div>
+    <!-- {/foreach} -->
+
+
+
+</article>
+    
+</section>
+
+
+{include file="amyfooter.html"}

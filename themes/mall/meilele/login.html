@@ -1,0 +1,103 @@
+{include file="amyheader.html"}
+<link rel="stylesheet" href="{res file=css/mll_common.min.css}" />
+<link rel="stylesheet" href="{res file=themes/paipai/css/user3.min.css}" />
+<style>
+.fkcaptcha{margin-left:6px;cursor:pointer;background:url('{res file=themes/paipai/images/user/loading.gif}') center center no-repeat;}
+</style>
+
+<div  class="user_all w" style="position:relative; width:980px;">
+    <div  class="user_header clearfix" style="padding:15px 0px;">
+        <div class="logo Left" style="background: url({$site_logo}) 0 0 no-repeat;width: 288px; height: 78px;">
+            <a href="/" title="返回首页">
+                <img style="background:none" src="{res file=images/blank.gif}" width="288" height="78" border="0" >
+            </a>
+        </div>
+        <div  class="nav Right">
+            <a href="/">返回首页</a>
+            |
+            <a href="/" target="_blank">帮助中心</a>
+        </div>
+    </div>  
+    <div  class="user_content clearfix type_login">
+        <h1 class="yahei" style="position: absolute;top: 40px;left: 320px; font-size: 24px; padding: 0;">用户登录</h1>
+        <!--{if $rocet_adv_loginpagead}-->
+        <a class="Left" href="{$rocet_adv_loginpagead.link}" title="{$rocet_adv_loginpagead.title}" target="_blank"><img src="{$rocet_adv_loginpagead.pic}" class="ad-img"></a>
+        <!--{/if}-->
+            <div  class="user_login Right user_login_new">
+            <form  id="JS_login_form" class="username_box" method="post">
+                <div class="clearfix user_type_user">
+                    <h3 class="user_type Left">用户名/手机号/邮箱</h3>
+                </div>
+                <p><input value="" type="text" name="user_name" class="users_input" id="login_uname" tabindex="1"><span id="error_user_name" class="rh">请输入字母数字下划线</span></p>
+                <div id="login_uname_a" class="error"></div>
+
+                <div class="clearfix user_type_user">
+                    <h3 class="user_type Left">密码</h3>
+                </div>
+                <p><input type="password" name="password" class="users_input" id="login_uname_p" tabindex="2"><span id="error_password" class="rh">请输入6位以上密码</span></p>
+                <div id="login_uname_p_a" class="error"></div>
+                <!--{if $captcha}-->
+                <!-- <input type="text" name="captcha" class="text" id="captcha1" />
+                <span><a href="javascript:change_captcha($('#captcha'));" class="renewedly"><img id="captcha" src="index.php?app=captcha&amp;{$random_number}" /></a></span> -->
+                <div id="JS_login_captcha_1">
+                    <h3 class="user_type">验证码</h3>
+                    <p><input type="text" name="captcha" class="register_input verify_input" id="login_uname_c" tabindex="3"><img src="index.php?app=captcha&amp;{$random_number}" width="61" height="27" class="fkcaptcha" border="0" id="JS_login_captcha_img_1" onclick="this.src='index.php?app=captcha&amp;'+Math.round(Math.random()*10000);return false;"><a href="javascipt:void(0);"  onclick="document.getElementById('JS_login_captcha_img_1').src='index.php?app=captcha&amp;'+Math.round(Math.random()*10000);return false;" tabindex="4">换一张</a><span class><span class="_check_icon" id="_JS_sndSms_captcha_icon"></span></p>
+                    <div id="error_captcha" class="rh gray error">请输入图片中的字符，不区分大小写！</div>
+                </div>
+                <!--{/if}-->
+                <div class="clearfix">
+                    <p class="Left"><label><input type="checkbox" id="JS_rember_username" name="aotoLogin" style="vertical-align:middle;" tabindex="5">自动登录</label></p>
+                    <a href="{url app=find_password}" class="forget Right user_type_user" tabindex="6">忘记密码？</a>
+                </div>
+                <div id="login_submit0" class="operate">
+                    <input type="submit" value="登　录" class="users_submit white f16 yahei" disabled="disabled" class="enter" />
+                </div>
+                <div id="login_submit1" class="operate none">
+                    <a class="users_submit white f16 yahei" >正在验证</a>
+                </div>
+
+                
+                <input type="hidden" name="ret_url" value="{$ret_url}" />
+                <!-- <input type="hidden" id="act" name="act" value="act_login_ajax" /> -->
+                <!-- <input type="hidden" id="back_act" name="back_act" value=""> -->
+            </form>
+
+
+
+            <div class="r" style="margin-top:30px;border-top: 1px solid #eee; padding: 10px 0;"><a class="red bold" href="{url app=member&act=register&ret_url=$ret_url}" onclick="addRedirect(this);">立即注册>></a></div>
+            <div class="none"></div>
+        </div>
+
+    </div>
+</div>
+<div id="append" class="none">
+    <div  class="append">
+        <h1><a href="/" id="JS_register_success" target="_self"></a></h1>
+        <div  class="append_success">
+            <h3>恭喜您，成功注册会员！</h3>
+            <p>请{登录}您的邮箱查看注册信息！</p>
+            <p class="red" style="font-size: 12px;padding-top: 6px;">3秒钟后将跳转至注册前页面。</p>
+        </div>
+        <div  class="login_api mt20" style="padding-left:30px;">
+            <p class="api_tips">推荐关注：</p>
+            <p class="api_from gray">
+                <a href="http://weibo.com/escmal" class="sina" target="_blank">新浪微博</a>
+                |
+                <a href="http://t.qq.com/escmal" class="tencent" target="_blank">腾讯微博</a>
+                |
+                <a href="http://blog.sina.com.cn/escmal" class="blog" target="_blank">新浪博客</a>
+                |
+                <a href="/" class="mall" target="_blank">去商城</a>
+            </p>
+        </div>
+     </div>
+</div>
+<input id="back_act" value="" style="display:none;" />
+<style type="text/css">
+    form .rh{
+        display: none;
+        color: red;
+    }
+</style>
+
+{include file="amyfooter.html"}

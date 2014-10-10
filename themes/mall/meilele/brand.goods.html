@@ -1,0 +1,211 @@
+{include file="amyheader.html"}
+
+<link href="{res file=css/category_wide.min.css}" rel="stylesheet" type="text/css"/>
+
+<style>
+    .category_activity_nav_ad a{display:inline-block;width:980px;height: 60px;}
+    .root_body .category_activity_nav_ad a{width: 1190px;}
+</style>
+<div class="w mt10 category_activity_nav_ad" style="overflow:hidden;height:60px;">
+    <!--{if $rocet_adv_brand_topad}-->
+    <a href="{$rocet_adv_brand_topad.link}" title="{$rocet_adv_brand_topad.title}" target="_blank" style="background:url({$rocet_adv_brand_topad.pic}) center 0 no-repeat;">
+    </a>
+    <!--{/if}-->
+</div>
+
+<div class="w clearfix mt10">
+    <div class="cat_r">
+        <div class="position">
+            <!-- <span class="icon"></span> -->
+            <!--{foreach from=$_curlocal item=lnk name=lnk}-->
+            <!--{if $lnk.id}-->
+            <a href="{url app=search&cate_id=$lnk.id}">{$lnk.text|escape}</a> {if !$smarty.foreach.lnk.last}<span class="yen">&gt;</span>{/if}
+            <!--{/if}-->
+            <!--{/foreach}-->
+        </div>
+                        
+        
+        
+        <div id="JS_goods_list" class="goods clearfix">
+
+
+
+            <!-- {if $rocet_brand_goods} -->
+            <!--{foreach from=$rocet_brand_goods item=goods name=goods}-->
+
+            <div class="list{if $smarty.foreach.goods.iteration % 3 eq 0} first{/if}" data-id="{$goods.goods_id}">
+                <div class="img">
+                    <a href="{url app=goods&id=$goods.goods_id}" target="_blank" title="{$goods.goods_name|escape}">
+                        <img src="{res file=themes/paipai/images/blank.gif}" data-src="{$goods.default_image}" data-wide-src="{$goods.default_image}" alt="{$goods.goods_name|escape}" title="{$goods.goods_name|escape}" width="235" height="156"/>
+                    </a>
+                </div>
+                <div class="info">
+                    <p class="goods_name f14">
+                        <a class="name f14" href="{url app=goods&id=$goods.goods_id}" target="_blank" title="{$goods.goods_name|escape}">{$goods.goods_name|escape}</a>
+                    </p>
+                    <p><span class="red bold yen f16">&yen;<span class="JS_show_price_ajax" data-goods_id="{$goods.goods_id}">{$goods.price|price}</span></span>&nbsp;|&nbsp;</span><span class="price red">销量：<span id="JS_bought_number_36975" data-goods_id="{$goods.goods_id}" class="JS_sale_num_ajax">...</span></span></p>
+                </div>
+                <div class="goods_button">
+                    <p class="com gray l">评价：<a href="{url app=goods&id=$goods.goods_id}" target="_blank" class="orange">{$goods.comments|default:0}</a>&emsp;人气：32160</p>
+                    <p class="com gray l" title="超喜欢这个床垫，睡着舒适，还有乳胶的清香真不错">18244073***：超喜欢这个床垫，睡着舒适，还有乳胶的清香真不错</p>                   <div class="buttons">
+                        <a href="javascript:void(0);" class="icon qwg JS_qwg_button" style="display: none;" data-id="{$goods.goods_id}">加入全屋购</a>                                               <a href="/category-chuangdian/goods-{$goods.goods_id}.html?page=1&index=1" onclick="goodAddToCat('{$goods.goods_id}',this.href);return false;" class="icon shoping_cat">放入购物车</a>
+                        <a href="javascript:;" onclick="goodCollect('{$goods.goods_id}');return false;" class="icon collect">收藏</a>
+                    </div>
+                </div>
+            </div>
+
+
+            <!--{/foreach}-->
+            <!-- {/if} -->
+
+
+        </div>
+
+
+
+
+
+        <!--{if $page_info.page_count gt 1}-->
+        <div class="page R pageC">  
+            <a class="stat">{sprintf lang=total_item var1=page_info.item_count}</a>
+            <!--{if $page_info.prev_link}-->
+            <a class="icon_prev" href="{$page_info.prev_link}"><span class="arrow"><span class="aleft">◆</span></span>上一页</a>
+            <!--{else}-->
+            <span class="former_no"></span>
+            <!--{/if}-->
+            <!--{if $page_info.first_link}-->
+            <a class="page_link" href="{$page_info.first_link}">1&nbsp;<!--{$page_info.first_suspen}--></a>
+            <!--{/if}-->
+            <!--{foreach from=$page_info.page_links key=page item=link}-->
+            <!--{if $page_info.curr_page eq $page}-->
+            <a class="current" href="{$link}">{$page}</a>
+            <!--{else}-->
+            <a class="page_link" href="{$link}">{$page}</a>
+            <!--{/if}-->
+            <!--{/foreach}-->
+            <!--{if $page_info.last_link}-->
+            <a class="page_link" href="{$page_info.last_link}"><!--{$page_info.last_suspen}-->&nbsp;<!--{$page_info.page_count}--></a>
+            <!--{/if}-->
+            &ensp;共{$page_info.page_count}页&ensp;到第 <input id="JS_jump_input" class="number" value="{$page_info.curr_page}" />&ensp;页&ensp;
+            <a class="go" title="跳转" href="javascript:;" onclick="goToPage('JS_jump_input');"> 确 定 </a>
+            <!--{if $page_info.next_link}-->
+            <a class="icon_next" href="{$page_info.next_link}">下一页<span class="arrow"><span class="aright">◆</span></span></a>
+            <!--{else}-->
+            <span class="down_no">{$lang.next_page}</span>
+            <!--{/if}-->
+
+
+            <script type="text/javascript">
+                //跳转到指定的分页
+                var max_page = 2;
+                function goToPage(id)
+                {
+                    var input_num = document.getElementById(id).value;
+                    if(isNaN(input_num) || input_num <= 0) {
+                        alert('请输入大于0的数字!'); 
+                        return;
+                    }
+                    if(input_num > max_page) {
+                        input_num = max_page;
+                    }
+                    var url = "/";
+                    url = url.replace("attr-page-1","attr-page-"+input_num);
+                    location.href = url;
+                }
+            </script>
+        </div>
+        <!--{/if}-->
+        <script type="text/javascript">
+        window._onReadyList = window._onReadyList || [];
+        _onReadyList.push(function(){
+            $('.JS_qwg_button').on('click', function(event){
+                var offset = {
+                    x: event.clientX,
+                    y: event.clientY
+                };
+                var id = $(this).data('id');
+                var img = $(this).parentsUntil('#JS_goods_list').last().find('.img img').attr('src');
+
+                var num = 1;
+                var tmp = {};
+                tmp[id] = num;
+
+                $.currentWholeHouse && $.currentWholeHouse.add(tmp, '', '', offset, img);
+
+                return false;
+            });
+        });
+        </script>       
+    </div>
+    <div class="cat_l">
+        <script type="text/javascript">
+            var _currentCat = '0';
+        </script>
+        <div class="category">
+            <div class="cate_title">所有分类</div>
+            <!--{foreach from=$rocet_gcatgorynavs item=gcatgorynavs name=gcatgorynavs}-->
+            <div class="category_title" onclick="toggleCatgory1({$smarty.foreach.gcatgorynavs.index});return false;">
+                <a class="" href="{url app=search&cate_id=$gcatgorynavs.cate_id}" id="JS_category_title_{$smarty.foreach.gcatgorynavs.index}" onclick="return false;">{$gcatgorynavs.cate_name|escape}</a>
+                <span class="icon2" id="JS_category_icon2_{$smarty.foreach.gcatgorynavs.index}">+</span>
+            </div>
+            <div id="JS_category_body_{$smarty.foreach.gcatgorynavs.index}" class="category_body{if !$smarty.foreach.gcatgorynavs.first} none{/if}">
+                <!--{foreach from=$gcatgorynavs.subcat item=nav name=nav}-->
+                <dl class="{if $smarty.foreach.nav.first} first{/if}">
+                    <dt>
+                        <b{if $nav.cate_id == $cate_id} class="current"{/if} onclick="toggleCatgory2(this);return false;">+</b>
+                        <a href="{url app=search&cate_id=$nav.cate_id}" title="{$nav.cate_name|escape}">{$nav.cate_name|escape}</a>
+                    </dt>
+                    <dd class="{if !$smarty.foreach.nav.first} none{/if}">
+                        <!--{foreach from=$nav.subcat item=subnav}-->
+                        <span>
+                            {if $subnav.cate_id == $cate_id}
+                            <i class="current">
+                                <a class="url" href="{url app=search&cate_id=$subnav.cate_id}" title="{$subnav.cate_name|escape}">{$subnav.cate_name|escape}</a>
+                                <a class="close" href="javascript:location.href='{url app=search&cate_id=$nav.cate_id}';" rel="nofollow"></a>
+                            </i>
+                            {else}
+                            <a class="url" href="{url app=search&cate_id=$subnav.cate_id}" title="{$subnav.cate_name|escape}">{$subnav.cate_name|escape}</a>
+                            {/if}
+                        </span>
+                        <!--{/foreach}-->
+                    </dd>
+                </dl>
+                <!--{/foreach}-->
+            </div>
+            <!--{/foreach}-->
+        </div>
+        
+
+        <div class="comment mt10 comment_padding">
+            <div class="title_1"><span class="icon"></span><span class="zh">本月推荐</span></div>
+            <div class="recommend">
+                <!--{foreach from=$rocet_brand_tuijian item=tuijian name=tuijian}-->
+                <div class="list clearfix{if $smarty.foreach.tuijian.first} first{/if}">
+                    <div class="Left">
+                        <a href="{url app=goods&id=$tuijian.goods_id}" title="{$tuijian.goods_name}" target="_blank">
+                            <img width="96" height="64" data-src="{$tuijian.default_image}"  src="{res file=themes/paipai/images/blank.gif}" alt="{$tuijian.goods_name}" />
+                        </a>
+                    </div>
+                    <div class="Right">
+                        <a href="{url app=goods&id=$tuijian.goods_id}" title="{$tuijian.goods_name}" target="_blank">
+                            <p class="orange">{$tuijian.brand}</p>{$tuijian.goods_name}
+                        </a>
+                        <p class="gray">本站价：<span class="red yen">&yen;</span><span class="red JS_show_price_ajax" data-goods_id="{$tuijian.goods_id}">{$tuijian.price}</span></p>
+                    </div>
+                </div>
+                <!--{/foreach}-->
+            </div>  
+        </div>
+        <div class="mt10" id="JS_adimg_rand"></div>     
+        <div class="mt10"></div>
+    </div>
+</div>
+<script type="text/javascript">
+    var _fliterShowNum = 0;
+    var _fixture_url = [];
+    _fixture_url.push('/shipin/');
+    _fixture_url.push('/jiaju/');
+    var _fixture_bbs=['/article/','http://ecmall2/'];
+</script>
+<div id="JS_viewHistory" class="mt10"></div>
+{include file="amyfooter.html"}

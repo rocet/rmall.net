@@ -1,0 +1,90 @@
+{include file="header.html"}
+<script type="text/javascript">
+   $(function(){
+       for(var i=0; i<$('.seckill_img_preview').length; i++){
+	       $('.seckill_img_preview').eq(i).bind('mouseover',{Iindex:i},show_sec_image);
+		   $('.seckill_img_preview').eq(i).bind('mouseout',{Iindex:i},show_sec_image);
+	   }
+	   
+   })
+   
+   function show_sec_image(event){
+      var i=event.data.Iindex;
+	  if($('.img_preview').eq(i).css('display') == 'none'){
+	     $('.img_preview').eq(i).show(); 
+	  }
+	  else{
+	     $('.img_preview').eq(i).hide();
+	  }
+   }
+</script>
+<div id="rightTop">
+  <p>{$lang.second_kill}</p>
+  <ul class="subnav">
+    <li><a class="btn3" href="index.php?module=seckill&act=set_start_time">{$lang.set_start_time}</a></li>
+	</li>
+    <li><a class="btn3" href="index.php?module=seckill&act=set_period">{$lang.period_manage}</a></li>
+    <li><a class="btn3" href="index.php?module=seckill&act=set_goods_qty">{$lang.goods_qty_manage}</a></li>
+    <li><a class="btn3" href="index.php?module=seckill&act=set_store_seckill">{$lang.store_seckill_manage}</a> </li>
+    <li><a class="btn3" href="index.php?module=seckill&act=seckill_manage">{$lang.seckill_manage}</a> </li>
+
+    <li><span>{$lang.seckill_auditing}</span> </li>
+    <li><a class="btn3" href="index.php?module=seckill&act=seckill_subject">{$lang.seckill_subject}</a> </li>
+	
+  </ul>
+</div>
+<div class="mrightTop">
+  <div class="fontl">
+    <form method="get">
+      <div class="left">
+        <input type="hidden" name="module" value="seckill" />
+        <input type="hidden" name="act" value="seckill_apply" />
+        {$lang.store_name}:
+        <input class="queryInput" type="text" name="store_name" value="{$smarty.get.store_name|escape}" />
+        <input type="submit" class="formbtn" value="{$lang.query}" />
+      </div>
+      <!--{if $filtered}-->
+      <a class="left formbtn1" href="index.php?module=seckill&act=seckill_apply">{$lang.cancel_query}</a>
+      <!--{/if}-->
+    </form>
+  </div>
+  <div class="fontr">{include file=page.top.html} </div>
+</div>
+<div class="tdare">
+  <table width="100%" cellspacing="0" class="dataTable">
+    <!--{if $seckill_goods_lists}-->
+    <tr class="tatr1">
+      <td width="20" class="firstCell"><input type="checkbox" class="checkall" /></td>
+      <td width="200" style="text-align:center;">{$lang.store_name}&nbsp;|&nbsp;{$lang.owner_name}</td>
+	  <td class="text_align_center">{$lang.seckill_goods_num}</td>
+      <td class="text_align_center"><span ectype="order_by" fieldname="store_name">{$lang.seckill_last_goods}</span></td>
+      <td class="text_align_center"><span ectype="order_by" fieldname="store_name">{$lang.seckill_last_subject}</span></td>
+      <td class="handler">{$lang.handdle}</td>
+    </tr>
+    <!--{/if}-->
+    <!--{foreach from=$seckill_goods_lists item=lists}-->
+    <tr class="tatr2">
+      <td class="firstCell"><input type="checkbox" class="checkitem" value="{$lists.subject_id}" /></td>
+      <td class="text_align_center">{$lists.store_name|escape}&nbsp;|&nbsp;{$lists.owner_name|escape}</td>
+      <td class="text_align_center">{$lists.count|escape}</td>
+	  <td class="text_align_center seckill_img_preview">{$lists.goods_name|escape}<img src="{$site_url}/{$lists.default_image|escape}" class="img_preview" /></td>
+      <td class="text_align_center">{$lists.subject_name|escape}</td>
+      <td class="handler">
+        <a href="index.php?module=seckill&act=seckill_goods_list&id={$lists.store_id}">{$lang.seckill_goods_list}</a>&nbsp;|&nbsp;<a href="index.php?module=seckill&act=seckill_subject_del&id={$lists.store_id}&sid={$lists.store_id}">{$lang.seckill_del}</a></td>
+    </tr>
+    <!--{foreachelse}-->
+    <tr class="no_data">
+      <td colspan="12">{$lang.no_data}</td>
+    </tr>
+    <!--{/foreach}-->
+  </table>
+  <!--{if $seckill_goods_lists}-->
+  <div id="dataFuncs">
+    <div class="pageLinks">{include file=page.bottom.html}</div>
+    <div id="batchAction" class="left paddingT15"><input class="formbtn batchButton" type="button" value="{$lang.seckill_del}" name="id" uri="index.php?module=seckill&act=seckill_del" presubmit="confirm('{$lang.batch_subject_del}');" />
+    </div>
+  </div>
+  <div class="clear"></div>
+  <!--{/if}-->
+</div>
+{include file="footer.html"} 

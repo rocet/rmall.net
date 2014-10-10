@@ -1,0 +1,203 @@
+{include file="amyheader.html"}
+
+<link rel="stylesheet" href="{res file=css/tuango.min.css}" type="text/css" media="screen" title="no title" charset="utf-8"/>
+
+<div id="tuan_container" class="w">
+            <div class="tg_pos">
+                <span class="pos_icon"></span><a href="{$site_url}/" class="pos_in">首页</a> <span style="font-family:宋体;">&gt;<span> <a href="{url app=groupbuy}">团购</a>
+            </div>
+            <div class="tuan_ad">
+                <!--{if $rocet_adv_groupadtop}-->
+                <a href="{$rocet_adv_groupadtop.link}" title="{$rocet_adv_groupadtop.title}"><img src="{res file=themes/paipai/images/blank.gif}" data-src="{$rocet_adv_groupadtop.pic}" style="max-height: 168px" alt="{$rocet_adv_groupadtop.title}" /></a>
+                <!--{/if}-->
+            </div>
+            
+            <div class="tuan_serch">
+                <div class="tuan_serch_t">
+                    <h3 class="Left">商品筛选：</h3>
+                    <a href="{url app=groupbuy}" class="Right">显示全部商品</a>
+                </div>
+                <!--{foreach from=$rocet_cats_groupcats item=catf key=key}-->
+                <dl class="tuan_serch_item clearfix">
+                    <dt class="Left red" style="width: 200px;">
+                        <b style="width: 80px;">{$catf.cate_name}：</b>
+                        <a href="{url app=groupbuy&cate_id=$catf.cate_id}" >全部{$catf.cate_name}<span>({$rocet_cats_groupcats_count[$key]})</span></a>
+                    </dt>
+                    <dd style="padding-left: 250px;">
+                        <!--{foreach from=$catf.subcat item=catv}-->
+                        <a href="{url app=groupbuy&cate_id=$catv.cate_id}"  >{$catv.cate_name}<span>({$catv.cate_count})</span></a>
+                        <!--{/foreach}-->
+                    </dd>
+                </dl>
+                <!--{/foreach}-->
+                <!-- <div class="tuan_menu">
+                    <dl>
+                        <dt>
+                            排序：
+                        </dt>
+                        <dd>
+                            <a class="kind mrdesc" href="/tuangou/list-0-0-1-0-0-0-0.html">最新</a><a class="kind mrdesc" href="/tuangou/list-0-0-2-0-0-0-0.html">销量</a><a class="kind mrasc" href="/tuangou/list-0-0-3-1-0-0-0.html">价格</a><a class="kind mrasc" href="/tuangou/list-0-0-4-1-0-0-0.html">折扣</a>
+                        </dd>
+                    </dl>
+                    <div class="inputbox Left">
+                        <label>
+                            <input  onclick="location.href='/tuangou/list-0-1-0-0-1-0-0.html';" type="checkbox"/>
+                            <span class="name">今日新单</span></label><label>
+                            <input onclick="location.href='/tuangou/list-0-4-0-0-1-0-0.html';" type="checkbox"/>
+                            <span class="name">新单预告</span></label>
+                    </div>
+                    <div class="totalbox Right">
+                        <span class="total">共计<b>83</b>件商品</span><span class="page"><span class="pg"><i>1</i>/4</span> <a class="next" href="/tuangou/list-0-0-0-0-0-2-0.html" title="下一页">下一页</a> </span>
+                    </div>
+                </div> -->
+            </div>
+            
+            
+            <div id="tuan_list" class="tuan_list_container clearfix">
+                <!--{foreach from=$groupbuys item=groupbuy}-->
+                <div class="tg_list">
+                    <div class="tg_goods" onmouseover="this.className='tg_goods active';" onmouseout="this.className='tg_goods';">
+                        <p class="name">
+                            <a title="{$groupbuy.group_name}" target="_blank" href="{url app=groupbuy&id=$groupbuy.group_id}">{$groupbuy.group_name}</a>
+                        </p>
+                        <p class="tg_pic">
+                            <a title="{$groupbuy.group_name}" target="_blank" href="{url app=groupbuy&id=$groupbuy.group_id}"><img width="266" height="176" alt="{$groupbuy.group_name}" src="{res file=themes/paipai/images/blank.gif}" data-src="{$groupbuy.default_image}"></a>
+                            <span class="tg_info"></span>
+                            <span class="tg_info_1">
+                                <span class="Left" id="JS_over_time_{$groupbuy.group_id}"></span><span class="Right">已团购：<b id="JS_already_number_{$groupbuy.group_id}">{$groupbuy.group_joineds}</b></span>
+                            </span>
+                        </p>
+                        <a title="{$groupbuy.group_name}" target="_blank" href="{url app=groupbuy&id=$groupbuy.group_id}" class="delstl gogo" id="JS_state_{$groupbuy.group_id}"><strong class="yen"><small>&yen;</small>{$groupbuy.group_price}</strong><span><b>{$groupbuy.group_discount}</b>折
+                            <br />
+                            <i>&yen;{$groupbuy.price}元</i></span></a>
+                    </div>
+                    <p class="foot"></p>
+                    <div class="icon">
+                        <span class="text1"></span>
+                    </div>
+                </div>
+                <!--{/foreach}-->
+
+            </div>
+            
+            <!-- 
+            <div class="cPager c w">
+                <strong>1</strong>
+                <a href="/tuangou/list-0-0-0-0-0-2-0.html" class="bold">2</a>
+                <a href="/tuangou/list-0-0-0-0-0-3-0.html" class="bold">3</a>
+                <a href="/tuangou/list-0-0-0-0-0-4-0.html" class="bold">4</a>
+                <a href="/tuangou/list-0-0-0-0-0-2-0.html">下一页<span class="arrow">
+                <span class="aright">◆</span></span></a>
+                
+            </div> -->
+            
+            
+            <div class="tuan_activity" style="width:1190px;">
+                <h3 style="width:1190px;">以下活动正在进行中...</h3>
+                <ul style="width:1190px;">
+                    <!--{foreach from=$rocet_adv_groupactive item=groupactive name=groupactive}-->
+                    <li style="width:370px;">
+                        <a href="{$groupactive.link}" title="{$groupactive.title}"><img src="{$groupactive.pic}" width="456" height="206" alt="{$groupactive.title}" /></a>
+                    </li>
+                    <!--{/foreach}-->
+                </ul>
+            </div>
+                        
+        </div>
+
+
+
+
+
+<script type="text/javascript" charset="utf-8">
+            var TG = {
+                getGoodsInfo : function(goodsID) {
+                    M.ajax({
+                        url : "/tgpose/?act=getindexgoodsinfo&id=" + goodsID,
+                        dataType : "json",
+                        type : "get",
+                        success : function(json) {
+                            if (json.error == 0) {
+                                var now = parseInt(json.now);
+                                var info = json.msg;
+                                for (k in info) {
+                                    if (info[k]) {
+                                        M.$("#JS_already_number_" + info[k].goods_id).innerHTML = info[k].already_number < 0 ? 0 : info[k].already_number;
+                                        //M.$("#JS_left_number_" + info[k].goods_id).innerHTML = info[k].left_number < 0 ? 0 : info[k].left_number;
+                                        var start = info[k].start_time;
+                                        var end = info[k].end_time;
+                                        if (now < start) {//未开始
+                                            M.addClass(M.$("#JS_state_" + info[k].goods_id), "nostart");
+                                            M.$("#JS_over_time_" + info[k].goods_id).innerHTML = "开始时间：<span>" + info[k].start_time_format + "</span>";
+                                        } else if (now > end) {//已结束
+                                            M.addClass(M.$("#JS_state_" + info[k].goods_id), "over");
+                                        } else if (info[k].left_number <= 0) {//已售完
+                                            M.addClass(M.$("#JS_state_" + info[k].goods_id), "soldout");
+                                        } else if(now>start && end>now){
+                                            (function(goods_id){
+                                                var leftTime =  end - now;
+                                                var dom = M.$("#JS_over_time_" + goods_id);                                     
+                                                var myTimer = setInterval(function() {
+                                                        leftTime = leftTime - 1;
+                                                        var d = parseInt(leftTime / 3600 / 24);
+                                                        var h = parseInt((leftTime / 3600) % 24);
+                                                        var m = parseInt((leftTime / 60) % 60);
+                                                        var s = parseInt(leftTime % 60);
+                                                        dom.innerHTML="" + d + "天" + h + "时" + m + "分" + s + "秒";
+                                                    }, 1000);
+                                            })(info[k].goods_id);
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    });
+                }
+            };
+
+            //图片缓加载
+            var len = document.images.length, src;
+            for (var i = 0; i < len; i++) {
+                img = document.images[i];
+                src = img.getAttribute("data-src");
+                if (src) {
+                    img.src = src;
+                    img.removeAttribute("data-src");
+                }
+            }                       
+                var goodsID=[];
+                                        goodsID.push(44678);    
+                                        goodsID.push(82123);    
+                                        goodsID.push(82101);    
+                                        goodsID.push(84201);    
+                                        goodsID.push(84195);    
+                                        goodsID.push(82281);    
+                                        goodsID.push(29906);    
+                                        goodsID.push(45157);    
+                                        goodsID.push(47074);    
+                                        goodsID.push(50172);    
+                                        goodsID.push(49062);    
+                                        goodsID.push(54923);    
+                                        goodsID.push(52557);    
+                                        goodsID.push(20981);    
+                                        goodsID.push(44933);    
+                                        goodsID.push(32261);    
+                                        goodsID.push(44832);    
+                                        goodsID.push(26765);    
+                                        goodsID.push(45004);    
+                                        goodsID.push(38315);    
+                                        goodsID.push(45252);    
+                                        goodsID.push(53598);    
+                                        goodsID.push(48108);    
+                                        goodsID.push(38322);    
+                                
+                TG.getGoodsInfo(goodsID);           
+        </script>
+
+
+
+
+
+
+        
+{include file="amyfooter.html"}

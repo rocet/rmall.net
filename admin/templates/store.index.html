@@ -1,0 +1,247 @@
+{include file="header.html"}
+<div id="rightTop">
+  <p>{$lang.store}</p>
+  <ul class="subnav">
+    <!--{if $smarty.get.wait_verify}-->
+    <li><a class="btn1" href="index.php?app=store">{$lang.manage}</a></li>
+    <!--{else}-->
+    <li><span>{$lang.manage}</span></li>
+    <!--{/if}-->
+    <li><a class="btn1" href="index.php?app=store&amp;act=test">{$lang.add}</a></li>
+    <!--{if $smarty.get.wait_verify}-->
+    <li><span>{$lang.wait_verify}</span></li>
+    <!--{else}-->
+    <li><a class="btn1" href="index.php?app=store&amp;wait_verify=1">{$lang.wait_verify}</a></li>
+    <!--{/if}-->
+  </ul>
+</div>
+<div class="mrightTop">
+  <div class="fontl">
+    <form method="get">
+       <div class="left">
+          <input type="hidden" name="app" value="store" />
+          <input type="hidden" name="act" value="index" />
+          <input type="hidden" name="wait_verify" value="{$smarty.get.wait_verify}" />
+          {$lang.owner_name}:
+          <input class="queryInput" type="text" name="owner_name" value="{$smarty.get.owner_name|escape}" />
+          {$lang.store_name}:
+          <input class="queryInput" type="text" name="store_name" value="{$smarty.get.store_name|escape}" />
+          {$lang.sgrade}:
+          <select class="querySelect" name="sgrade">
+            <option value="">{$lang.select_pls}</option>
+            {html_options options=$sgrades selected=$smarty.get.sgrade}
+          </select>
+          <input type="submit" class="formbtn" value="{$lang.query}" />
+      </div>
+      <!--{if $filtered}-->
+      <a class="left formbtn1" href="index.php?app=store<!--{if $smarty.get.wait_verify}-->&amp;wait_verify={$smarty.get.wait_verify}<!--{/if}-->">{$lang.cancel_query}</a>
+      <!--{/if}-->
+    </form>
+  </div>
+  <div class="fontr">{include file=page.top.html} </div>
+</div>
+<div class="tdare">
+  <table width="100%" cellspacing="0" class="dataTable">
+    <!--{if $stores}-->
+    <tr class="tatr1">
+      <td width="20" class="firstCell"><input type="checkbox" class="checkall" /></td>
+      <td>{$lang.owner_user_name} | {$lang.owner_real_name}</td>
+      <td><span ectype="order_by" fieldname="store_name">{$lang.store_name}</span></td>
+      <td><span ectype="order_by" fieldname="region_id">{$lang.region}</span></td>
+      <td><span ectype="order_by" fieldname="sgrade">{$lang.sgrade}</span></td>
+      <td class="table-center"><span ectype="order_by" fieldname="add_time">{$lang.end_time}</span></td>
+      <td class="table-center"><span ectype="order_by" fieldname="state">{$lang.state}</span></td>
+      <!--{if !$smarty.get.wait_verify}-->
+      <td class="table-center"><span ectype="order_by" fieldname="sort_order">{$lang.sort_order}</span></td>
+      <td class="table-center"><span ectype="order_by" fieldname="recommended">{$lang.recommend}</td>
+      <td class="table-center"><span ectype="order_by" fieldname="store_recom_pic">推荐图片</span></td>
+      <!--{/if}-->
+      <td class="handler">{$lang.handler}</td>
+    </tr>
+    <!--{/if}-->
+    <!--{foreach from=$stores item=store}-->
+    <tr class="tatr2">
+      <td class="firstCell"><input type="checkbox" class="checkitem" value="{$store.store_id}" /></td>
+      <td>{$store.user_name|escape} | {$store.owner_name|escape}</td>
+      <td>{$store.store_name|escape}</td>
+      <td>{$store.region_name|escape}</td>
+      <td>{$store.sgrade}</td>
+      <td class="table-center">{$store.end_time|date}</td>
+      <td class="table-center">{$store.state}</td>
+      <!--{if !$smarty.get.wait_verify}-->
+      <td class="table-center"><span ectype="inline_edit" fieldname="sort_order" fieldid="{$store.store_id}" datatype="pint" title="{$lang.editable}" class="editable">{$store.sort_order}</span></td>
+      <td class="table-center"><!--{if $store.recommended}--><img src="templates/style/images/positive_enabled.gif" ectype="inline_edit" fieldname="recommended" fieldid="{$store.store_id}" fieldvalue="1" title="{$lang.editable}"/><!--{else}--><img src="templates/style/images/positive_disabled.gif" ectype="inline_edit" fieldname="recommended" fieldid="{$store.store_id}" fieldvalue="0" title="{$lang.editable}"/><!--{/if}--></td>
+
+      <td class="table-center"><!--{if $store.store_recom_pic}--><img class="recompic" src="templates/style/images/positive_enabled.gif"  onclick="$.fn.recompic(this,'{$store.store_id}')" data-img="/{$store.store_recom_pic}"/><!--{else}--><img src="templates/style/images/positive_disabled.gif" title="还没有图片" onclick="$.fn.recompic(this,'{$store.store_id}')"/><!--{/if}--></td>
+      <!--{/if}-->
+      <td class="handler">
+        <!--{if !$smarty.get.wait_verify}-->
+        <a href="index.php?app=store&amp;act=edit&amp;id={$store.store_id}">{$lang.edit}</a> | <a href="javascript:drop_confirm('{$lang.drop_confirm}', 'index.php?app=store&amp;act=drop&amp;id={$store.store_id}');">{$lang.drop}</a> | <a target="_blank" href="{$site_url}/index.php?app=store&amp;id={$store.store_id}">{$lang.store_index}</a>
+        <!--{else}-->
+        <a href="index.php?app=store&amp;act=view&amp;id={$store.store_id}">{$lang.view}</a>
+        <!--{/if}--></td>
+    </tr>
+    <!--{foreachelse}-->
+    <tr class="no_data">
+      <td colspan="12">{$lang.no_data}</td>
+    </tr>
+    <!--{/foreach}-->
+  </table>
+  <!--{if $stores}-->
+  <div id="dataFuncs">
+    <div class="pageLinks">{include file=page.bottom.html}</div>
+    <div id="batchAction" class="left paddingT15">{if !$smarty.get.wait_verify}
+      &nbsp;&nbsp;
+      <input class="formbtn batchButton" type="button" value="{$lang.edit}" name="id" uri="index.php?app=store&act=batch_edit&ret_page={$page_info.curr_page}" />
+      &nbsp;&nbsp;
+      <input class="formbtn batchButton" type="button" value="{$lang.drop}" name="id" uri="index.php?app=store&act=drop" presubmit="confirm('{$lang.drop_confirm}');" />
+      <!--&nbsp;&nbsp;
+      <input class="formbtn batchButton" type="button" value="{$lang.update_order}" name="id" presubmit="updateOrder(this);" />-->
+      {else}
+      <input class="formbtn batchButton" type="button" value="{$lang.drop}" name="id" uri="index.php?app=store&act=drop" presubmit="confirm('{$lang.reject_confirm}');" />
+      <!--{/if}-->
+    </div>
+  </div>
+  <div class="clear"></div>
+  <!--{/if}-->
+
+
+  <style type="text/css">
+  .recompicview{
+    position: absolute;
+    max-height: 300px;
+    max-width: 260px;
+    border: 1px solid;
+  }
+  </style>
+  <script>
+  $(function(){
+  $.fn.upload = function (options) {
+    options = options || {};
+    options.dom = this;
+    $.upload(options);
+  }
+  $.upload = function (options) {
+    var settings = {
+      dom: "",
+      action: "",
+      fileName: "file",
+      params: {},
+      accept: ".jpg,.png",
+      ieSubmitBtnText: "上传",
+      dataType:"text",
+      complete: function (result) {
+          alert(result);
+      },
+      submit: function () {
+
+      }
+    }
+    settings = $.extend(settings, options);
+    var ele = settings.dom;
+
+    var iframeName = "leunpha_iframe_v" + Math.random() * 100;
+    var width = ele.outerWidth();
+    var height = ele.outerHeight();
+    var iframe = $("<iframe name='"+iframeName+"' style='display:none;' id='"+iframeName+"'></iframe>");
+    var form = $("<form></form>");
+    form.attr({
+      target: iframeName,
+      action: settings.action,
+      method: "post",
+      "class": "ajax_form",
+      enctype: "multipart/form-data"
+    }).css({
+        width: width,
+        height: height,
+        position: "absolute",
+        top: (ele.offset().top),
+        left: (ele.offset().left)
+      });
+    var input = $("<input type='file'/>");
+    input.attr({
+      accept: settings.accept,
+      name: settings.fileName
+    })
+      .css({
+        opacity: 0,
+        position: "absolute",
+        width: width,
+        height: height + "px",
+        cursor: "pointer"
+      });
+    input.change(function () {
+      settings.submit.call(form);
+      $(this).parent("form").submit();
+    });
+    form.append(input);
+    $("body").append(iframe);
+    iframe.after(form);
+    for (var param in settings.params) {
+      var div = $("<input type='hidden'/>").attr({name: param, value: settings.params[param]});
+      input.after(div)
+      div = null;
+      delete div;
+    }
+    iframe.load(function () {
+      var im = document.getElementById(iframeName);
+      var text = $(im.contentWindow.document.body).text();
+    if(text){
+      var dataType = settings.dataType.toLocaleUpperCase();
+      if( dataType == "JSON"){
+      try{
+        if(typeof text=="string")
+        text = $.parseJSON(text);
+      }catch(e){
+        text = "error";
+      }
+      }else if(dataType == "xml"){
+
+      }else{
+
+      }
+    }
+    settings.complete.call(null, text);
+    });
+  }
+  $.fn.recompic = function(el, sid){
+    $('#recompicins').remove();
+    $('.recompicinscancel').remove();
+    $(el).after('<input type="button" value="上传" id="recompicins"/><img style="margin-left: 50px;" class="recompicinscancel" src="{res file=style/images/wrong.gif}" />');
+    $("#recompicins").upload({
+      action: "index.php?app=store&act=save_recom_pic", 
+      fileName: "recompic",
+      params: {sid:sid}, 
+      accept: ".jpg,.png", 
+      complete: function (r) {  //上传完成
+        r = eval("("+r+")");
+        if('ok' == r.msg){
+          $(el).after('<img class="recompic" src="{res file=style/images/positive_enabled.gif}" onclick="$.fn.recompic(this,'+sid+')" data-img="/'+r.data+'" />').remove();
+          $('#recompicins').remove();
+            $('.recompicinscancel').remove();
+
+          $('.recompic').hover(function(){
+            $(this).after('<img src="'+$(this).attr('data-img')+'" class="recompicview" />');
+          },function(){
+            $('.recompicview').remove();
+          });
+        }
+      }
+    });
+  }
+  $('.recompicinscancel').live('click', function(){
+    $('.recompicinscancel').remove();
+    $('#recompicins').remove();
+  });
+  $('.recompic').hover(function(){
+    $(this).after('<img src="'+$(this).attr('data-img')+'" class="recompicview" />');
+  },function(){
+    $('.recompicview').remove();
+  });
+
+
+  });
+
+  </script>
+</div>
+{include file="footer.html"}

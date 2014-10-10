@@ -1,0 +1,105 @@
+{include file="header.html"}
+<script type="text/javascript" src="{lib file=jquery.plugins/jquery.validate.js}"></script>
+<script type="text/javascript">
+$(function(){
+    $('#gcategory_form').validate({
+        errorPlacement: function(error, element){
+            $(element).next('.field_notice').hide();
+            $(element).after(error);
+        },
+        success       : function(label){
+            label.addClass('right').text('OK!');
+        },
+        onfocusout : false,
+        onkeyup    : false,
+        rules : {
+		<!--{if !$sec_subject_info}-->
+            subject_name : {
+                required : true,
+                remote   : {
+                    url :'index.php?module=seckill&act=check_subject&ajax=1',
+                    type:'get',
+                    data:{
+                        subject_name : function(){
+                            return $('#subject_name').val();
+                        }
+                    }
+                }
+            },
+		<!--{/if}-->
+            subject_detail : {
+                required : true
+            }
+        },
+        messages : {
+            subject_name : {
+                required : '{$lang.fill_subject_name}',
+                remote   : '{$lang.name_exist}'
+            },
+            subject_detail  : {
+                required : '{$lang.fill_subject_detail}'
+            }
+        }
+    });
+	/*$('#subject_name').blur(function(){
+	    $.ajax({
+		   type: 'get',
+		   url: 'index.php?module=seckill&act=check_subject&ajax=1&subject_name='+encodeURI($('#subject_name').val()),
+		   
+		   success: function(msg){
+		      alert(msg);
+		   }
+		});
+	});*/
+});
+</script>
+<div id="rightTop">
+  <p>{$lang.second_kill}</p>
+  <ul class="subnav">
+    <li><a class="btn3" href="index.php?module=seckill&act=set_period">{$lang.period_manage}</a></li>
+    <li><a class="btn3" href="index.php?module=seckill&act=set_period">{$lang.period_manage}</a></li>
+    <li><a class="btn3" href="index.php?module=seckill&act=set_goods_qty">{$lang.goods_qty_manage}</a></li>
+    <li><a class="btn3" href="index.php?module=seckill&act=set_store_seckill">{$lang.store_seckill_manage}</a> </li>
+    <li><a class="btn3" href="index.php?module=seckill&act=seckill_manage">{$lang.seckill_manage}</a> </li>
+    <li><a class="btn3" href="index.php?module=seckill&act=seckill_manage">{$lang.seckill_auditing}</a> </li>
+<li><a class="btn3" href="index.php?module=seckill&act=seckill_subject">{$lang.seckill_subject}</a> </li>
+    <li><span>{$lang.seckill_subject_add}</span> </li>
+  </ul>
+</div>
+<div class="info">
+    <form method="post" enctype="multipart/form-data" id="gcategory_form">
+        <table class="infoTable">
+            <tr>
+                <th class="paddingT15">
+                    {$lang.seckill_subject_name}:</th>
+                <td class="paddingT15 wordSpacing5">
+                    <input class="infoTableInput2" id="subject_name" type="text" name="subject_name" value="{$sec_subject_info.subject_name|escape}" <!--{if $sec_subject_info}-->readonly="readonly"<!--{/if}--> /> <label class="field_notice">{$lang.seckill_subject_name}</label>               </td>
+            </tr>
+            <tr>
+                <th class="paddingT15">
+                    {$lang.seckill_subject_detail}:</th>
+                <td class="paddingT15 wordSpacing5"><textarea name="subject_detail" class="subject_detail">{$sec_subject_info.subject_desc|escape}</textarea>         </td>
+            </tr>
+
+            <tr>
+              <th class="paddingT15">{$lang.if_show}:</th>
+              <td class="paddingT15 wordSpacing5"><p>
+                <label>
+                  <input type="radio" name="if_show" value="1" {if $sec_subject_info.subject_state}checked="checked"{/if} />
+                  {$lang.yes}</label>
+                <label>
+                  <input type="radio" name="if_show" value="0" {if !$sec_subject_info.subject_state}checked="checked"{/if} />
+                  {$lang.no}</label> <label class="field_notice">{$lang.add_if_show}</label>
+              </p></td>
+            </tr>
+
+          <tr>
+            <th></th>
+            <td class="ptb20">
+                <input class="formbtn" type="submit" name="Submit" value="{$lang.submit}" />
+                <input class="formbtn" type="reset" name="reset" value="{$lang.reset}" />            </td>
+        </tr>
+        </table>
+    </form>
+</div>
+{include file="footer.html"}

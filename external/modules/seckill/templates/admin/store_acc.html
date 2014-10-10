@@ -1,0 +1,133 @@
+{include file="header.html"}
+<script type="text/javascript">
+   $(function(){
+       $(".active_seckill").click(function(){
+	       var sgrade_id = $(this).parent().children('input').eq(0).val();
+		   var handle = $(this).parent().children('input').eq(1).val();
+		   var sgrade_function = $(this).parent().prev().text();
+		   var cmdObj = $(this);
+		   var img_name = "";
+		   var update_handle = "";
+		   if(sgrade_id == ''){
+		       alert('{$lang.no_such_sgrade}');
+			   return;
+		   }
+		   var action_alert = handle == 1 ? '{$lang.confirm_the_del_action}' : '{$lang.confirm_the_add_action}';
+		   if(!window.confirm(action_alert)){
+		       return;
+		   }
+		   img_name = handle == 1 ? 'positive_disabled' : 'positive_enabled';
+		   update_handle = handle == 1 ? '' : 1;
+		   handle = handle == 1 ? 'del' : 'add';
+		   
+		   $.ajax({
+		       type: 'GET',
+			   url: 'index.php?module=seckill&act=ajax_update_functions&handle='+handle+'&id='+sgrade_id,
+			   success: function(msg){
+			       if($.trim(msg) == ''){
+				       alert('{$lang.update_success}');
+				       cmdObj.parent().children('input').eq(1).val(update_handle);
+					   cmdObj.attr("src","{$site_url}/admin/templates/style/images/"+img_name+".gif");
+					   if(handle == 'add'){
+					       cmdObj.parent().prev().html(cmdObj.parent().prev().html()+"{$lang.seckill}");
+					   }
+					   else{
+					       cmdObj.parent().prev().html(cmdObj.parent().prev().html().replace("{$lang.seckill}",""));
+					   }
+					   
+				   }
+				   else{
+				       alert('{$lang.update_fail}');
+				   }
+			   }
+		   });
+	   });
+   });
+</script>
+<div id="rightTop">
+  <p>{$lang.second_kill}</p>
+  <ul class="subnav">
+<li><a class="btn3" href="index.php?module=seckill&act=set_start_time">{$lang.set_start_time}</a></li>
+	</li>
+    <li><a class="btn3" href="index.php?module=seckill&act=set_period">{$lang.period_manage}</a></li>
+    <li><a class="btn3" href="index.php?module=seckill&act=set_goods_qty">{$lang.goods_qty_manage}</a></li>
+	<li><span>{$lang.store_seckill_manage}</span>
+	</li>
+	<li><a class="btn3" href="index.php?module=seckill&act=seckill_manage">{$lang.seckill_manage}</a>
+	</li>
+	<li><a class="btn3" href="index.php?module=seckill&act=seckill_manage">{$lang.seckill_manage}</a>
+	</li>
+<li><a class="btn3" href="index.php?module=seckill&act=seckill_apply">{$lang.seckill_auditing}</a>
+	</li>
+<li><a class="btn3" href="index.php?module=seckill&act=seckill_subject">{$lang.seckill_subject}</a>
+	</li>
+  </ul>
+</div>
+<div class="mrightTop">
+  <div class="fontl">
+    <form method="get">
+      <div class="left">
+        <input type="hidden" name="module" value="seckill" />
+        <input type="hidden" name="act" value="set_store_seckill" />
+        {$lang.sgrade_name}:
+        <input class="queryInput" type="text" name="sgrade_name" value="{$smarty.get.sgrade_name|escape}" />
+		{$lang.state}:
+          <select class="querySelect" name="state">
+            <option value="">{$lang.select_pls}</option>
+            {html_options options=$state selected=$smarty.get.state}
+          </select>
+        <input type="submit" class="formbtn" value="{$lang.query}" />
+      </div>
+      <!--{if $filtered}-->
+      <a class="left formbtn1" href="index.php?module=seckill&act=set_store_seckill">{$lang.cancel_query}</a>
+      <!--{/if}-->
+    </form>
+  </div>
+  <div class="fontr">{include file=page.top.html} </div>
+</div>
+<div class="tdare">
+  <table width="100%" cellspacing="0" class="dataTable">
+    <!--{if $stores}-->
+    <tr class="tatr1">
+      <td width="20" class="firstCell"><input type="checkbox" class="checkall" /></td>
+      <td>{$lang.sgrade_name}</td>
+      <td><span ectype="order_by" fieldname="store_name">{$lang.sgrade_goods_limit}</span></td>
+      <td><span ectype="order_by" fieldname="store_name">{$lang.sgrade_space}(MB)</span></td>
+      <td><span ectype="order_by" fieldname="region_id">{$lang.sgrade_skin_limit}</span></td>
+      <td class="table-center"><span ectype="order_by" fieldname="sgrade">{$lang.sgrade_charge}</span></td>
+      <td class="table-center"><span ectype="order_by" fieldname="add_time">{$lang.store_function}</span></td>
+      <td class="table-center"><span ectype="order_by" fieldname="state">{$lang.store_seckill}</span></td>
+      <td class="handler">{$lang.sgrade_view}</td>
+    </tr>
+    <!--{/if}-->
+    <!--{foreach from=$stores item=store}-->
+    <tr class="tatr2">
+      <td class="firstCell"><input type="checkbox" class="checkitem" value="{$store.grade_id}" /></td>
+      <td>{$store.grade_name|escape}</td>
+      <td>{$store.goods_limit|escape}</td>
+      <td>{$store.space_limit|escape}</td>
+      <td>{$store.skin_limit|escape}</td>
+      <td class="table-center"><span>{$store.charge|price}/{$lang.$store.unit}</span>
+</td>
+      <td class="table-center"><span><!--{foreach from=$store.functions item=function}-->{$function|escape}<br /><!--{/foreach}--></span></td>
+      <td class="table-center"><!--{if $store.has_seckill}--><img src="{$site_url}/admin/templates/style/images/positive_enabled.gif"  title="{$lang.cancel_scekill}" class="active_seckill"/><!--{else}--><img src="{$site_url}/admin/templates/style/images/positive_disabled.gif"  title="{$lang.active_seckill}" class="active_seckill"/><!--{/if}--><input type="hidden" value="{$store.grade_id}" /><input type="hidden" value="{$store.has_seckill}" /></td>
+      <td class="handler">
+{$store.description}</td>
+    </tr>
+    <!--{foreachelse}-->
+    <tr class="no_data">
+      <td colspan="12">{$lang.no_data}</td>
+    </tr>
+    <!--{/foreach}-->
+  </table>
+  <!--{if $stores}-->
+  <div id="dataFuncs">
+    <div class="pageLinks">{include file=page.bottom.html}</div>
+    <div id="batchAction" class="left paddingT15">
+      <input class="formbtn batchButton" type="button" value="{$lang.batch}" name="id" uri="index.php?module=seckill&act=batch_update" presubmit="confirm('{$lang.batch_confirm}');" />
+    </div>
+  </div>
+  <div class="clear"></div>
+  <!--{/if}-->
+</div>
+{include file="footer.html"} 

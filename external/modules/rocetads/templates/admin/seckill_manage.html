@@ -1,0 +1,121 @@
+{include file="header.html"}
+<script type="text/javascript">
+   $(function(){
+       $('.active_rocetads').bind('click',active_rocetads);
+   });
+   
+   function active_rocetads(){
+       var sec_id = $(this).parent().children('input').val();
+	   var type = ($(this).attr('title') == "{$lang.active_rocetads}") ? 'active' : 'cancel';
+	   var text = type == 'active' ? '{$lang.cancel_scekill}' : '{$lang.active_rocetads}';
+	   var image_url = type != 'active' ? '{$site_url}/admin/templates/style/images/positive_disabled.gif' : '{$site_url}/admin/templates/style/images/positive_enabled.gif';
+	   var cmdObj = $(this);
+	   $.ajax({
+	       type: 'get',
+		   url: 'index.php?module=rocetads&act=rocetads_recommended&ajax=true&id='+sec_id+'&type='+type,
+		   success: function(msg){
+		       if($.trim(msg) == 'success'){
+			       cmdObj.attr('title',text);
+				   
+				   cmdObj.attr('src',image_url);
+			   }
+			   else{
+			       alert('{$lang.edit_recommended_error}');
+			   }
+		   }
+	   })
+
+   }
+</script>
+<div id="rightTop">
+  <p>{$lang.second_kill}</p>
+  <ul class="subnav">
+    <li><a class="btn3" href="index.php?module=rocetads&act=set_start_time">{$lang.set_start_time}</a></li>
+    <li><a class="btn3" href="index.php?module=rocetads&act=set_period">{$lang.period_manage}</a></li>
+    <li><a class="btn3" href="index.php?module=rocetads&act=set_goods_qty">{$lang.goods_qty_manage}</a></li>
+    <li><a class="btn3" href="index.php?module=rocetads&act=set_store_rocetads">{$lang.store_rocetads_manage}</a> </li>
+    <li><span>{$lang.rocetads_manage}</span></li>
+<li><a class="btn3" href="index.php?module=rocetads&act=rocetads_apply">{$lang.rocetads_auditing}</a>
+	</li>
+<li><a class="btn3" href="index.php?module=rocetads&act=rocetads_subject">{$lang.rocetads_subject}</a>
+	</li>
+  </ul>
+</div>
+<div class="mrightTop">
+  <div class="fontl">
+    <form method="get">
+      <div class="left">
+        <input type="hidden" name="module" value="rocetads" />
+        <input type="hidden" name="act" value="rocetads_manage" />
+        {$lang.rocetads_goods_name}:
+        <input class="queryInput" type="text" name="goods_name" value="{$smarty.get.goods_name|escape}" />
+		{$lang.rocetads_state}:
+          <select class="querySelect" name="state">
+            <option value="">{$lang.select_pls}</option>
+            {html_options options=$state selected=$smarty.get.state}
+          </select>
+        <input type="submit" class="formbtn" value="{$lang.query}" />
+      </div>
+      <!--{if $filtered}-->
+      <a class="left formbtn1" href="index.php?module=rocetads&act=rocetads_manage">{$lang.cancel_query}</a>
+      <!--{/if}-->
+    </form>
+  </div>
+  <div class="fontr">{include file=page.top.html} </div>
+</div>
+<div class="tdare">
+  <table width="100%" cellspacing="0" class="dataTable">
+    <!--{if $rocetads_goods_lists}-->
+    <tr class="tatr1">
+      <td width="20" class="firstCell"><input type="checkbox" class="checkall" /></td>
+      <td>{$lang.rocetads_subject}</td>
+      <td><span ectype="order_by" fieldname="store_name">{$lang.rocetads_goods_name}</span></td>
+      <td><span ectype="order_by" fieldname="store_name">{$lang.rocetads_goods_price}/{$lang.rocetads_formaly_price}</span></td>
+      <td><span ectype="order_by" fieldname="region_id">{$lang.rocetads_goods_qyt}</span></td>
+      <td class="table-center"><span ectype="order_by" fieldname="sgrade">{$lang.rocetads_store_name}</span></td>
+	  <td class="table-center"><span ectype="order_by" fieldname="sgrade">{$lang.start_time}</span></td>
+      <td class="table-center"><span ectype="order_by" fieldname="add_time">{$lang.rocetads_state}</span></td>
+      <td class="table-center"><span ectype="order_by" fieldname="state">{$lang.rocetads_recommended}</span></td>
+      <td class="handler">{$lang.handdle}</td>
+    </tr>
+    <!--{/if}-->
+    <!--{foreach from=$rocetads_goods_lists item=lists}-->
+    <tr class="tatr2">
+      <td class="firstCell"><input type="checkbox" class="checkitem" value="{$lists.sec_id}" /></td>
+      <td>{$lists.subject_name|escape}</td>
+      <td>{$lists.goods_name|escape}</td>
+      <td>{$lists.sec_price.0.price|price}/{$lists.price|price}</td>
+      <td>{$lists.sec_quantity|escape}</td>
+      <td class="table-center"><span>{$lists.store_name|escape}</span> </td>
+	  <td class="table-center"><span>{$lists.start_time|date}</span> </td>
+      <td class="table-center"><span>{$lists.sec_state|escape}
+        </span></td>
+      <td class="table-center"> <!--{if $lists.sec_state ne $lang.rocetads_end}--><!--{if $lists.recommended eq SECKILL_RECOMMENDED}-->
+        <img src="{$site_url}/admin/templates/style/images/positive_enabled.gif"  title="{$lang.cancel_scekill}" class="active_rocetads"/>
+        <!--{else}-->
+        <img src="{$site_url}/admin/templates/style/images/positive_disabled.gif"  title="{$lang.active_rocetads}" class="active_rocetads"/>
+        <!--{/if}-->
+		<!--{else}-->
+		{$lang.rocetads_end}
+		<!--{/if}-->
+        <input type="hidden" value="{$lists.sec_id}" /></td>
+      <td class="handler"><a href="index.php?module=rocetads&act=rocetads_del&id={$lists.sec_id}"> {$lang.rocetads_del}</a></td>
+    </tr>
+    <!--{foreachelse}-->
+    <tr class="no_data">
+      <td colspan="12">{$lang.no_data}</td>
+    </tr>
+    <!--{/foreach}-->
+  </table>
+  <!--{if $rocetads_goods_lists}-->
+  <div id="dataFuncs">
+    <div class="pageLinks">{include file=page.bottom.html}</div>
+    <div id="batchAction" class="left paddingT15">
+	 <input class="formbtn batchButton" type="button" value="{$lang.recommended}" name="id" uri="index.php?module=rocetads&act=rocetads_recommended" presubmit="confirm('{$lang.batch_recommended}');" />
+      <input class="formbtn batchButton" type="button" value="{$lang.rocetads_del}" name="id" uri="index.php?module=rocetads&act=rocetads_del" presubmit="confirm('{$lang.batch_delete}');" />
+    </div>
+  </div>
+  <div class="clear"></div>
+  <!--{/if}-->
+</div>
+{include file="footer.html"} 

@@ -1,0 +1,75 @@
+{include file="header.html"}
+<div id="rightTop">
+    <p>{$lang.arads}</p>
+    <ul class="subnav">
+        <li><span>{$lang.manage}</span></li>
+        <li><a class="btn1" href="index.php?app=arads&amp;act=add">{$lang.add}</a></li>
+    </ul>
+</div>
+<div class="mrightTop">
+    <div class="fontl">
+        <form method="get">
+            <div class="left">
+                <input type="hidden" name="app" value="arads" />
+                <input type="hidden" name="act" value="index" />
+                {$lang.title}:
+                <input class="queryInput" type="text" name="title" value="{$query.title|escape}" />
+                <input type="submit" class="formbtn" value="{$lang.query}" />
+            </div>
+            <!--{if $filtered}-->
+            <a class="left formbtn1" href="index.php?app=arads">{$lang.cancel_query}</a>
+            <!--{/if}-->
+        </form>
+    </div>
+    <div class="fontr">
+        {include file=page.top.html}
+    </div>
+</div>
+<div class="tdare">
+    <table width="100%" cellspacing="0" class="dataTable">
+        <!--{if $aradss}-->
+        <tr class="tatr1">
+            <td width="20" class="firstCell"><input type="checkbox" class="checkall" /></td>
+            <td>{$lang.title}</td>
+            <td>{$lang.aradps}</td>
+            <td>{$lang.link}</td>
+            <td class="table-center">{$lang.pic}</td>
+            <td class="table-center">{$lang.sort_order}</td>
+            <td class="handler">{$lang.handler}</td>
+        </tr>
+        <!--{/if}-->
+        <!--{foreach from=$aradss item=arads}-->
+        <tr class="tatr2">
+            <td class="firstCell"><input type="checkbox" class="checkitem" value="{$arads.arads_id}" /></td>
+            <td>{$arads.title}</td>
+            <td>{$arads.aradps.title}</td>
+            <td>{$arads.link}</td>
+            <td class="table-center"><!--{if $arads.pic}--><img src="{$arads.pic}" height="30"/><!--{/if}--></td>
+            <td class="table-center"><span ectype="inline_edit" fieldname="sort_order" fieldid="{$arads.arads_id}" datatype="pint" maxvalue="255" class="editable" title="{$lang.editable}">{$arads.sort_order}</span></td>
+            <td class="handler">
+            <a href="index.php?app=arads&amp;act=edit&amp;id={$arads.arads_id}">{$lang.edit}</a>
+                |
+                <a href="javascript:drop_confirm('{$lang.drop_confirm}', 'index.php?app=arads&amp;act=drop&amp;id={$arads.arads_id}');">{$lang.drop}</a>
+            </td>
+        </tr>
+        <!--{foreachelse}-->
+        <tr class="no_data">
+            <td colspan="6">{$lang.no_data}</td>
+        </tr>
+        <!--{/foreach}-->
+    </table>
+    <!--{if $aradss}-->
+    <div id="dataFuncs">
+        <div id="batchAction" class="left paddingT15">&nbsp;&nbsp;
+            <input class="formbtn batchButton" type="button" value="{$lang.drop}" name="id" uri="index.php?app=arads&act=drop" presubmit="confirm('{$lang.drop_confirm}');" />
+            &nbsp;&nbsp;
+           <!-- <input class="formbtn batchButton" type="button" value="lang.update_order" name="id" presubmit="updateOrder(this);" />-->
+        </div>
+        <div class="pageLinks">
+            {include file=page.bottom.html}
+        </div>
+        <div class="clear"></div>
+    </div>
+    <!--{/if}-->
+</div>
+{include file="footer.html"}

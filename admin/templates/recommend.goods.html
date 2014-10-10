@@ -1,0 +1,190 @@
+{include file="header.html"}
+<div id="rightTop">
+  <p>{$lang.goods_recommended}</p>
+  <ul class="subnav">
+	<li><a class="btn1" href="index.php?app=recommend">{$lang.recommend}</a></li>
+  </ul>
+</div>
+<div class="mrightTop">
+  <div class="fontl"> {$lang.recommend}:
+	<select class="infoTableSelect" onchange="location='index.php?app=recommend&act=view_goods&id=' + this.value">{html_options options=$recommends selected=$smarty.get.id}
+
+	</select>
+  </div>
+  <div class="fontr"> {if $goods_list}{include file=page.top.html}{/if} </div>
+</div>
+<div class="tdare">
+  <table width="100%" cellspacing="0" class="dataTable">
+	<tr class="tatr1">
+	  <td width="20" class="firstCell"><input type="checkbox" class="checkall" /></td>
+	  <td width="30%">{$lang.goods_name}</td>
+	  <td width="100">{$lang.sort_order}</td>
+	  <td width="10%">{$lang.store_name}</td>
+	  <td width="10%">{$lang.brand}</td>
+	  <td>{$lang.cate_name}</td>
+	  <td>{$lang.if_show}</td>
+	  <td>{$lang.closed}</td>
+	  <td>{$lang.views}</td>
+	</tr>
+	<!--{foreach from=$goods_list item=goods}-->
+	<tr class="tatr2">
+	  <td class="firstCell"><input type="checkbox" class="checkitem" value="{$goods.goods_id}" /></td>
+	  <td>{$goods.goods_name|escape}{if !$goods.recommend_pic}<img title="还没有图片" onclick="$.fn.recompic(this,'{$goods.goods_id}','{$goods.recom_id}')" src="{res file=style/images/negative_enabled.gif}" />{else}<img class="recompic" src="{res file=style/images/positive_enabled.gif}" onclick="$.fn.recompic(this,'{$goods.goods_id}','{$goods.recom_id}')" data-img="/{$goods.recommend_pic}" />{/if}</td>
+	  <td><span ectype="inline_edit" fieldname="sort_order" fieldid="{$smarty.get.id}-{$goods.goods_id}" class="editable" title="{$lang.editable}">{$goods.sort_order}</span></td>
+	  <td>{$goods.store_name|escape}</td>
+	  <td>{$goods.brand|escape}</td>
+	  <td>{$goods.cate_name|nl2br}</td>
+	  <td><!-- {if $goods.if_show} --><img src="{res file=style/images/positive_enabled.gif}" /><!--{else}--><img src="{res file=style/images/positive_disabled.gif}" /><!-- {/if} --></td>
+	  <td><!-- {if $goods.closed} --><img src="{res file=style/images/negative_enabled.gif}" /><!--{else}--><img src="{res file=style/images/negative_disabled.gif}" /><!-- {/if} --></td>
+	  <td>{$goods.views|default:0}</td>
+	</tr>
+	<!--{foreachelse}-->
+	<tr class="no_data">
+	  <td colspan="5">{$lang.no_data}</td>
+	</tr>
+	<!--{/foreach}-->
+  </table>
+  <div id="dataFuncs">
+	<div id="batchAction" class="left paddingT15"> &nbsp;&nbsp;
+	  <input class="formbtn batchButton" type="button" value="{$lang.unrecommend}" name="goods_id" uri="index.php?app=recommend&act=drop_goods_from&id={$smarty.get.id}" />
+	</div>
+  </div>
+  <div class="pageLinks"> {if $goods_list}{include file=page.bottom.html}{/if} </div>
+  <div class="clear"></div>
+  <style type="text/css">
+  .recompicview{
+  	position: absolute;
+  	max-height: 300px;
+  	max-width: 260px;
+  	border: 1px solid;
+  }
+  </style>
+  <script>
+  $(function(){
+	$.fn.upload = function (options) {
+		options = options || {};
+		options.dom = this;
+		$.upload(options);
+	}
+	$.upload = function (options) {
+		var settings = {
+			dom: "",
+			action: "",
+			fileName: "file",
+			params: {},
+			accept: ".jpg,.png",
+			ieSubmitBtnText: "上传",
+			dataType:"text",
+			complete: function (result) {
+		  		alert(result);
+			},
+			submit: function () {
+
+			}
+		}
+		settings = $.extend(settings, options);
+		var ele = settings.dom;
+
+		var iframeName = "leunpha_iframe_v" + Math.random() * 100;
+		var width = ele.outerWidth();
+		var height = ele.outerHeight();
+		var iframe = $("<iframe name='"+iframeName+"' style='display:none;' id='"+iframeName+"'></iframe>");
+		var form = $("<form></form>");
+		form.attr({
+			target: iframeName,
+			action: settings.action,
+			method: "post",
+			"class": "ajax_form",
+			enctype: "multipart/form-data"
+		}).css({
+				width: width,
+				height: height,
+				position: "absolute",
+				top: (ele.offset().top),
+				left: (ele.offset().left)
+			});
+		var input = $("<input type='file'/>");
+		input.attr({
+			accept: settings.accept,
+			name: settings.fileName
+		})
+			.css({
+				opacity: 0,
+				position: "absolute",
+				width: width,
+				height: height + "px",
+				cursor: "pointer"
+			});
+		input.change(function () {
+			settings.submit.call(form);
+			$(this).parent("form").submit();
+		});
+		form.append(input);
+		$("body").append(iframe);
+		iframe.after(form);
+		for (var param in settings.params) {
+			var div = $("<input type='hidden'/>").attr({name: param, value: settings.params[param]});
+			input.after(div)
+			div = null;
+			delete div;
+		}
+		iframe.load(function () {
+			var im = document.getElementById(iframeName);
+			var text = $(im.contentWindow.document.body).text();
+		if(text){
+		  var dataType = settings.dataType.toLocaleUpperCase();
+		  if( dataType == "JSON"){
+			try{
+			  if(typeof text=="string")
+				text = $.parseJSON(text);
+			}catch(e){
+			  text = "error";
+			}
+		  }else if(dataType == "xml"){
+
+		  }else{
+
+		  }
+		}
+		settings.complete.call(null, text);
+		});
+	}
+
+	$.fn.recompic = function(el, gid, rid){
+	  $('#recompicins').remove();
+	  $('.recompicinscancel').remove();
+	  $(el).after('<input type="button" value="上传" id="recompicins"/><img style="margin-left: 50px;" class="recompicinscancel" src="{res file=style/images/wrong.gif}" />');
+	  $("#recompicins").upload({
+			action: "index.php?app=recommend&act=save_recom_pic", 
+			fileName: "recompic",
+			params: {gid:gid,rid:rid}, 
+			accept: ".jpg,.png", 
+			complete: function (r) {  //上传完成
+				r = eval("("+r+")");
+				if('ok' == r.msg){
+					$(el).after('<img class="recompic" src="{res file=style/images/positive_enabled.gif}" onclick="$.fn.recompic(this,'+gid+','+rid+')" data-img="/'+r.data+'" />').remove();
+					$('#recompicins').remove();
+	  				$('.recompicinscancel').remove();
+
+					$('.recompic').hover(function(){
+						$(this).after('<img src="'+$(this).attr('data-img')+'" class="recompicview" />');
+					},function(){
+						$('.recompicview').remove();
+					});
+				}
+			}
+		});
+	}
+	$('.recompicinscancel').live('click', function(){
+		$('.recompicinscancel').remove();
+		$('#recompicins').remove();
+	});
+	$('.recompic').hover(function(){
+		$(this).after('<img src="'+$(this).attr('data-img')+'" class="recompicview" />');
+	},function(){
+		$('.recompicview').remove();
+	});
+  });
+  </script>
+</div>
+{include file="footer.html"} 

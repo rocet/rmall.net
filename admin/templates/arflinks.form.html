@@ -1,0 +1,83 @@
+{include file="header.html"}
+<script type="text/javascript">
+$(function(){
+    $('#arflinks_form').validate({
+        errorPlacement: function(error, element){
+            $(element).next('.field_notice').hide();
+            $(element).after(error);
+        },
+        success       : function(label){
+            label.addClass('right').text('OK!');
+        },
+        rules : {
+            title : {
+                required : true
+            },
+            link :{
+                required : true
+            }
+        },
+        messages : {
+            title : {
+                required : '{$lang.title_empty}'
+            },
+            link : {
+                required : '{$lang.link_empty}'
+            }
+        }
+    });
+});
+
+</script>
+<div id="rightTop">
+    <p>{$lang.arflinks}</p>
+    <ul class="subnav">
+        <li><a class="btn1" href="index.php?app=arflinks">{$lang.manage}</a></li>
+        {if $arflinks.arflinks_id}
+        <li><a class="btn1" href="index.php?app=arflinks&amp;act=add">{$lang.add}</a></li>
+        {else}
+        <li><span>{$lang.add}</span></li>
+        {/if}
+    </ul>
+</div>
+
+<div class="info">
+    <form method="post" enctype="multipart/form-data" id="arflinks_form">
+        <table class="infoTable">
+            <tr>
+                <th class="paddingT15">
+                    {$lang.title}:</th>
+                <td class="paddingT15 wordSpacing5">
+                    <input class="infoTableInput" id="title" type="text" name="title" value="{$arflinks.title|escape}" />
+                </td>
+            </tr>
+            
+            <tr>
+                <th class="paddingT15">
+                    <label for="cate_id">{$lang.link}:</label></th>
+                <td class="paddingT15 wordSpacing5">
+                    <input class="infoTableInput" id="link" type="text" name="link" value="{$arflinks.link|escape}" />
+                </td>
+            </tr>
+            <tr>
+                <th class="paddingT15">
+                    <label for="if_show">{$lang.if_show}:</label></th>
+                <td class="paddingT15 wordSpacing5">
+                    <input id="yes" type="radio" name="if_show" value="1" {if $arflinks.if_show eq 1} checked="checked"{/if} />
+                    <label for="yes">{$lang.yes}</label>
+                    <input id="no" type="radio" name="if_show" value="0" {if $arflinks.if_show eq 0} checked="checked"{/if} />
+                    <label for="no">{$lang.no}</label>
+                </td>
+            </tr>
+            
+        <tr>
+            <th></th>
+            <td class="ptb20">
+                <input class="formbtn" type="submit" name="Submit" value="{$lang.submit}" />
+                <input class="formbtn" type="reset" name="Submit2" value="{$lang.reset}" />
+            </td>
+        </tr>
+        </table>
+    </form>
+</div>
+{include file="footer.html"}

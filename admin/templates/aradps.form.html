@@ -1,0 +1,83 @@
+{include file="header.html"}
+<script type="text/javascript">
+$(function(){
+    $('#aradps_form').validate({
+        errorPlacement: function(error, element){
+            $(element).next('.field_notice').hide();
+            $(element).after(error);
+        },
+        success       : function(label){
+            label.addClass('right').text('OK!');
+        },
+        rules : {
+            title : {
+                required : true
+            },
+            identify :{
+                required : true
+            }
+        },
+        messages : {
+            title : {
+                required : '{$lang.title_empty}'
+            },
+            identify : {
+                required : '{$lang.identify_empty}'
+            }
+        }
+    });
+});
+
+</script>
+<div id="rightTop">
+    <p>{$lang.aradps}</p>
+    <ul class="subnav">
+        <li><a class="btn1" href="index.php?app=aradps">{$lang.manage}</a></li>
+        {if $aradps.aradps_id}
+        <li><a class="btn1" href="index.php?app=aradps&amp;act=add">{$lang.add}</a></li>
+        {else}
+        <li><span>{$lang.add}</span></li>
+        {/if}
+    </ul>
+</div>
+
+<div class="info">
+    <form method="post" enctype="multipart/form-data" id="aradps_form">
+        <table class="infoTable">
+            <tr>
+                <th class="paddingT15">
+                    {$lang.title}:</th>
+                <td class="paddingT15 wordSpacing5">
+                    <input class="infoTableInput" id="title" type="text" name="title" value="{$aradps.title|escape}" />
+                </td>
+            </tr>
+            
+            <tr>
+                <th class="paddingT15">
+                    <label for="cate_id">{$lang.identify}:</label></th>
+                <td class="paddingT15 wordSpacing5">
+                    <input class="infoTableInput" id="identify" type="text" name="identify" value="{$aradps.identify|escape}" />
+                </td>
+            </tr>
+            <tr>
+                <th class="paddingT15">
+                    <label for="if_show">{$lang.if_show}:</label></th>
+                <td class="paddingT15 wordSpacing5">
+                    <input id="yes" type="radio" name="if_show" value="1" {if $aradps.if_show eq 1} checked="checked"{/if} />
+                    <label for="yes">{$lang.yes}</label>
+                    <input id="no" type="radio" name="if_show" value="0" {if $aradps.if_show eq 0} checked="checked"{/if} />
+                    <label for="no">{$lang.no}</label>
+                </td>
+            </tr>
+            
+        <tr>
+            <th></th>
+            <td class="ptb20">
+                <input class="formbtn" type="submit" name="Submit" value="{$lang.submit}" />
+                <input class="formbtn" type="reset" name="Submit2" value="{$lang.reset}" />
+            </td>
+        </tr>
+        </table>
+    </form>
+</div>
+{include file="footer.html"}

@@ -1,0 +1,135 @@
+﻿
+<script type="text/javascript">
+$(function(){
+    $("body:eq(0)").removeClass('root_body');
+});
+</script>
+
+<style type="text/css">
+.content {width: 980px;}
+#right {width: 770px;padding: 0;
+overflow: hidden;
+background: none;
+position: initial;}
+.wrap_line {width: 770px;}
+.wrap_bottom {width: 770px;}
+#left *{
+    font-family: '微软雅黑'!important;
+    font-size: 13px;
+font-weight: normal;
+}
+#left dl {width: 195px;padding-bottom: 0;}
+#left {width: 195px;border-top: 0;border-radius: 6px;}
+#left dt {width: 195px;  line-height: 36px; height: 36px; background: url({res file=images/user/bg_0218.png}) 0 -40px no-repeat; padding-left: 10px; font-weight: bold; font-size: 15px; border-bottom: 1px solid #d8d8d8; border-top: 1px solid #fff; overflow: hidden;
+padding: 0 0 0 10px;}
+#left h2 { height: 40px; line-height: 1; font-size: 14px; font-weight: bold; color: #fff; background: url({res file=images/user/bg_0218.png}) 0 0 no-repeat; }
+#left span.s1{
+ vertical-align: middle; float: left; width: 20px; height: 20px; background: url({res file=images/user/bg_0218.png}) -195px 0 no-repeat; margin: 7px 8px 0 0; background-position: -20px -198px; 
+}
+#left dd {
+line-height: 36px;
+border-bottom: 1px solid #ebebeb;
+padding-left: 20px;
+width: auto;
+height: 37px;
+
+}
+#left {background: none;border: 1px solid #d0d0d0;
+border-bottom: 0;overflow: hidden;}
+#left dd a.isa {
+color: #333;
+font-weight: bold;
+background: url({res file=images/user/bg_0218.png}) 0 -176px no-repeat;
+display: initial;
+}
+#left dd a.isa:hovers ,#left dd a.active {
+color: #e52952!important;
+
+}
+#left dd a span.isp {
+background: none;
+display: initial;
+}
+#right div.wrap_line.margin1 {
+background: #fff;
+border: 1px solid #d0d0d0;
+border-top: 3px solid #e52952;
+margin-bottom: 15px;
+}
+.wrap_line{
+
+border-top: 3px solid #e52952;
+}
+.wrap_bottom {
+height: 0;
+}
+.wrap_line {
+width: 768px;
+}
+</style>
+
+<div class="footer-box">
+{if !$smarty.const.ROCETHIDE}
+<div class="footer-table"><div class="w clearfix">
+    <div class="someInfo Left">
+        <div class="phone">
+            <h4>24小时客服热线</h4>
+            <p>{$rocet_settings.site_400}</p>
+        </div>
+        <div class="count">{$site_name}QQ: {$rocet_settings.site_qq1} </div>
+        <div class="count">{$site_name}QQ: {$rocet_settings.site_qq2} </div>
+        
+    </div>
+    <table cellspacing="0" cellpadding="0" class="dtab Left clearfix"><tr>
+        <!--{foreach from=$rocet_foothelpers item=foothelper}-->
+        <td><div class="line"></div></td>
+                <td><dl class="dl">
+            <dt class="dt">{$foothelper.channel}</dt>
+            <dd class="dd">
+                <!--{foreach from=$foothelper.articles item=foothelperart}-->
+                <a href="{url app=article&act=view&article_id=$foothelperart.article_id}" target="_blank" title="{$foothelperart.title}" rel="nofollow">{$foothelperart.title}</a>
+                <!--{/foreach}-->
+            </dd>
+        </dl></td>
+        <!--{/foreach}-->
+            </tr></table>
+
+    <div class="weixin Right" style="width:200px;">
+        <h2 class="title">{$site_name}微信公众号</h2>
+        
+                    <div class="img"><a href="/" target="_blank"><img src="{res file=images/201403/1395981498923021867.png}" width="100" height="100" /></a></div>
+        <p>&nbsp;</p>
+            </div>
+</div></div>
+<div class="w footer-icon" style="text-align:center;height: 38px; padding: 10px;">
+    <img src="{res file=images/biconMap.jpg}" />
+    <!-- <div class="iconMap">
+        <a href="/" target="_blank" title="O2O双平台" class="iconMap1" rel="nofollow"><p class="iconBg"></p><p class="icon-title">O2O双平台</p><p class="icon-desc">中国家具电商第一品牌</p></a><a href="/" target="_blank" title="全球化采购" class="iconMap2" rel="nofollow"><p class="iconBg iconBg1"></p><p class="icon-title">全球化采购</p><p class="icon-desc">高质平价经营</p></a><a href="/" target="_blank" title="100%" rel="nofollow"><p class="iconBg iconBg2"></p><p class="icon-title">100%</p><p class="icon-desc">正品保证</p></a><a href="/" target="_blank" title="双重质检" rel="nofollow"><p class="iconBg iconBg3"></p><p class="icon-title">双重质检</p><p class="icon-desc">品质保证</p></a><a href="/" target="_blank" title="限时达" rel="nofollow"><p class="iconBg iconBg4"></p><p class="icon-title">限时达</p><p class="icon-desc">最快7天到家</p></a><a href="/" target="_blank" title="45天" rel="nofollow"><p class="iconBg iconBg5"></p><p class="icon-title">45天</p><p class="icon-desc">无理由退换货</p></a><a href="/" target="_blank" title="买贵补差" class="iconMap7" rel="nofollow"><p class="iconBg iconBg6"></p><p class="icon-title">买贵补差</p><p class="icon-desc">价格保护</p></a><a href="/" target="_blank" title="万千口碑" class="iconMap8" rel="nofollow"><p class="iconBg iconBg7"></p><p class="icon-title">万千口碑</p><p class="icon-desc">万千家庭共同选择</p></a>
+    </div> -->
+</div>
+
+<div id="JS_ship_link" class="w footer-link"><strong>友情链接：</strong>
+    <!--{foreach from=$rocet_flinks item=flink}-->
+    <a href="{$flink.link}" target="_blank" title="{$flink.title}" >{$flink.title}</a>
+    <!--{/foreach}-->
+    <a id="JS_more_link" href="/links.html" target="_blank" title="更多友情链接">更多</a><span id="JS_open_more" class="warpIcon"><em class="arrow"></em></span>
+</div>
+{/if}
+<div class="w footer-copy">
+<!-- 
+    <!--{foreach from=$navs.footer item=nav}-->
+    <a href="{$nav.link}"{if $nav.open_new} target="_blank"{/if} title="{$nav.title|escape}">{$nav.title|escape}</a> 
+    |
+    <!--{/foreach}-->
+    <a href="{url app=article}" target="_blank" title="更多">更多</a> 
+    <br />
+     -->
+    <a href="http://www.miibeian.gov.cn/" target="_blank" class="gray" rel="nofollow">ICP备案证书号：<!--{if $icp_number}-->{$icp_number}<!--{/if}--></a> {$site_title}<br />
+    <span class="yen">&copy; 2005-2014 </span>{$site_name} 版权所有，并保留所有权利。<br />
+    <img src="{res file=images/btassd.jpg}"/>
+    <!-- <span style="display:inline-block;margin-right:4px;vertical-align:top;"><a rel="nofollow" href="/" id="kx_verify" tabindex="-1" target="_blank"><img src="{res file=themes/paipai/images/blank.gif}" class="xinyu1" width="82" height="30" alt="可信网站"></a></span>
+    <span style="display:inline-block;vertical-align:top;"><img class="xinyu2" src="{res file=themes/paipai/images/blank.gif}" width="82" height="30" border="0"></span>  -->
+</div>
+
+</body>
+</html>

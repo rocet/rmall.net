@@ -337,7 +337,7 @@ class FrontendApp extends ECBaseApp
      *    @param    none
      *    @return    void
      */
-    function jslang()
+    function jslang($ass = null)
     {
         $lang = Lang::fetch(lang_file('jslang'));
         parent::jslang($lang);

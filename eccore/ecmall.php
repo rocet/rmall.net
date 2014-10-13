@@ -46,7 +46,7 @@ else
 class ECMall
 {
     /* 启动 */
-    function startup($config = array())
+    static function startup($config = array())
     {
         /* 加载初始化文件 */
         require(ROOT_PATH . '/eccore/controller/app.base.php');     //基础控制器类
@@ -312,7 +312,7 @@ class Conf
      *    @param     string $k
      *    @return    mixed
      */
-    function get($key = '')
+    static function get($key = '')
     {
         $vkey = $key ? strtokey("{$key}", '$GLOBALS[\'ECMALL_CONFIG\']') : '$GLOBALS[\'ECMALL_CONFIG\']';
 

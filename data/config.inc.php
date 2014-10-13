@@ -38,8 +38,8 @@ SESSION_MEMCACHED : 存储session数据的memcached服务器(服务器地址1:�
 */
 
 return array (
-  'SITE_URL' => 'http://www.ehome168.com',
-  'DB_CONFIG' => 'mysql://esoujcw_com:hzN5MWZ3QjMzQzM@localhost:3306/esoujcw_com',
+  'SITE_URL' => 'http://rmall.com',
+  'DB_CONFIG' => 'mysql://root:123456@localhost:3306/rmall',
   'DB_PREFIX' => 'ecm_',
   'LANG' => 'sc-utf-8',
   'COOKIE_DOMAIN' => '',

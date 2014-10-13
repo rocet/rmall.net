@@ -1,1 +1,5 @@
+.DS_Store
+Thumbs.db
+.idea/
 /temp
+/data/config.inc.php

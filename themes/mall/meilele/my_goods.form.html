@@ -131,7 +131,14 @@ $(function(){
 
     // init spec
     spec_update();
+
+
 });
+
+window.onload = function(){
+    $('#expsalesinto1').val(( parseFloat($('#expsalesinto2').val()).toFixed(2) * (100 - parseFloat($('#salesinto').val()).toFixed(4)).toFixed(4) / 100).toFixed(2));
+}
+
 //]]>
 </script>
 <div class="content">
@@ -372,16 +379,25 @@ $(function(){
                                             <span class="gray">{$lang.goods_tags_note}</span></div>
                                     </li>
                                     <li>
-                                        <h2>{$lang.price}: </h2>
-                                        <div class="arrange"><input name="spec_id" value="{$goods._specs.0.spec_id}" type="hidden" /><input name="price" value="{$goods._specs.0.price}" type="text" class="text width_short" /></div>
+                                        <!--<h2>{$lang.price}: </h2>-->
+                                        <h2>分成后价格: </h2>
+                                        <div class="arrange">
+                                            <input name="spec_id" value="{$goods._specs.0.spec_id}" type="hidden" />
+                                            <input class="text width_short" id="expsalesinto1" value="" onblur="$(this).next().val( ( parseFloat($(this).val()).toFixed(2) / (100 - parseFloat($('#salesinto').val()).toFixed(4)).toFixed(4) * 100).toFixed(2) )" />
+                                            {$lang.price}: <input name="price" id="expsalesinto2" value="{$goods._specs.0.price|default:$goods.price}" type="text" onblur="$(this).prev().val( ( parseFloat($(this).val()).toFixed(2) * (100 - parseFloat($('#salesinto').val()).toFixed(4)).toFixed(4) / 100).toFixed(2) )" class="text width_short" />
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <h2>分成百分比: </h2>
+                                        <div class="arrange"><input name="salesinto" value="{$goods_salesinto|default:$rocet_settings.site_defsalesinto}" id="salesinto" type="text" class="text width_short" /> %</div>
                                     </li>
                                     <li>
                                         <h2>{$lang.market_price}: </h2>
-                                        <div class="arrange"><input name="spec_id" value="{$goods.market_price}" type="hidden" /><input name="market_price" value="{$goods.market_price}" type="text" class="text width_short" /></div>
+                                        <div class="arrange"><input name="market_price" value="{$goods.market_price}" type="text" class="text width_short" /></div>
                                     </li>
                                     <li>
                                         <h2>{$lang.active_price}: </h2>
-                                        <div class="arrange"><input name="spec_id" value="{$goods.active_price}" type="hidden" /><input name="active_price" value="{$goods.active_price}" type="text" class="text width_short" /></div>
+                                        <div class="arrange"><input name="active_price" value="{$goods.active_price}" type="text" class="text width_short" /></div>
                                     </li>
                                     <li>
                                         <h2>{$lang.discount}: </h2>

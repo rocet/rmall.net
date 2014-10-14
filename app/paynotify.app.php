@@ -130,6 +130,24 @@ class PaynotifyApp extends MallbaseApp
         $this->_change_order_status($order_id, $order_info['extension'], $notify_result);
         $payment->verify_result(true);
 
+        // 存在推荐人
+        if($recommeder_id = ms()->user->get( m('memberrecommend')->getOne('SELECT recommend_id FROM '.DB_PREFIX.'memberrecommend WHERE user_id='.$order_info['buyer_id']) ) ){
+            // 获取1个订单全部商品
+            $goods_all = m('ordergoods')->find(array('conditions'=>'order_id='.$order_id));
+            // 获取商品分成百分比计算分成
+            $salesinto = $GLOBALS['ECMALL_CONFIG']['site_defsalesinto'];
+            foreach($goods_all as $v){
+                $salesinto = m('salesinto')->getOne('SELECT salesinto FROM '.DB_PREFIX.'salesinto WHERE goods_id='.$v['goods_id']) ?: $salesinto;
+                $v['price'] = $v['price'] / (100 - $salesinto) * 100;
+            }
+
+            // $GLOBALS['ECMALL_CONFIG']['site_defsalesinto']
+            // 卖家支付给推荐者 ecm_order goods_amount order_amount   ecm_order_goods price quantity
+            // $buyer = ms()->user->get($order_info['buyer_id']);
+            // $seller = ms()->user->get($order_info['seller_id']);
+            $this->regRecommendOrder($recommeder_id, $order_id, $order_info['goods_amount'] );
+        }
+
         if ($notify_result['target'] == ORDER_ACCEPTED)
         {
             /* 发送邮件给卖家，提醒付款成功 */
@@ -143,6 +161,11 @@ class PaynotifyApp extends MallbaseApp
             $this->_sendmail(true);
         }
     }
+
+    private function regRecommendOrder($user_id, $recommeduid){
+        m('memberrecommendorder')->add(array('user_id'=>$user_id, 'recommendorder_id'=>$recommeduid, 'price'=>''));
+    }
+
 
     /**
      *    改变订单状态

@@ -220,10 +220,14 @@ class MemberApp extends MemberbaseApp
             if (!$user_id)
             {
                 $this->show_warning($ms->user->get_error());
-
                 return;
             }
             $this->_hook('after_register', array('user_id' => $user_id));
+
+            if($recommeduarr = $ms->user->get(ecm_getcookie('recommenduid'), true) ){
+                $this->regRecommend($user_id, $recommeduarr['user_id']);
+            }
+
             //登录
             $this->_do_login($user_id);
             
@@ -240,6 +244,9 @@ class MemberApp extends MemberbaseApp
         }
     }
 
+    private function regRecommend($user_id, $recommeduid){
+        m('memberrecommend')->add(array('user_id'=>$user_id, 'recommend_id'=>$recommeduid));
+    }
 
     /**
      *    检查用户是否存在

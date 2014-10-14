@@ -16,6 +16,13 @@ class GoodsModel extends BaseModel
             'foreign_key'   => 'goods_id',
             'dependent'     => true
         ),
+        // 一个商品对应一个返点数
+        'has_salesinto'  => array(
+            'model'         => 'salesinto',
+            'type'          => HAS_ONE,
+            'foreign_key'   => 'goods_id',
+            'dependent'     => true,
+        ),
         // 一个商品对应多个规格
         'has_goodsspec' => array(
             'model'         => 'goodsspec',

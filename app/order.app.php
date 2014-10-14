@@ -206,6 +206,7 @@ class OrderApp extends ShoppingbaseApp
         }
     }
 
+
     function get_newly_sales(){
         $orders = m('ordergoods')->find(array( 'join'=>'belongs_to_order', 'conditions'=>'is_valid=1','limit'=>'0,10','order'=>'rec_id desc' ));
         $return = array();

@@ -585,6 +585,10 @@ class My_goodsApp extends StoreadminbaseApp
                 ));
             }
 
+            if(!empty($_POST['salesinto']) && $_POST['salesinto'] != $GLOBALS['ECMALL_CONFIG']['site_defsalesinto']){
+                m('salesinto')->add(array('goods_id'=>$goods_info['goods_id'], 'salesinto'=>$_POST['salesinto']));
+            }
+
             $this->show_message('add_ok',
                 'back_list', 'index.php?app=my_goods',
                 'continue_add', 'index.php?app=my_goods&amp;act=add'
@@ -738,6 +742,8 @@ class My_goodsApp extends StoreadminbaseApp
 	            	$this->assign('has_seckill',1);
 	            }
             }
+            $_salesinto_mod = m('salesinto');
+            $this->assign('goods_salesinto', $_salesinto_mod->getOne('SELECT salesinto FROM '.$_salesinto_mod->table.' WHERE goods_id='.$id) );
             $this->display('my_goods.form.html');
         }
         else
@@ -756,6 +762,18 @@ class My_goodsApp extends StoreadminbaseApp
             {
                 $this->show_warning($this->get_error());
                 return;
+            }
+
+            if(!empty($_POST['salesinto'])){
+                $_salesinto_mod = m('salesinto');
+                if($salesinto_id = $_salesinto_mod->getOne('SELECT salesinto_id FROM '.$_salesinto_mod->table.' WHERE goods_id='.$id)){
+                    if($_POST['salesinto'] != $_salesinto_mod->getOne('SELECT salesinto FROM '.$_salesinto_mod->table.' WHERE goods_id='.$id)){
+                        $_salesinto_mod->edit($salesinto_id, array(
+                            'goods_id'=>$id,
+                            'salesinto'=>$_POST['salesinto']
+                        ));
+                    }
+                }
             }
 
             $this->show_message('edit_ok',
@@ -1906,6 +1924,7 @@ class My_goodsApp extends StoreadminbaseApp
         ));
         return $goods_info;
     }
+
 
     /**
      * 提交的数据

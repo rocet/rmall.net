@@ -3,7 +3,7 @@
 /**
  *    控制器基础类
  *
- *    @author    Garbin
+ *    @author   Garbin
  *    @usage    none
  */
 class BaseApp extends Object
@@ -14,6 +14,7 @@ class BaseApp extends Object
     function __construct()
     {
         $this->BaseApp();
+        $this->setRecommend();
     }
 
     function BaseApp()
@@ -267,6 +268,20 @@ class BaseApp extends Object
     }
     function _D($dump){
         exit( '<pre>'.htmlspecialchars( print_r($dump, true) ).'</pre>' );
+    }
+    function setRecommend(){
+        if(!ecm_getcookie('recommenduid') && !defined('IN_BACKEND')){
+            $recommend = trim(str_replace(parse_url(SITE_URL, PHP_URL_HOST), '', $_SERVER['HTTP_HOST']), '.');
+            if($recommend){
+                ecm_setcookie('recommenduid', $recommend, time()+60*60*24*3, '/', '.'.parse_url(SITE_URL, PHP_URL_HOST));
+            } else if( $visitorid = env('visitor', new UserVisitor())->get('user_id')) {
+                $_memberrecommend_mod = m('memberrecommend');
+                if($recommend_id = $_memberrecommend_mod->getOne('SELECT recommend_id FROM '.$_memberrecommend_mod->table.' WHERE user_id='.$visitorid)){
+                    $recommend = ms()->user->get($recommend_id);
+                    ecm_setcookie('recommenduid', $recommend['user_name'], time()+60*60*24*3, '/', '.'.parse_url(SITE_URL, PHP_URL_HOST));
+                }
+            }
+        }
     }
 }
 

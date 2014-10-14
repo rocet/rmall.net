@@ -1,6 +1,6 @@
 .DS_Store
 Thumbs.db
 .idea/
-/temp
+temp/
 /data/config.inc.php
 DRPmall.sql

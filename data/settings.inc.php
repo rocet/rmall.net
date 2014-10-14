@@ -19,5 +19,6 @@ return array (
     'login' => '1',
     'register' => '1',
   ),
+  'site_defsalesinto' => '10',
 );
 ?>

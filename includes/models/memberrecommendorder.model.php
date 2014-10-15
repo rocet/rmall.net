@@ -7,9 +7,9 @@
  */
 class MemberRecommendOrderModel extends BaseModel
 {
-    var $table = 'memberrecommendorder';
+    var $table  = 'memberrecommendorder';
     var $prikey = 'memberrecommendorder_id';
-    var $_name = 'memberrecommendorder';
+    var $_name  = 'memberrecommendorder';
 
     /* 与其它模型之间的关系 */
     var $_relation = array(
@@ -18,6 +18,12 @@ class MemberRecommendOrderModel extends BaseModel
             'foreign_key'   => 'user_id',
             'reverse'       => 'has_recommendorder',
             'model'         => 'member',
+        ),
+        'belongs_to_order'  => array(
+            'type'          => BELONGS_TO,
+            'foreign_key'   => 'order_id',
+            'reverse'       => 'has_recommendorder',
+            'model'         => 'order',
         ),
     );
 }

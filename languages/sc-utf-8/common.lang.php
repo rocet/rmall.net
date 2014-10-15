@@ -35,6 +35,8 @@ return array(
     'my_qa'              => '咨询管理',
     'my_qa_list'        => '咨询列表',
     'my_favorite'      => '我的收藏',
+    'salesinto' => '我的分成',
+    'my_recommend' => '推荐会员',
     'apply_store'      => '申请开店',
     'my_category'      => '分类管理',
     'order_manage'      => '订单管理',

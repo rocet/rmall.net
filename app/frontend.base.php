@@ -753,6 +753,22 @@ class MemberbaseApp extends MallbaseApp
             ),
         );
 
+        // 分成
+        if ( m('memberrecommend')->getOne('SELECT recommend_id FROM '.DB_PREFIX.'memberrecommend WHERE recommend_id='.$this->visitor->get('user_id'))  )
+        {
+            $menu['my_ecmall']['submenu']['my_recommend'] = array(
+                'text' =>  Lang::get('my_recommend'),
+                'url'  =>  'index.php?app=my_recommend',
+                'name'  => 'my_recommend',
+                'icon'  => 'ico4',
+            );
+            $menu['my_ecmall']['submenu']['salesinto'] = array(
+                'text' =>  Lang::get('salesinto'),
+                'url'  =>  'index.php?app=salesinto',
+                'name'  => 'salesinto',
+                'icon'  => 'ico4',
+            );
+        }
 
         /* 我是买家 */
         $menu['im_buyer'] = array(

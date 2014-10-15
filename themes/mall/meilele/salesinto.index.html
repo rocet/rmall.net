@@ -1,0 +1,71 @@
+{include file=member.header.html}
+<style type="text/css">
+    .user_name { position: relative; bottom: 18px; margin-left:5px; }
+
+</style>
+<div class="content">
+    <div class="totline"></div><div class="botline"></div>
+    {include file=member.menu.html}
+    <div id="right">
+        {include file=member.submenu.html}
+        <div class="wrap">
+            <div class="public table">
+                <table class="table_head_line">
+                    <!--{if $salesintos}-->
+
+                    <tr class="line_bold">
+                        <th class="width1"></th>
+                        <th colspan="6"></th>
+                    </tr>
+
+                    <tr class="line tr_color">
+                        <th class="align2">订单号</th>
+                        <th class="align2">订单付款时间</th>
+                        <th class="align2">买家</th>
+                        <th class="align2">卖家</th>
+                        <th class="align2">商品总价</th>
+                        <th class="align2">订单总价</th>
+                        <th class="align2">分成</th>
+                    </tr>
+                    <!--{/if}-->
+                    <!--{foreach from=$salesintos item=salesinto name=v}-->
+                    <tr <!--{if $smarty.foreach.v.last}-->class="line_bold"<!--{else}-->class="line"<!--{/if}-->>
+                    <td class="align2">{$salesinto.order_sn}</td>
+                    <td class="align2 color1">{$salesinto.pay_time|date:Y/m/d H:i}</td>
+                    <td class="align2">{$salesinto.buyer_name}</td>
+                    <td class="align2">{$salesinto.seller_name}</td>
+                    <td class="align2">{$salesinto.goods_amount|price}</td>
+                    <td class="align2">{$salesinto.order_amount|price}</td>
+                    <td class="align2">{$salesinto.salesinto_price|price}</td>
+                    </tr>
+                    <!--{foreachelse}-->
+                    <tr>
+                        <td colspan="5" class="member_no_records padding6">{$lang.no_records}{$lang.$smarty.get.act}</td>
+                    </tr>
+
+                    <!--{/foreach}-->
+                    <!--{if $salesintos}-->
+                    <tr>
+                        <td colspan="5">
+                            <p class="position2">
+                                {include file=member.page.bottom.html}
+                            </p>
+                        </td>
+                    </tr>
+                    <!--{/if}-->
+                </table>
+            </div>
+            <div class="wrap_bottom"></div>
+        </div>
+        <div class="clear"></div>
+        <div class="adorn_right1"></div>
+        <div class="adorn_right2"></div>
+        <div class="adorn_right3"></div>
+        <div class="adorn_right4"></div>
+    </div>
+    <div class="clear"></div>
+</div>
+<div class="clear"></div>
+<iframe id='iframe_post' name="iframe_post" frameborder="0" width="0" height="0">
+</iframe>
+{include file=footer.html}

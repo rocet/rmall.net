@@ -1,0 +1,66 @@
+{include file=member.header.html}
+<style type="text/css">
+    .user_name { position: relative; bottom: 18px; margin-left:5px; }
+
+</style>
+<div class="content">
+    <div class="totline"></div><div class="botline"></div>
+    {include file=member.menu.html}
+    <div id="right">
+        {include file=member.submenu.html}
+        <div class="wrap">
+            <div class="public table">
+                <table class="table_head_line">
+                    <!--{if $my_recommend}-->
+
+                    <tr class="line_bold">
+                        <th class="width1"></th>
+                        <th colspan="5"></th>
+                    </tr>
+
+                    <tr class="line tr_color">
+                        <th></th>
+                        <th class="align1">推荐注册用户</th>
+                        <th>注册时间</th>
+                    </tr>
+                    <!--{/if}-->
+                    <!--{foreach from=$my_recommend item=recommend name=v}-->
+                    <tr <!--{if $smarty.foreach.v.last}-->class="line_bold"<!--{else}-->class="line"<!--{/if}-->>
+                    <td class="align2"></td>
+                    <td class="width13">{$recommend.user_name}</td>
+
+                    <td class="align2 color1 width8">{$recommend.reg_time|date:Y-m-d H:i}</td>
+
+                    </tr>
+                    <!--{foreachelse}-->
+                    <tr>
+                        <td colspan="5" class="member_no_records padding6">{$lang.no_records}{$lang.$smarty.get.act}</td>
+                    </tr>
+
+                    <!--{/foreach}-->
+                    <!--{if $my_recommend}-->
+
+                    <tr>
+                        <td colspan="5">
+                            <p class="position2">
+                                {include file=member.page.bottom.html}
+                            </p>
+                        </td>
+                    </tr>
+                    <!--{/if}-->
+                </table>
+            </div>
+            <div class="wrap_bottom"></div>
+        </div>
+        <div class="clear"></div>
+        <div class="adorn_right1"></div>
+        <div class="adorn_right2"></div>
+        <div class="adorn_right3"></div>
+        <div class="adorn_right4"></div>
+    </div>
+    <div class="clear"></div>
+</div>
+<div class="clear"></div>
+<iframe id='iframe_post' name="iframe_post" frameborder="0" width="0" height="0">
+</iframe>
+{include file=footer.html}

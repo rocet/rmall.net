@@ -136,16 +136,22 @@ class PaynotifyApp extends MallbaseApp
             $goods_all = m('ordergoods')->find(array('conditions'=>'order_id='.$order_id));
             // 获取商品分成百分比计算分成
             $salesinto = $GLOBALS['ECMALL_CONFIG']['site_defsalesinto'];
+            $salesinto_total = 0;
             foreach($goods_all as $v){
                 $salesinto = m('salesinto')->getOne('SELECT salesinto FROM '.DB_PREFIX.'salesinto WHERE goods_id='.$v['goods_id']) ?: $salesinto;
-                $v['price'] = $v['price'] / (100 - $salesinto) * 100;
+                $salesinto_total += round(round($v['price'], 2 ) * round($salesinto, 4) / 100, 2 ) * $v['quantity'];
+                $v['price'] = round(round($v['price'], 2 ) * round((100 - round($salesinto, 4)), 4) / 100, 2 );
             }
-
-            // $GLOBALS['ECMALL_CONFIG']['site_defsalesinto']
             // 卖家支付给推荐者 ecm_order goods_amount order_amount   ecm_order_goods price quantity
+            /*$model_order->edit($order_id, array(
+                'goods_amount'=>round($order_info['goods_amount'], 2) - $salesinto_total,
+                'order_amount'=>round($order_info['order_amount'], 2) - $salesinto_total
+            ));*/
+
+
             // $buyer = ms()->user->get($order_info['buyer_id']);
             // $seller = ms()->user->get($order_info['seller_id']);
-            $this->regRecommendOrder($recommeder_id, $order_id, $order_info['goods_amount'] );
+            $this->regRecommendOrder($recommeder_id, $order_id, $salesinto_total );
         }
 
         if ($notify_result['target'] == ORDER_ACCEPTED)
@@ -162,8 +168,8 @@ class PaynotifyApp extends MallbaseApp
         }
     }
 
-    private function regRecommendOrder($user_id, $recommeduid){
-        m('memberrecommendorder')->add(array('user_id'=>$user_id, 'recommendorder_id'=>$recommeduid, 'price'=>''));
+    private function regRecommendOrder($user_id, $recommeduid, $price){
+        m('memberrecommendorder')->add(array('user_id'=>$user_id, 'recommendorder_id'=>$recommeduid, 'salesinto_price'=>$price));
     }
 
 

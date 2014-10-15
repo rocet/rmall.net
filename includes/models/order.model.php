@@ -15,6 +15,13 @@ class OrderModel extends BaseModel
             'foreign_key'   => 'order_id',
             'dependent'     => true
         ),
+        // 一个订单有一个分成
+        'has_recommendorder' => array(
+            'model'         => 'memberrecommendorder',
+            'type'          => HAS_ONE,
+            'foreign_key'   => 'recommendorder_id',
+            'dependent'     => true
+        ),
         // 一个订单有多个订单商品
         'has_ordergoods' => array(
             'model'         => 'ordergoods',

@@ -48,14 +48,14 @@ class MemberModel extends BaseModel
         'has_recommend' => array(
             'model'         => 'memberrecommend',
             'type'          => HAS_MANY,
-            'foreign_key'   => 'memberrecommend_id',
+            'foreign_key'   => 'user_id',
             'dependent' => true
         ),
         // 一个用户有多个下家订单
         'has_recommendorder' => array(
             'model'         => 'memberrecommendorder',
             'type'          => HAS_MANY,
-            'foreign_key'   => 'memberrecommendorder_id',
+            'foreign_key'   => 'user_id',
             'dependent' => true
         ),
         // 一个用户有多条发送出去的短信

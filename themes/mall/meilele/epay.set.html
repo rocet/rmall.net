@@ -1,0 +1,112 @@
+{include file=member.header.html}
+<link href="{res file=css/epay.css}" rel="stylesheet" type="text/css" />
+<style type="text/css">
+input {font-family:Verdana, Arial, Helvetica, sans-serif,"宋体"}
+</style>
+<script language = "JavaScript">
+/*修改密码表单*/
+function editpass()
+{
+   if (document.bank_set.bank_sn.value=="")
+  {
+    alert("{$lang.banksn_no_null}");
+	document.bank_set.bank_sn.focus();
+	return false;
+  }
+  
+  if (document.bank_set.bank_username.value=="")
+  {
+    alert("{$lang.bank_username_no_null}");
+	document.bank_set.bank_username.focus();
+	return false;
+  }
+  return true;  
+}
+</script>
+<div class="content">
+    <div class="totline"></div><div class="botline"></div>
+    {include file=member.menu.html}
+    <div id="right">
+          <ul class="tab">
+				<li class="active">{$lang.epay_set}</li>
+				<li class="normal"><a href="?app=zpay&act=editpassword">{$lang.zhifumimaxiugai}</a></li>
+          </ul>
+        <div class="wrap margin1">
+            <div class="public table">
+				<div class="information_index">
+                   <div class="info">
+                        <h3 class="margin2">
+                            <span>{$lang.hello}！{$visitor.user_name}</span>
+                        </h3>
+                        <span class="epay_txt">
+					 <!--{foreach from=$index item=val}-->
+{$lang.zhanghuzongjinere}<span style="font-size:16px;font-weight:bold; color:#FE5400;">{$val.money}</span>
+&nbsp;{$lang.yuan}&nbsp;&nbsp;&nbsp;&nbsp;{$lang.dongjiejine}<span style="color:blue;">{$val.money_dj}</span>&nbsp;{$lang.yuan}</span><span class="epay_btn"><a href="{url app=zpay&act=txlist}" style="color:red">{$lang.tixian}</a></span><span class="epay_btn"><a href="{url app=zpay&act=czlist}">{$lang.chongzhi}</a></span>
+					  <!--{/foreach}-->
+                  </div>
+             </div>
+         </div>
+            <div class="public table" style="padding-top:0px;">
+			<form name="bank_set" onSubmit="return editpass()"  action="index.php?app=zpay&act=set" method="post">
+					<div id="bank_from1" style="color:#646665;float:left;font-size:12px;font-weight:normal;line-height:30px;">
+					<span>{$lang.yinhangmingcheng}：</span>
+                    <input type="text" name="bank_name" value="{$val.bank_name}">&nbsp;<font color="#FF0000">         
+					{$lang.zhichizhifubao}</font>
+                    <br />
+                    <span>{$lang.kaihudiqu}：</span>
+                    <input type="text" name="bank_add" value="{$val.bank_add}">&nbsp;<font color="#FF0000">         
+					{$lang.feiyinhangkeweikong}</font>
+                    <br />
+                    <span>{$lang.tixianzhanghu}：</span>
+                    <input type="text" name="bank_sn" value="{$val.bank_sn}">
+                    <br />
+                    <span>{$lang.zhanghuhuming}：</span>
+                    <input type="text" name="bank_username" value="{$val.bank_username}">
+					<br />
+                    <!--{if $password == ""}-->
+                    <span>{$lang.zhifumima}：</span>
+                    <input name="zf_pass" type="password" id="zf_pass" value="" />&nbsp;<font color="#FF0000">         
+					{$lang.set_zf_pass}</font>
+					<br />
+                    <span>{$lang.querenmimad}：</span>
+					<input name="zf_pass2" type="password" id="zf_pass2" />
+					<br />
+                    <!--{else}-->
+                    <span>{$lang.zhifumima}：</span>
+					<input name="zf_pass" type="password" id="zf_pass" value="" />
+					<br />
+                    <!--{/if}-->
+					{if $phone_valid }						
+			
+					<span>{$lang.phone_mob}：</span>
+                    <input type="text" name="phone" id="phone" value="{$phone_mob}">
+					{include file=phone.send.html}
+					<br />
+					<span>{$lang.phone_code}：</span>
+                    <input type="text" name="phone_code" id="phone_code" value="">
+					<br />
+					{/if}
+					<input type="submit" class="money_btn" value="{$lang.baocunshezhi}" />
+					</span>
+					 <br />
+                   
+				</div>
+					
+			</form>				  
+				
+         </div>
+		</div>		
+
+
+        <div class="clear"></div>
+        <div class="adorn_right1"></div>
+        <div class="adorn_right2"></div>
+        <div class="adorn_right3"></div>
+        <div class="adorn_right4"></div>
+    </div>
+    <div class="clear"></div>
+</div>
+<div class="clear"></div>
+<iframe id='iframe_post' name="iframe_post" frameborder="0" width="0" height="0">
+</iframe>
+{include file=footer.html}

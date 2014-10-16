@@ -89,6 +89,7 @@ function show_warning ($msg)
     */
 function _message($msg, $type)
 {
+    header('Content-type:text/html; charset=utf-8');
     $msg = new Message($msg, $type);
     $msg->display();
 }

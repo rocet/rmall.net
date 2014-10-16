@@ -1,0 +1,84 @@
+{include file=member.header.html}
+<script language = "JavaScript">
+function chongzhi()
+{
+  if (document.chongzhi_form.cz_money.value=="")
+  {
+    alert("{$lang.tianxieyaochongzhidejine}");
+	document.chongzhi_form.cz_money.focus();
+	return false;
+  }
+
+  return true;  
+}
+</script>
+<div class="content">
+    {include file=member.menu.html}
+    <div id="right">
+          <ul class="tab">
+				<li class="active">{$lang.zaixianchongzhi}</li>
+				<li class="normal"><a href="index.php?app=epay&act=czlog">{$lang.chongzhijilu}</a></li>
+                <li class="normal"><a href="index.php?app=epay&act=txlist">{$lang.tixianshenqing}</a></li>
+				<li class="normal"><a href="index.php?app=epay&act=txlog">{$lang.tixianjilu}</a></li>
+                <li class="normal"><a href="?app=epay&act=out">{$lang.yuezhuanzhang}</a></li>
+          </ul>
+          
+        <div class="wrap margin1">
+            <div class="public table">
+				<div class="information_index">
+                <div class="info">
+                        <h3 class="margin2">
+                            <span>{$lang.hello}！{$visitor.user_name}</span>
+                        </h3>
+                      	<span class="epay_txt">
+					 <!--{foreach from=$index item=val}-->
+{$lang.zhanghuzongjinere}<span style="font-size:16px;font-weight:bold; color:#FE5400;">{$val.money}</span>
+&nbsp;{$lang.yuan}&nbsp;&nbsp;&nbsp;&nbsp;{$lang.dongjiejine}<span style="color:blue;">{$val.money_dj}</span>&nbsp;{$lang.yuan}</span><span class="epay_btn"><a href="{url app=epay&act=txlist}" style="color:red">{$lang.tixian}</a></span>
+					  <!--{/foreach}-->
+                  </div>
+				
+				
+                </div>
+             </div>
+            <div class="public table" style=" padding-top:0;">
+                  <div style="color:#646665;float:left;font-size:12px;font-weight:normal;line-height:30px;">
+<form name="chongzhi_form" onSubmit="return chongzhi();" action="index.php?app=epay&act=czfs" method="post" target="_blank">
+				  <span style="background:#FFFFFF; font-size:14px; color:#3E3E3E; font-weight:bold;">{$lang.cz_money}:</span>
+                  &nbsp;<input name="cz_money" type="text" value="0.01" size="8" />&nbsp;{$lang.yuan}
+                    <TABLE style="FONT-SIZE: 12px; cellSpacing=1; cellPadding=3; width=762; align=center; bgColor=#D8D9DB; border=0"   >					 					
+                    <tr><td style="background:#FFFFFF; font-size:14px; color:#3E3E3E; font-weight:bold;">{$lang.cz_type}</td></tr>
+                    <tr>
+                        <td height="36" style="background:#FFFFFF; padding-left:15px;">
+                            <input name="czfs" type="radio" value="ICBC-NET-B2C" style="vertical-align:top" />&nbsp;<img src="{$site_url}/themes/mall/default/styles/default/images_bk/10.gif"  />
+                            <input name="czfs" type="radio" value="CMBCHINA-NET-B2C" style="vertical-align:top"  />&nbsp;<img src="{$site_url}/themes/mall/default/styles/default/images_bk/17.gif" />
+                            <input name="czfs" type="radio" value="CCB-NET-B2C" style="vertical-align:top"  />&nbsp;<img src="{$site_url}/themes/mall/default/styles/default/images_bk/2.gif" />
+                            <input name="czfs" type="radio" value="ABC-NET-B2C"  style="vertical-align:top"  />&nbsp;<img src="{$site_url}/themes/mall/default/styles/default/images_bk/1.gif" />
+        					<input name="czfs" type="radio" value="CIB-NET-B2C" style="vertical-align:top"  />&nbsp;<img src="{$site_url}/themes/mall/default/styles/default/images_bk/27.gif" />
+        					<br />
+       				 		<input name="czfs" type="radio" value="CEB-NET-B2C"  style="vertical-align:top"  />&nbsp;<img src="{$site_url}/themes/mall/default/styles/default/images_bk/3.gif" />
+                            <input name="czfs" type="radio" value="CMBC-NET-B2C" style="vertical-align:top"  />&nbsp;<img src="{$site_url}/themes/mall/default/styles/default/images_bk/4.gif" />
+        					<input name="czfs" type="radio" value="ECITIC-NET-B2C" style="vertical-align:top" />&nbsp;<img src="{$site_url}/themes/mall/default/styles/default/images_bk/7.gif"  />
+                            <input name="czfs" type="radio" value="BOC-NET-B2C"  style="vertical-align:top"  />&nbsp;<img src="{$site_url}/themes/mall/default/styles/default/images_bk/16.gif" />
+                            <input name="czfs" type="radio" value="BOCO-NET-B2C" style="vertical-align:top"  />&nbsp;<img src="{$site_url}/themes/mall/default/styles/default/images_bk/5.gif" />
+        					<br />
+        					<input name="czfs" type="radio" value="alipay" title="支付宝" checked="checked" />&nbsp;<img height="21" src="{$site_url}/themes/mall/default/styles/default/images_bk/28.gif" /></td>
+                    </tr>
+        			</TABLE>
+                 <input type="submit" class="money_btn" value="{$lang.lijichongzhi}" />
+              </form>
+             </div>
+			</div>
+           </div>	
+<!--结束-->	
+        <div class="clear"></div>
+        <div class="adorn_right1"></div>
+        <div class="adorn_right2"></div>
+        <div class="adorn_right3"></div>
+        <div class="adorn_right4"></div>
+    </div>
+    <div class="clear"></div>
+</div>
+<div class="clear"></div>
+<iframe id='iframe_post' name="iframe_post" frameborder="0" width="0" height="0">
+</iframe>
+{include file=footer.html}

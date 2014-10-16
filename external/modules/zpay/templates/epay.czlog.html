@@ -1,0 +1,90 @@
+{include file=member.header.html}
+<script type="text/javascript">
+$(function(){
+    $('#add_time_from').datepicker({dateFormat: 'yy-mm-dd'});
+    $('#add_time_to').datepicker({dateFormat: 'yy-mm-dd'});
+});
+</script>
+<style type="text/css">
+.table .line td{ border:none;}
+.float_right {float: right;}
+.line{ border-bottom:1px solid #E2E2E2}
+</style>
+<div class="content">
+    <div class="totline"></div><div class="botline"></div>
+    {include file=member.menu.html}
+    <div id="right">
+          <ul class="tab">
+                <li class="normal"><a href="index.php?app=epay&act=czlist">{$lang.zaixianchongzhi}</a></li>
+				<li class="active">{$lang.chongzhijilu}</li>
+                <li class="normal"><a href="index.php?app=epay&act=txlist">{$lang.tixianshenqing}</a></li>
+				<li class="normal"><a href="index.php?app=epay&act=txlog">{$lang.tixianjilu}</a></li>
+                <li class="normal"><a href="?app=epay&act=out">{$lang.yuezhuanzhang}</a></li>
+          </ul>
+        <div class="wrap">
+            <div class="public table">
+			
+                <div class="user_search">
+                <form method="get">
+                    <span>{$lang.add_time}: </span>
+                    <input type="text" class="text1 width2" name="add_time_from" id="add_time_from" value="{$query.add_time_from}"/> &#8211;
+                    <input type="text" class="text1 width2" name="add_time_to" id="add_time_to" value="{$query.add_time_to}"/>
+                    <span>{$lang.order_sn}:</span>
+                    <input type="text" class="text1" width="30" name="order_sn" value="{$query.order_sn|escape}">
+                    <input type="hidden" name="app" value="epay" />
+                    <input type="hidden" name="act" value="czlog" />
+                    <input type="submit" class="btn" value="{$lang.so_so}" />
+                    <!--{if $query.add_time_from or $query.add_time_to or $query.order_sn}-->
+                     <a class="detlink float_right" href="{url app=epay&act=czlog}">{$lang.cancel_query}</a>
+                    <!--{/if}-->
+                </form>
+                </div>		
+			  <table>
+                    <!--{if $index}-->
+
+                    <tr class="line tr_bgcolor">
+                        
+                        <th>{$lang.dingdanhao}</th>
+                         <th>{$lang.cz_from}</th>
+                        <th>{$lang.caozuorizhi}</th>
+                        <th>{$lang.jine}</th>
+                        <th align="center">{$lang.caozuoshijian}</th>
+                        <th align="center">{$lang.zhuangtai}</th>
+                        
+                    </tr>
+                    <!--{/if}-->
+                    <!--{foreach from=$index item=val name=v}-->
+                    	<!--{if $smarty.foreach.v.last}--><tr class="line_bold"><!--{else}--><tr class="line"><!--{/if}-->
+                        
+                        <td align="center">{$val.order_sn}</td>
+						<td align="center">{$val.to_name}</td>
+                        <td align="center">{$val.log_text}</td>
+						<td align="center">{$val.money}{$val.yuan}</td>
+                        <td align="center">{$val.add_time|date:Y-m-d H:i}</td>
+                     <td align="center">
+                         <!--{if $val.states==60}-->{$lang.states60}<!--{/if}--><!--充值中-->
+                         <!--{if $val.states==61}-->{$lang.states61}<!--{/if}--><!--充值成功，已入帐-->
+                     </td>
+                      
+                    </tr>
+                    <!--{foreachelse}-->
+                    <tr>
+                        <td colspan="5" class="member_no_records padding6">{$lang.$smarty.get.act}{$lang.no_records}</td>
+                    </tr>
+                    <!--{/foreach}-->
+                </table>
+            </div>
+            <div class="wrap_bottom"></div>
+        </div>
+        <div class="clear"></div>
+        <div class="adorn_right1"></div>
+        <div class="adorn_right2"></div>
+        <div class="adorn_right3"></div>
+        <div class="adorn_right4"></div>
+    </div>
+    <div class="clear"></div>
+</div>
+<div class="clear"></div>
+<iframe id='iframe_post' name="iframe_post" frameborder="0" width="0" height="0">
+</iframe>
+{include file=footer.html}

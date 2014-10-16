@@ -1,0 +1,92 @@
+{include file=member.header.html}
+<script type="text/javascript">
+$(function(){
+    $('#add_time_from').datepicker({dateFormat: 'yy-mm-dd'});
+    $('#add_time_to').datepicker({dateFormat: 'yy-mm-dd'});
+});
+</script>
+<style type="text/css">
+.table .line td{ border:none;}
+.float_right {float: right;}
+.line{ border-bottom:1px solid #E2E2E2}
+</style>
+<div class="content">
+    <div class="totline"></div><div class="botline"></div>
+    {include file=member.menu.html}
+    <div id="right">
+          <ul class="tab">
+          		<li class="normal"><a href="index.php?app=epay&act=czlist">{$lang.zaixianchongzhi}</a></li>
+				<li class="normal"><a href="index.php?appepay=&act=czlog">{$lang.chongzhijilu}</a></li>
+				<li class="normal"><a href="?app=epay&act=txlist">{$lang.tixianshenqing}</a></li>
+				<li class="active">{$lang.tixianjilu}</li>
+                <li class="normal"><a href="?app=epay&act=out">{$lang.yuezhuanzhang}</a></li>
+          </ul>
+        <div class="wrap">
+            <div class="public table">
+			
+                <div class="user_search">
+                <form method="get">
+                    <span>{$lang.add_time}: </span>
+                    <input type="text" class="text1 width2" name="add_time_from" id="add_time_from" value="{$query.add_time_from}"/> &#8211;
+                    <input type="text" class="text1 width2" name="add_time_to" id="add_time_to" value="{$query.add_time_to}"/>
+                    <span>{$lang.order_sn}:</span>
+                    <input type="text" class="text1" width="30" name="order_sn" value="{$query.order_sn|escape}">
+                    <input type="hidden" name="app" value="" />
+                    <input type="hidden" name="act" value="txlog" />
+                    <input type="submit" class="btn" value="{$lang.so_so}" />
+                    <!--{if $query.add_time_from or $query.add_time_to or $query.order_sn}-->
+                     <a class="detlink float_right" href="{url app=&act=txlog}">{$lang.cancel_query}</a>
+                    <!--{/if}-->
+                </form>
+                </div>		
+			
+                <table>
+                    <!--{if $index}-->
+                    <tr class="line tr_bgcolor">
+                    	<th>{$lang.dingdanhao}</th>
+                        <th>{$lang.caozuorizhi}</th>
+                        <th>{$lang.jine}</th>
+                        <th align="center">{$lang.caozuoshijian}</th>
+                        <th align="center">{$lang.zhuangtai}</th>
+                    </tr>
+                    <!--{/if}-->
+                    <!--{foreach from=$index item=val name=v}-->
+                    <!--{if $smarty.foreach.v.last}--><tr class="line_bold"><!--{else}--><tr class="line"><!--{/if}-->
+                        
+                        <td align="center"><!--{if $val.order_sn==0}-->{$lang.dengdaitongzhi}<!--{else}-->{$val.order_sn}<!--{/if}--><!--交易进行中--></td>
+                        <td align="center">{$val.log_text}</td>
+						<td align="center">{$val.money}{$lang.yuan}</td>
+                        <td align="center">{$val.add_time|date:Y-m-d H:i}</td>
+                     <td align="center">
+					 <!--{if $val.states==10}-->{$lang.states10}<!--{/if}--><!--等待买家付支付-->
+					 <!--{if $val.states==20}-->{$lang.states20}<!--{/if}--><!--等待卖家发货-->
+					 <!--{if $val.states==30}-->{$lang.states30}<!--{/if}--><!--卖家已发货-->
+					 <!--{if $val.states==40}-->{$lang.states40}<!--{/if}--><!--交易成功-->
+					 <!--{if $val.states==50}-->{$lang.states50}<!--{/if}--><!--资金已入帐-->
+                     <!--{if $val.states==70}-->{$lang.states70}<!--{/if}--><!--提现 待审核-->
+                     <!--{if $val.states==71}-->{$lang.states71}<!--{/if}--><!--提现 已审核-->
+                     <!--{if $val.states==0}-->{$lang.states0}<!--{/if}--><!--交易取消-->
+                     </td>
+                    </tr>
+                    <!--{foreachelse}-->
+                    <tr>
+                        <td colspan="7" class="member_no_records padding6">{$lang.$smarty.get.act}{$lang.no_records}</td>
+                    </tr>
+
+                    <!--{/foreach}-->
+                </table>
+            </div>
+            <div class="wrap_bottom"></div>
+        </div>
+        <div class="clear"></div>
+        <div class="adorn_right1"></div>
+        <div class="adorn_right2"></div>
+        <div class="adorn_right3"></div>
+        <div class="adorn_right4"></div>
+    </div>
+    <div class="clear"></div>
+</div>
+<div class="clear"></div>
+<iframe id='iframe_post' name="iframe_post" frameborder="0" width="0" height="0">
+</iframe>
+{include file=footer.html}

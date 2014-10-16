@@ -200,7 +200,15 @@ return array(
     'share_link' => '分享链接',
     'not_csv_file' => '您选择的文件不是CSV格式',
     'enable_radar'=>'商品雷达',
-    'enable_radar_note'=>'商品雷达，电商网络情报之窗'
+    'enable_radar_note'=>'商品雷达，电商网络情报之窗',
+
+    'zpay'          => '余额支付',
+    'zpay_desc'     => '余额支付(余额支付的支付接口)',
+	'zpay_author'     => 'Rocet',
+    'zpay_currency' => '所有货币',
+
+	'paying_wrong'=>'支付失败，请联系管理员',
+	'invalid_pay'=>'非法数据',
 );
 
 ?>

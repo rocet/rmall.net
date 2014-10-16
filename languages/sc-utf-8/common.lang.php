@@ -369,6 +369,19 @@ return array(
     'radar_title' => '商品雷达',
 	'seckill_manage' => '秒杀管理',
 	'nav_seckill' => '秒杀促销',
+
+    'epay_set' => '账户设置',
+    'chongzhitixian' => '充值提现',
+    'money_log' => '财务明细',
+
+
+    'zpay'          => '余额支付',
+    'zpay_desc'     => '余额支付(余额支付的支付接口)',
+    'zpay_author'     => 'Rocet',
+    'zpay_currency' => '所有货币',
+
+    'paying_wrong'=>'支付失败，请联系管理员',
+    'invalid_pay'=>'非法数据',
 );
 
 ?>

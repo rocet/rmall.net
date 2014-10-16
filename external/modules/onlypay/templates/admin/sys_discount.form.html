@@ -1,0 +1,29 @@
+{include file="header.html"}
+<div id="rightTop">
+    <p><strong>{$lang.payment_manage}</strong></p>
+	 <ul class="subnav">
+        <li><a class="btn3" href="index.php?module=syspay&amp;act=index">{$lang.back}</a></li>
+    </ul>
+</div>
+
+<div class="info">
+    <form method="post" enctype="multipart/form-data" id="partner_form" action="index.php?module=syspay&amp;act=set_sys_discount">
+        <table class="infoTable">
+         
+            <tr>
+                <th class="paddingT15">{$lang.discount_name}:</th>
+                <td class="paddingT15 wordSpacing5">
+                     {html_radios options=$user_list checked=$user_id name=user_list}
+                </td>
+            </tr>
+           <tr>
+            <th></th>
+            <td class="ptb20">
+                <input class="formbtn" type="submit" name="Submit" value="{$lang.submit}" />
+                <input class="formbtn" type="reset" name="Submit2" value="{$lang.reset}" />
+            </td>
+          </tr>
+        </table>
+    </form>
+</div>
+{include file="footer.html"}

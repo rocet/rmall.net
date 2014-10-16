@@ -1,0 +1,91 @@
+{include file=member.header.html}
+<script language = "JavaScript">
+function tousers()
+{
+   if (document.to_users.to_user.value=="")
+  {
+    alert("{$lang.zhuanyideyonghubunengweikong}！");
+	document.to_users.to_user.focus();
+	return false;
+  }
+  
+  if (document.to_users.to_money.value=="")
+  {
+    alert("{$lang.tianxiezhuanyidejine}！");
+	document.to_users.to_money.focus();
+	return false;
+  }
+  return true;  
+}
+
+
+
+
+</script>
+<div class="content">
+    {include file=member.menu.html}
+    <div id="right">
+          <ul class="tab">
+				<li class="normal"><a href="index.php?app=zpay&act=czlist">{$lang.zaixianchongzhi}</a></li>
+				<li class="normal"><a href="index.php?app=zpay&act=czlog">{$lang.chongzhijilu}</a></li>
+				<li class="normal"><a href="?app=zpay&act=txlist">{$lang.tixianshenqing}</a></li>
+				<li class="normal"><a href="?app=zpay&act=txlog">{$lang.tixianjilu}</a></li>
+                <li class="active">{$lang.yuezhuanzhang}</li>
+          </ul>
+	  
+        <div class="wrap margin1">
+            <div class="public table">
+				<div class="information_index">
+                 <div class="info">
+                        <h3 class="margin2">
+                            <span>{$lang.hello}！{$visitor.user_name}</span>
+                        </h3>
+                      <span class="epay_txt">
+					 <!--{foreach from=$index item=val}-->
+{$lang.zhanghuzongjinere}<span style="font-size:16px;font-weight:bold; color:#FE5400;">{$val.money}</span>
+&nbsp;{$lang.yuan}&nbsp;&nbsp;&nbsp;&nbsp;{$lang.dongjiejine}<span style="color:blue;">{$val.money_dj}</span>&nbsp;{$lang.yuan}</span><span class="epay_btn"><a href="{url app=zpay&act=txlist}" style="color:red">{$lang.tixian}</a></span><span class="epay_btn"><a href="{url app=zpay&act=czlist}">{$lang.chongzhi}</a></span>
+					  <!--{/foreach}-->
+                  </div>
+                </div>			
+            </div>
+          <div class="public table" style="padding-top:0;">
+              <div style="color:#646665;float:left;font-size:12px;font-weight:normal;line-height:30px;">
+				<!--{foreach from=$index item=val key=key}-->
+				<form name="to_users" onSubmit="return tousers();" method="post">
+                  <span>{$lang.mubiaoyonghu}：</span>
+                  <input name="to_user" type="text" id="to_user" size="10">
+                  <br />
+				   {$lang.zhuanchujine}： <input name="to_money" type="text" id="to_money" size="10">
+                    &nbsp;{$lang.yuan}
+                    &nbsp; &nbsp;
+                   <BR>
+				   <span>{$lang.zhifumima}：</span>
+				   <input name="zf_pass" type="password" id="zf_pass"  size="16" maxlength="16"/>
+				   <br />
+				   {if $phone_valid }
+				   <span>{$lang.phone_mob}：</span>
+                    <input type="text" name="phone" id="phone" value="{$phone_mob}">
+					{include file=phone.send.html}
+					<br />
+					<span>{$lang.phone_code}：</span>
+                    <input type="text" name="phone_code" id="phone_code" value="">
+					<br />
+					 {/if}
+				   <span><input type="submit" class="money_btn" value="{$lang.querenzhuanchu}" /></span>
+				  
+                </form>	
+				<!--{/foreach}-->
+		   </div>
+          </div>
+         </div>
+
+
+        <div class="clear"></div>
+        <div class="adorn_right1"></div>
+        <div class="adorn_right2"></div>
+        <div class="adorn_right3"></div>
+        <div class="adorn_right4"></div>
+    </div>
+
+<div class="clear"></div>
+{include file=footer.html}

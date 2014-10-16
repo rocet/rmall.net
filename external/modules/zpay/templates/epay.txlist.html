@@ -1,0 +1,68 @@
+{include file=member.header.html}
+<div class="content">
+    <div class="totline"></div><div class="botline"></div>
+    {include file=member.menu.html}
+    <div id="right">
+          <ul class="tab">
+          		<li class="normal"><a href="index.php?app=epay&act=czlist">{$lang.zaixianchongzhi}</a></li>
+				<li class="normal"><a href="index.php?app=epay&act=czlog">{$lang.chongzhijilu}</a></li>
+				<li class="active">{$lang.tixianshenqing}</li>
+				<li class="normal"><a href="index.php?app=epay&act=txlog">{$lang.tixianjilu}</a></li>
+                <li class="normal"><a href="?app=epay&act=out">{$lang.yuezhuanzhang}</a></li>
+          </ul>
+
+        <div class="wrap margin1">
+            <div class="public table">
+				<div class="information_index" style="overflow:hidden; margin: 0px 0 -15px;">
+                 <div class="info">
+                        <h3 class="margin2">
+                            <span>{$lang.hello}！{$visitor.user_name}</span>
+                        </h3>
+                        <span style="font-size:14px">
+					 <!--{foreach from=$index item=val}-->
+{$lang.zhanghuzongjinere}<span style="font-size:16px;font-weight:bold; color:#FE5400;">{$val.money}</span>
+&nbsp;{$lang.yuan}&nbsp;&nbsp;&nbsp;&nbsp;{$lang.dongjiejine}<span style="color:blue;">{$val.money_dj}</span>&nbsp;{$lang.yuan}</span>
+					  <!--{/foreach}-->
+                  </div>
+                </div>			
+            </div>
+            <div class="public table" style="padding-top:0;">
+                  <div style="color:#646665;float:left;font-size:12px;font-weight:normal;line-height:30px;">
+				  <form name="to_users" method="post">
+				  <span>{$lang.tixianzhanghu}：</span>
+				  <!--{if $val.bank_sn==""}-->
+				  <a href="?app=epay&act=set">{$lang.tixianzhanghu}</a>
+				  <!--{else}-->
+				  {$val.bank_sn}
+                  <br />
+                  <span>{$lang.zhanghuleixing}：</span>
+				  {$val.bank_name}<br />
+				  <span>{$lang.zhanghuhuming}：</span>
+				  {$val.bank_username}
+				  <!--{/if}-->
+				  <br />
+                  <span>{$lang.tixianjine}：</span>
+                  <input name="tx_money" type="text" id="tx_money" size="8">
+                  &nbsp;{$lang.yuan}<br />
+                  <span>{$lang.zhifumima}：</span>
+				  <input name="post_zf_pass" type="password" id="post_zf_pass" size="12">
+                  <br /><span><input type="submit" class="money_btn" value="{$lang.tixianshenqing}" /></span>
+                </form>	
+				
+			</div>
+         </div>
+		</div>		
+
+
+        <div class="clear"></div>
+        <div class="adorn_right1"></div>
+        <div class="adorn_right2"></div>
+        <div class="adorn_right3"></div>
+        <div class="adorn_right4"></div>
+    </div>
+    <div class="clear"></div>
+</div>
+<div class="clear"></div>
+<iframe id='iframe_post' name="iframe_post" frameborder="0" width="0" height="0">
+</iframe>
+{include file=footer.html}

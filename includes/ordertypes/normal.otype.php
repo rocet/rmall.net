@@ -84,6 +84,8 @@ class NormalOrder extends BaseOrder
      */
     function submit_order($data)
     {
+	    $goods_info = null;
+	    $post = null;
         /* 释放goods_info和post两个变量 */
         extract($data);
         /* 处理订单基本信息 */

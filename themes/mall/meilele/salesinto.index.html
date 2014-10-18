@@ -23,8 +23,8 @@
                         <th class="align2">订单付款时间</th>
                         <th class="align2">买家</th>
                         <th class="align2">卖家</th>
-                        <th class="align2">商品总价</th>
                         <th class="align2">订单总价</th>
+                        <th class="align2">商品总价</th>
                         <th class="align2">分成</th>
                     </tr>
                     <!--{/if}-->
@@ -34,8 +34,8 @@
                     <td class="align2 color1">{$salesinto.pay_time|date:Y/m/d H:i}</td>
                     <td class="align2">{$salesinto.buyer_name}</td>
                     <td class="align2">{$salesinto.seller_name}</td>
-                    <td class="align2">{$salesinto.goods_amount|price}</td>
                     <td class="align2">{$salesinto.order_amount|price}</td>
+                    <td class="align2">{$salesinto.goods_amount|price}</td>
                     <td class="align2">{$salesinto.salesinto_price|price}</td>
                     </tr>
                     <!--{foreachelse}-->

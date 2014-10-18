@@ -76,5 +76,17 @@ return array(
     'domain_length_error'    => '域名长度错误，应介于',
     'domain_exists'     => '二级域名已存在',
     'domain_format_error' => '二级域名格式错误，只能由英文字母和数字组成',
+	'open_pay' => '开启支付',
+	'open_shipping' => '开启配送',
+	'open_pay_confirm' => '您确定要开启所选店铺的支付方式设置吗？',
+	'open_shipping_confirm' => '您确定要开启所选店铺的配送方式设置吗？',
+    'no_store_to_open' => '请您选择要开启的店铺',
+    'open_ok' => '开启成功',
+	'xiaobao' => '消费保障服务',
+	'ten_days_returned' => '十天退换服务',
+	'fake_lose_three' => '假一赔三服务',
+	'autonym' => '实名验证服务',
+	'national_distribution' => '全国配送服务',
+	'is_allow_coupon' => '是否允许使用优惠券购买',
 );
 ?>

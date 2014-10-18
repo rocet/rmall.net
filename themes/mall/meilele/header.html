@@ -10,6 +10,7 @@
 <meta name="author" content="ecmall.shopex.cn" />
 <meta name="generator" content="ECMall {$ecmall_version}" />
 <meta name="copyright" content="ShopEx Inc. All Rights Reserved" />
+    <link rel="stylesheet" href="{res file=css/mll_common.min.css}" />
 <link href="{res file=css/ecmall.css}" rel="stylesheet" type="text/css" />
 <script type="text/javascript" src="index.php?act=jslang"></script>
 <script type="text/javascript" src="{lib file=jquery.js}" charset="utf-8"></script>
@@ -79,43 +80,3 @@ $(function(){
     </div>
 </div>
 
-<ul id="nav">
-    <div class="nav1"></div>
-    <div class="nav2"></div>
-    <li><a class="{if $index}link{else}hover{/if}" href="index.php"><span>{$lang.index}</span></a></li>
-    <!--{foreach from=$navs.middle item=nav}-->
-    <li><a class="{if !$index and $nav.link eq $current_url}link{else}hover{/if}" href="{$nav.link}"{if $nav.open_new} target="_blank"{/if}><span>{$nav.title|escape}</span></a></li>
-    <!--{/foreach}-->
-</ul>
-
-<div class="search">
-    <div class="search1"></div>
-    <div class="search2"></div>
-    <div class="wrap">
-        <form method="GET" action="{url app=search}">
-            <div class="border">
-                <div class="select_js">
-                    <p>{$lang.search_goods}</p>
-                    <div class="ico"></div>
-                    <ul>
-                        <li ectype="index">{$lang.search_goods}</li>
-                        <li ectype="store">{$lang.search_store}</li>
-                        <li ectype="groupbuy">{$lang.search_groupbuy}</li>
-                    </ul>
-                    <input type="hidden" name="act" value="index" />
-                </div>
-                <input type="text" name="keyword" class="text2" />
-            </div>
-            <input type="hidden" name="app" value="search" />
-            <input type="submit" name="Submit" value="{$lang.search}" class="btn" />
-        </form>
-        <p><a href="{url app=category}">{$lang.gcategory}</a><br /><a href="{url app=category&act=store}">{$lang.scategory}</a></p>
-    </div>
-    <div class="nav">
-        <div class="nav1"></div>
-        <div class="nav2"></div>
-        <a href="{url app=cart}" class="buy">{$lang.shopping_cart} <strong id="cart_goods_kinds">{$cart_goods_kinds}</strong> {$lang.kind_of_goods}</a>
-        <a href="{url app=my_favorite}" class="buyline">{$lang.favorite}</a>
-        <a href="{url app=buyer_order}" class="buyline">{$lang.my_order}</a>
-    </div>
-</div>

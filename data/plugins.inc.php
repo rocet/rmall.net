@@ -12,9 +12,6 @@ return array (
   ),
   'on_run_action' => 
   array (
-    'cashier_zpay_payment' => 
-    array (
-    ),
     'sys_pay_notify' => 
     array (
     ),

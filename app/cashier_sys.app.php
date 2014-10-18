@@ -1,4 +1,5 @@
 <?php
+
 class Cashier_sysApp extends ShoppingbaseApp
 {
 /**

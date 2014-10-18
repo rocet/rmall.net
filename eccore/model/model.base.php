@@ -966,19 +966,21 @@ class BaseModel extends Object
                 /* 大小|长度限制 */
                 if ($type == 'string')
                 {
-                    $strlen = strlen($value);
-                    if ($min != 0 && $strlen < $min)
-                    {
-                        $this->_error('autov_length_lt_min', $_k);
+                    if(!is_array($value)){
+	                    $strlen = strlen($value);
+	                    if ($min != 0 && $strlen < $min)
+	                    {
+	                        $this->_error('autov_length_lt_min', $_k);
 
-                        return false;
-                    }
-                    if ($max != 0 && $strlen > $max)
-                    {
-                        $this->_error('autov_length_gt_max', $_k);
+	                        return false;
+	                    }
+	                    if ($max != 0 && $strlen > $max)
+	                    {
+	                        $this->_error('autov_length_gt_max', $_k);
 
-                        return false;
-                    }
+	                        return false;
+	                    }
+                	}
                 }
                 else
                 {

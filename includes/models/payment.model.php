@@ -24,6 +24,7 @@ class PaymentModel extends BaseModel
             'filter'    => 'trim',
         ),
         'config'        => array(
+	        'type'      => 'array',
             'filter'    => 'serialize',
         ),
         'enabled'       => array(

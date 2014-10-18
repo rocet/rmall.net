@@ -38,7 +38,13 @@ class PaynotifyApp extends MallbaseApp
         }
 
         $model_payment =& m('payment');
-        $payment_info  = $model_payment->get("payment_code='{$order_info['payment_code']}' AND store_id={$order_info['seller_id']}");
+        $store_mod = & m('store');
+        $store_info = $store_mod->get_info($order_info['seller_id']);
+        if($store_info['is_open_pay']){
+        	$payment_info  = $model_payment->get("payment_code='{$order_info['payment_code']}' AND store_id={$order_info['seller_id']}");
+        }else{
+        	$payment_info  = $model_payment->get("payment_code='{$order_info['payment_code']}' AND store_id=0");
+        }
         if (empty($payment_info))
         {
             /* 没有指定的支付方式 */

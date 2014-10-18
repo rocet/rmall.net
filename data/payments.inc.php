@@ -8,7 +8,6 @@ return array (
   4 => 'paypal',
   5 => 'bank',
   6 => 'cod',
-  7 => 'zpay',
 );
 
 ?>

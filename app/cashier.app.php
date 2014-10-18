@@ -5,6 +5,7 @@
  *
  *    @author    Garbin
  */
+
 class CashierApp extends ShoppingbaseApp
 {
     /**
@@ -40,10 +41,16 @@ class CashierApp extends ShoppingbaseApp
             return;
         }
         $payment_model =& m('payment');
+        $store_mod = & m('store');
         if (!$order_info['payment_id'])
         {
             /* 若还没有选择支付方式，则让其选择支付方式 */
-            $payments = $payment_model->get_enabled($order_info['seller_id']);
+        	$store_info = $store_mod->get_info($order_info['seller_id']);
+        	if($store_info['is_open_pay']){
+        		$payments = $payment_model->get_enabled($order_info['seller_id']);
+        	}else{
+        		$payments = $payment_model->get_enabled(0);
+        	}
             if (empty($payments))
             {
                 $this->show_warning('store_no_payment');
@@ -124,8 +131,13 @@ class CashierApp extends ShoppingbaseApp
 
                 return;
             }
-
-            $payment_info  = $payment_model->get("payment_code = '{$order_info['payment_code']}' AND store_id={$order_info['seller_id']}");
+            $store_mod = & m('store');
+        	$store_info = $store_mod->get_info($order_info['seller_id']);
+        	if($store_info['is_open_pay']){
+            	$payment_info  = $payment_model->get("payment_code = '{$order_info['payment_code']}' AND store_id={$order_info['seller_id']}");
+        	}else{
+        		$payment_info  = $payment_model->get("payment_code = '{$order_info['payment_code']}' AND store_id=0");
+        	}
             /* 若卖家没有启用，则不允许使用 */
             if (!$payment_info['enabled'])
             {

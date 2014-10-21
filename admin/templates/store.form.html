@@ -178,7 +178,7 @@ $(function(){
       </tr>
       <tr>
         <th class="paddingT15"> <label for="state">{$lang.open_pay}:</label></th>
-        <td class="paddingT15 wordSpacing5">{html_radios name="is_open_pay" options=$open_pay_states checked=$store.is_open_pay}</td>
+        <td class="paddingT15 wordSpacing5">{html_radios name="is_open_pay" options=$open_pay_states checked=$store.is_open_pay}(关闭为统一支付，开启为支付给商家)</td>
       </tr>
       <tr>
         <th class="paddingT15">{$lang.sort_order}:</th>

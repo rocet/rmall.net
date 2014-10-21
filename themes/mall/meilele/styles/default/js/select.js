@@ -32,6 +32,7 @@ function block_fn()
 
 function mouseLocation(e)
 {
+    try{
     if (e.pageX < $('.select_js').position().left ||
         e.pageX > $('.select_js').position().left + $('.select_js').outerWidth() ||
         e.pageY < $('.select_js').position().top ||
@@ -39,4 +40,5 @@ function mouseLocation(e)
     {
         $('.select_js ul').hide();
     }
+    } catch(e){}
 }

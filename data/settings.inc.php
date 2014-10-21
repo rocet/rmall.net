@@ -20,5 +20,6 @@ return array (
     'register' => '1',
   ),
   'site_defsalesinto' => '10',
+  'site_auto_salesinto' => '1',
 );
 ?>

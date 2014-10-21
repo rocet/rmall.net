@@ -10,70 +10,71 @@
                 var goods_quantity = {$goods_info.quantity};
                 $(function(){
                     regionInit("region");
-                    $('#order_form').validate({
-                        invalidHandler:function(e, validator){
-                         var err_count = validator.numberOfInvalids();
-                         var msg_tpl = '{$lang.order_have_error}';
-                         var d = DialogManager.create('show_error');
-                         d.setWidth(400);
-                         d.setTitle(lang.error);
-                         d.setContents('message', {type:'warning', text:$.format(msg_tpl, err_count)});
-                         d.show('center');
-                        },
-                        errorPlacement: function(error, element){
-                            var _message_box = $(element).parent().find('.field_message');
-                            _message_box.find('.field_notice').hide();
-                            _message_box.append(error);
-                        },
-                        success       : function(label){
-                            label.addClass('validate_right').text('OK!');
-                        },
-                        rules : {
-                            consignee : {
-                                required : true
+                    try {
+                        $('#order_form').validate({
+                            invalidHandler: function (e, validator) {
+                                var err_count = validator.numberOfInvalids();
+                                var msg_tpl = '{$lang.order_have_error}';
+                                var d = DialogManager.create('show_error');
+                                d.setWidth(400);
+                                d.setTitle(lang.error);
+                                d.setContents('message', {type: 'warning', text: $.format(msg_tpl, err_count)});
+                                d.show('center');
                             },
-                            region_id : {
-                                required : true,
-                                min   : 1
+                            errorPlacement: function (error, element) {
+                                var _message_box = $(element).parent().find('.field_message');
+                                _message_box.find('.field_notice').hide();
+                                _message_box.append(error);
                             },
-                            address   : {
-                                required : true
+                            success: function (label) {
+                                label.addClass('validate_right').text('OK!');
                             },
-                            phone_tel : {
-                                required : check_phone,
-                                minlength:6,
-                                checkTel : true
+                            rules: {
+                                consignee: {
+                                    required: true
+                                },
+                                region_id: {
+                                    required: true,
+                                    min: 1
+                                },
+                                address: {
+                                    required: true
+                                },
+                                phone_tel: {
+                                    required: check_phone,
+                                    minlength: 6,
+                                    checkTel: true
+                                },
+                                phone_mob: {
+                                    required: check_phone,
+                                    minlength: 6,
+                                    digits: true
+                                }
                             },
-                            phone_mob : {
-                                required : check_phone,
-                                minlength:6,
-                                digits : true
+                            messages: {
+                                consignee: {
+                                    required: '{$lang.consignee_required}'
+                                },
+                                region_id: {
+                                    required: '{$lang.region_required}',
+                                    min: '{$lang.region_required}'
+                                },
+                                address: {
+                                    required: '{$lang.address_required}'
+                                },
+                                phone_tel: {
+                                    required: '{$lang.phone_required}',
+                                    minlength: '{$lang.phone_tel_error}',
+                                    checkTel: '{$lang.phone_tel_error}'
+                                },
+                                phone_mob: {
+                                    required: '{$lang.phone_required}',
+                                    minlength: '{$lang.phone_mob_error}',
+                                    digits: '{$lang.phone_mob_error}'
+                                }
                             }
-                        },
-                        messages : {
-                            consignee : {
-                                required : '{$lang.consignee_required}'
-                            },
-                            region_id : {
-                                required : '{$lang.region_required}',
-                                min  : '{$lang.region_required}'
-                            },
-                            address   : {
-                                required : '{$lang.address_required}'
-                            },
-                            phone_tel : {
-                                required : '{$lang.phone_required}',
-                                minlength: '{$lang.phone_tel_error}',
-                                checkTel : '{$lang.phone_tel_error}'
-                            },
-                            phone_mob : {
-                                required : '{$lang.phone_required}',
-                                minlength: '{$lang.phone_mob_error}',
-                                digits : '{$lang.phone_mob_error}'
-                            }
-                        }
-                    });
-
+                        });
+                    } catch(e){}
                     $('ul[shipping_id]').each(function(){
                         var _shipping_fee = get_shipping_fee($(this).attr('shipping_id'));
                         $(this).find('[ectype="shipping_fee"]').html(price_format(_shipping_fee));

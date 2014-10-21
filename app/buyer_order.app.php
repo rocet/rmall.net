@@ -207,6 +207,7 @@ class Buyer_orderApp extends MemberbaseApp
         }
         else
         {
+
             $model_order->edit($order_id, array('status' => ORDER_FINISHED, 'finished_time' => gmtime()));
             if ($model_order->has_error())
             {
@@ -225,6 +226,79 @@ class Buyer_orderApp extends MemberbaseApp
                 'remark'    => Lang::get('buyer_confirm'),
                 'log_time'  => gmtime(),
             ));
+
+	        // 如果该订单所属商铺是统一支付
+	        if(!m('store')->getOne('SELECT is_open_pay FROM '.DB_PREFIX.'store WHERE store_id='.$order_info['seller_id'])){
+
+		        // 该订单所属买家存在推荐人
+		        if($recommeder_arr = ms()->user->get( m('memberrecommend')->getOne('SELECT recommend_id FROM '.DB_PREFIX.'memberrecommend WHERE user_id='.$order_info['buyer_id']) ) ){
+
+			        $recommeder_id = $recommeder_arr['user_id'];
+			        $recommeder_name = $recommeder_arr['user_name'];
+			        // 获取1个订单全部商品
+			        $goods_all = m('ordergoods')->find(array('conditions'=>'order_id='.$order_id));
+			        // 获取商品默认分成百分比
+			        $salesinto = $GLOBALS['ECMALL_CONFIG']['site_defsalesinto'];
+			        $salesinto_total = 0;
+			        $seller_name = m('member')->getOne('SELECT user_name FROM '.DB_PREFIX.'member WHERE user_id='.$order_info['seller_id']);
+			        foreach($goods_all as $v){
+				        // 获取商品分成百分比
+				        $salesinto = m('salesinto')->getOne('SELECT salesinto FROM '.DB_PREFIX.'salesinto WHERE goods_id='.$v['goods_id']) ?: $salesinto;
+				        // 计算订单分成
+				        $salesinto_total += round(round($v['price'], 2 ) * round($salesinto, 4) / 100, 2 ) * $v['quantity'];
+				        // 分成后的商品价格
+				        $v['price'] = round(round($v['price'], 2 ) * round((100 - round($salesinto, 4)), 4) / 100, 2 );
+			        }
+
+			        // 如果是自动结算分成
+			        if( $GLOBALS['ECMALL_CONFIG']['site_auto_salesinto'] ){
+
+				        $done = 1;
+				        // 卖家支付给推荐者(统一支付下 平台收款给卖家和推荐者充值) ecm_order goods_amount order_amount   ecm_order_goods price quantity
+				        // $buyer = ms()->user->get($order_info['buyer_id']);
+				        // $seller = ms()->user->get($order_info['seller_id']);
+				        // 改变商品订单价格
+				        /*$model_order->edit($order_id, array(
+							'goods_amount'=>round($order_info['goods_amount'], 2) - $salesinto_total,
+							'order_amount'=>round($order_info['order_amount'], 2) - $salesinto_total
+						));*/
+				        // 给卖家和推荐者账号充值
+				        $seller_done = $this->regZpayOrder(' 订单' . $order_info['order_sn'].'销售', $order_info['seller_id'], $seller_name, round($order_info['order_amount'], 2) - $salesinto_total);
+				        if(!$seller_done['done']){
+					        $done = 0;
+				        }
+				        $recommend_done = $this->regZpayOrder(' 获得' . $order_info['seller_name'] . '订单' . $order_info['order_sn'] . '提成', $recommeder_id, $recommeder_name, $salesinto_total);
+				        if(!$recommend_done['done']){
+					        $done = 0;
+				        }
+				        // 记录分成信息
+				        if($done){
+					        // 自动结算成功， 结算完成
+					        $this->regRecommendOrder($recommeder_id, $order_id, $salesinto_total, 1 );
+				        } else {
+					        // 自动结算失败， 改为手动结算， 删除充值信息.
+					        $model_epay    =& m("sys_order");
+					        $model_epaylog =& m('zpaylog');
+					        $model_epay->drop('order_id='.$seller_done['order_id']);
+					        $model_epay->drop('order_id='.$recommend_done['order_id']);
+					        $model_epaylog->drop('order_id='.$seller_done['order_id']);
+					        $model_epaylog->drop('order_id='.$recommend_done['order_id']);
+					        $this->regRecommendOrder($recommeder_id, $order_id, $salesinto_total );
+				        }
+
+			        } else {
+
+				        // 手动结算分成 只添加分成记录
+				        $this->regRecommendOrder($recommeder_id, $order_id, $salesinto_total );
+			        }
+		        } else {
+
+			        // 该订单所属买家不存在推荐人直接充值给卖家
+			        $this->regZpayOrder('销售', $order_info['seller_id'], $order_info['seller_name'], $order_info['order_amount'] );
+		        }
+
+	        }
+
 
             /* 发送给卖家买家确认收货邮件，交易完成 */
             $model_member =& m('member');
@@ -250,6 +324,54 @@ class Buyer_orderApp extends MemberbaseApp
         }
 
     }
+
+
+
+	private function regRecommendOrder($user_id, $recommeduid, $price, $state = 0){
+		m('memberrecommendorder')->add(array('user_id'=>$user_id, 'recommendorder_id'=>$recommeduid, 'salesinto_price'=>$price, 'salesinto_state'=>$state));
+	}
+
+	private function regZpayOrder($type, $user_id, $user_name, $cz_money ){
+		$model_epay    =& m("sys_order");
+		$model_epaylog =& m('zpaylog');
+		$model_zpay    =& m('zpay');
+		$order_id      = $model_epay->add_order($user_id,$user_name,$cz_money,$cz_money,0,0);
+		$order_info    = $model_epay->get_info($order_id);
+		$log_text      = $user_name.$type.$cz_money.'元';
+		$add_epaylog=array(
+			'user_id'=>$user_id,
+			'user_name'=>$user_name,
+			'order_sn'=>$order_info['order_sn'],
+			'to_name' => $bank_name,
+			'add_time'=>time(),
+			'type'=>60,
+			'money'=>$cz_money,
+			'log_text'=>$log_text,
+			'states'=>60,
+			'order_id'=>$order_id,
+		);
+		$model_epaylog->add($add_epaylog);
+		$done = 1;
+		// 修改用户余额
+		$user_money = $model_zpay->getOne('SELECT money FROM '.DB_PREFIX.'zpay WHERE user_id='.$user_id);
+
+		// 记录充值订单
+		if(!$re=$model_epay->edit('order_id='.$order_id,array('status'=>40))){
+			$done = 0;
+		}
+		// 记录充值
+		if(!$relog=$model_epaylog->edit(' order_id='.$order_id,array( 'admin_time'=>time(),'states'=>61)))
+		{
+			$done = 0;
+		}
+		// 修改用户余额
+		if($done && !$rezlog=$model_zpay->edit(' user_id='.$user_id, array( 'money'=> round($user_money+$cz_money,2) )))
+		{
+			$done = 0;
+		}
+		return array( 'done' => $done, 'order_id' => $order_id );
+	}
+
 
     /**
      *    给卖家评价

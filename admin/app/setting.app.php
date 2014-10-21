@@ -172,6 +172,7 @@ class SettingApp extends BackendApp
 
 
             $data['site_defsalesinto']    = $_POST['site_defsalesinto'];
+	        $data['site_auto_salesinto']  = $_POST['site_auto_salesinto'];
 
             $data['site_qq1']             = $_POST['site_qq1'];
             $data['site_qq2']             = $_POST['site_qq2'];

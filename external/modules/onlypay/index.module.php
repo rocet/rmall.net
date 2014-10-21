@@ -18,8 +18,6 @@ class OnlypayModule extends IndexbaseModule
     function index()
     {
       $this->display("onlypay.index.html");
-	 
-       
     }
 	
 	function goto_pay()

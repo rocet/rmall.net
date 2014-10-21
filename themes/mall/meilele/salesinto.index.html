@@ -15,7 +15,7 @@
 
                     <tr class="line_bold">
                         <th class="width1"></th>
-                        <th colspan="6"></th>
+                        <th colspan="7"></th>
                     </tr>
 
                     <tr class="line tr_color">
@@ -26,6 +26,7 @@
                         <th class="align2">订单总价</th>
                         <th class="align2">商品总价</th>
                         <th class="align2">分成</th>
+                        <th class="align2">状态</th>
                     </tr>
                     <!--{/if}-->
                     <!--{foreach from=$salesintos item=salesinto name=v}-->
@@ -37,6 +38,7 @@
                     <td class="align2">{$salesinto.order_amount|price}</td>
                     <td class="align2">{$salesinto.goods_amount|price}</td>
                     <td class="align2">{$salesinto.salesinto_price|price}</td>
+                    <td class="align2" style="color: {if $salesinto.salesinto_state}green{else}red{/if};">{if $salesinto.salesinto_state}已结算{else}未结算{/if}</td>
                     </tr>
                     <!--{foreachelse}-->
                     <tr>
@@ -49,6 +51,43 @@
                         <td colspan="5">
                             <p class="position2">
                                 {include file=member.page.bottom.html}
+                            </p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="7">
+                            <style>
+                                .salesinto_count_l, .salesinto_count_t{
+                                    display: inline-block;
+                                }
+                                .salesinto_count_l{
+                                    min-width: 80px;
+                                }
+                                .salesinto_count_t{
+
+                                }
+                                .btn{
+                                    border: 0;
+                                    width: 120px;
+                                    height: 32px;
+                                    background: url({res file=images/member/btn.gif}) no-repeat 0 -253px;
+                                    cursor: pointer;
+                                    font-weight: bold;
+                                    color: #3f3d3e;
+                                    margin: 5px;
+                                    display: inline-block;
+                                    text-align: center;
+                                    line-height: 32px;
+                                }
+                            </style>
+                            <p class="position2">
+                                <span class="salesinto_count_l">分成统计: </span><span class="salesinto_count_t" style="color: orange;">{$salesintos_total|default:0.00|price}</span><br />
+                                <span class="salesinto_count_l">已结算: </span><span class="salesinto_count_t" style="color: green;">{$salesintos_settled|default:0.00|price}</span><br />
+                                {if $salesintos_not_settled gt 0}
+                                <span class="salesinto_count_l">未结算: </span><span class="salesinto_count_t" style="color: red;">{$salesintos_not_settled|price}</span><br />
+                                <span class="salesinto_count_l">
+                                    <a class="btn" href="{url app=salesinto&act=settle&do=1}" >结算</a></span>
+                                {/if}
                             </p>
                         </td>
                     </tr>

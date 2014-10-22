@@ -49,12 +49,39 @@
             </script>
 
             <div id="JS_fliterTable" class="filterTable">
+                {if $smarty.get.gattrs}
                 <dl class="clearfix selected">
                     <dt>您已选择：</dt>
-                    <dd><table><tr>
-                        <!-- <td><a href="javascript:location.href='/category-wofang/';" class="off" rel="nofollow">床垫<em></em></a></td> -->          
-                        <td><a href="javascript:location.href='{url app=search&cate_id=$pageparam.cate_id}';" rel="nofollow" class="clear">清空</a></td>
-                    </tr></table></dl>
+                    <dd>
+                        <table><tr>
+                            <!--<td><span style="-->
+    <!--margin-right: 3px;  border: solid 1px #af0000;  height: 13px;  line-height: 13px;  padding: 3px 3px 3px 5px;-->
+<!--">价格: xx元<a href="javascript:location.href='/';" class="off" rel="nofollow" style="              -->
+    <!--width: 10px;-->
+    <!--height: 10px;-->
+    <!--color: white;-->
+    <!--background: #af0000;-->
+    <!--padding: 0 0 3px 2px;-->
+    <!--margin: 1px 0 0 5px;-->
+<!--">X</a></span></td>    -->
+
+                        <!--{foreach from=$rocet_search_attrs item=attr name=attr}-->
+                            <!--{foreach from=$attr.subattrs item=subattr name=subattr}-->
+                            <!--{foreach from=$smarty.get.gattrs item=gattr name=gattr}-->
+                            <!--{if $subattr.attr_id eq $gattr}-->
+                        <td><a href="javascript:$.fn.attrunset('gattrs[{$attr.attr_id}]','{$subattr.attr_id}');" class="off" rel="nofollow">{$subattr.attr_name}<em>X</em></a></td>
+                            <!--{/if}-->
+                            <!--{/foreach}-->
+                            <!--{/foreach}-->
+                        <!--{/foreach}-->
+                        <td> <a style="font-size: 12px;
+line-height: 12px;
+max-height: 15px;
+border: 0;" href="javascript:location.href='{url app=search&cate_id=$pageparam.cate_id}';" rel="nofollow" class="clear">清空</a></td>
+                    </tr></table>
+                    </dd>
+                </dl>
+                {/if}
 
                 {if $rocet_show_html_hides}
                 <!--             

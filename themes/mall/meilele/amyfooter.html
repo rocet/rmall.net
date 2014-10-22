@@ -718,6 +718,9 @@ new Focus( $('#Js_guanggao_a a'), $("#Js_guanggao_img") );
         $.fn.attrprocess = function(arg, vol){
             location.href = location.href.split('?')[0]+$.query.set(arg, vol).toString();
         }
+        $.fn.attrunset = function(arg, vol){
+            location.href = encodeURI( decodeURI(location.href).replace('&'+arg+'='+vol, ''));
+        }
     });
 
 if( $.saleNumUpdate ){

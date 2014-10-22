@@ -112,9 +112,22 @@ class SearchApp extends MallbaseApp
         /* 配置seo信息 */
         $this->_config_seo($this->_get_seo_info('goods', $cate_id));
 
-
         // 商品属性
-        $this->assign('rocet_search_attrs', m('attr')->get_tree());
+	    $all_cat_attrs = m('goods')->getAll('SELECT a.attr_id_1, a.attr_id_2 FROM '.DB_PREFIX.'mall_attr AS a LEFT JOIN '.DB_PREFIX.'goods AS g ON g.goods_id = a.goods_id LEFT JOIN '.DB_PREFIX.'store AS s ON g.store_id = s.store_id WHERE '.$this->_get_goods_conditions($param).' GROUP BY a.attr_id_2');
+	    $attr_tree = (m('attr')->get_tree());
+	    $cat_attrs = array();
+		foreach($all_cat_attrs as $v){
+			if(!isset($cat_attrs[$v['attr_id_1']])){
+				$cat_attrs[$v['attr_id_1']] = array(
+					'attr_id' => $attr_tree[$v['attr_id_1']]['attr_id'],
+					'attr_pid' => $attr_tree[$v['attr_id_1']]['attr_pid'],
+					'attr_name' => $attr_tree[$v['attr_id_1']]['attr_name'],
+					'sort_order' => $attr_tree[$v['attr_id_1']]['sort_order'],
+				);
+			}
+			$cat_attrs[$v['attr_id_1']]['subattrs'][$v['attr_id_2']] = $attr_tree[$v['attr_id_1']]['subattrs'][$v['attr_id_2']];
+		}
+        $this->assign('rocet_search_attrs', $cat_attrs);
 
 
         //  本月推荐
